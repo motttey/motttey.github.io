@@ -2,3 +2,11 @@ body{
 	background-color:#00bcd4;
 	color:#ffffff;	
 }
+
+div.line{
+	width:100%;
+	height:1.5px;
+	background-color:#ffffff;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
