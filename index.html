@@ -13,7 +13,14 @@
 	<title>モチヅ庫</title>
 </head>
 
-
+<script>
+$('.ui.button')
+  .on('click', function() {
+    // programmatically activating tab
+    $.tab('change tab', 'tab-name');
+  })
+;
+</script>
 
 <body>
 
@@ -60,7 +67,8 @@
 
 
 	<div class="main">
-	<h3>About<h3> </h3>br>
+	<h3>About<h3> </h3>
+	<br>
 	望月 田吾作(a.k.a. 望月宕作, 望月, motttey, etc.)</h3> <br>
 	1995.7.18 ~
 
