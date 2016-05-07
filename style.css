@@ -1,6 +1,7 @@
 body{
 	background-color:#00bcd4;
 	color:#ffffff;	
+	text-align: center;
 }
 
 div.line{
@@ -9,4 +10,16 @@ div.line{
 	background-color:#ffffff;
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+.ui.menu .item{
+	color:#ffffff;
+	background-color:#00bcd4;
+}
+.ui.menu .item.active{
+	color:#00bcd4;
+}
+
+.ui.menu .item.active:hover{
+	color:#007888;
 }
