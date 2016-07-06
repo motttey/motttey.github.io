@@ -24,7 +24,13 @@ div.line{
 .ui.menu .item.active{
 	color:#00bcd4;
 }
-
+/*
 .ui.menu .item.active:hover{
 	color:#007888;
+}
+*/
+
+.ui.menu .item:hover{
+	color:#00bcd4;
+	background-color:#ffffff;
 }
