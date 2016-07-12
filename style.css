@@ -6,6 +6,10 @@ body{
 	height: 100%;
 }
 
+#HeaderImage{
+	height:300px;
+}
+
 div.line{
 	width:100%;
 	height:1.5px;
