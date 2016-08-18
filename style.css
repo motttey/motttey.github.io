@@ -15,9 +15,16 @@ div.line{
 	margin-bottom: 5px;
 }
 
+.header{
+	background-color:#000000;
+}
+
 #HeaderImage{
-	height:300px;
+	text-align: center;
+	width: 1000px;
 	background-size:100%;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 div.main .column{
