@@ -143,3 +143,15 @@ i.ellipsis{
 	padding-top: 100px;
 	font-size:80px;
 }
+.ui.card, .ui.cards > .card{
+	background: #00bcd4;
+	box-shadow: none;
+}
+
+.ui.card > .image, .ui.cards > .card > .image{
+	border-radius: 5%;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #ffffff;
+	box-shadow: 0 1px 3px 0 #d4d4d5,0 0 0 1px #d4d4d5;
+}
