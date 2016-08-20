@@ -131,7 +131,10 @@ $('.ui.button')
 	<br>
   	<div class="ui four stackable cards"></div>
   	<script>
-    $.getJSON("http://motiget.tumblr.com/api/read/json?num=24&callback=?", function(data) {
+  	max = 2000;	//トータルの投稿数に置換するべき
+  	min = 0;
+  	randomNumber = Math.random() * (max - min) + min;;
+    $.getJSON("http://motiget.tumblr.com/api/read/json?num=24&start="+randomNumber+"&callback=?", function(data) {
         $.each(data.posts, function(i, posts) {
             var photo = this['photo-url-500'];
             var url = this['url'];
