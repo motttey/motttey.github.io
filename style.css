@@ -1,10 +1,17 @@
+
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+
+
 body{
+	font-family: 'Noto Sans Japanese', serif;
 	background-color:#00bcd4;
 	color:#ffffff;	
 	text-align: center;
 	width: 100%;
 	height: 100%;
 }
+
+
 
 
 div.line{
@@ -15,16 +22,24 @@ div.line{
 	margin-bottom: 5px;
 }
 
+/*
 .header{
 	background-color:#000000;
 }
+*/
+
+
 
 #HeaderImage{
 	text-align: center;
-	width: 1000px;
+	/*width: 1000px;*/
 	background-size:100%;
 	margin-left:auto;
 	margin-right:auto;
+}
+
+@media screen and (min-width: 800px) {
+	#HeaderImage{width:1000px;}
 }
 
 div.main .column{
@@ -70,7 +85,7 @@ div.main .column{
 	list-style:none;
 }
 
-.thumbnail li img:hover{
+.thumbnail img:hover{
 	opacity:.5;
 	transition:all ease-in .5s;
 }
@@ -81,4 +96,8 @@ div.main .column{
 	border-radius: 50%;
 	width:200px;
 	height:200px;
+}
+
+@media screen and (max-width: 800px) {
+	.thumbnail img{width:80%; height:80%;}
 }

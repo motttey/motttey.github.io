@@ -3,6 +3,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="node_modules/semantic-ui/dist/semantic.min.css">
 	<script src="node_modules/semantic-ui/dist/semantic.min.js"></script>
+	<script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
 
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
 	<meta charset = "utf-8">
@@ -94,9 +95,20 @@ $('.ui.button')
     	<div class="column">
 
     	<h3>Contact</h3>
+    	<br>
+		連絡は以下のアドレスにどうぞ. 
+		<br>
     	motitago(at)gmail.com
 		<br>    	
-
+			<div id="SkypeButton_Call_motttey99_1">
+ 			<script type="text/javascript">
+		 	Skype.ui({
+ 				"name": "chat",
+ 				"element": "SkypeButton_Call_motttey99_1",
+ 				"participants": ["motttey99"]
+ 			});
+ 			</script>
+			</div>
     	</div>
 
     </div>	
