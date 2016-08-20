@@ -12,8 +12,6 @@ body{
 }
 
 
-
-
 div.line{
 	width:80%;
 	height:1.5px;
@@ -41,6 +39,21 @@ div.boldline{
 }
 */
 
+#About{
+	background-image: url(images/aboutbg.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	/*opacity: 0.5;*/
+}
+
+/*背景画像透過のため*/
+
+.TransparentMask{
+	background: rgba(0, 188, 212, 0.7);
+	height:100%;
+}
+
+
 #Navigation{
 	font-size: 24px;
 }
@@ -53,7 +66,7 @@ div.boldline{
 }
 
 @media screen and (min-width: 800px) {
-	#HeaderImage{width:1000px;}
+	#HeaderImage{width:800px;}
 }
 
 div.main .column{
