@@ -83,12 +83,12 @@ div.main .column{
 	list-style:none;
 }
 
-.thumbnail img:hover{
+.thumbnail img:hover, .single-thumbnail img:hover{
 	opacity:.5;
 	transition:all ease-in .5s;
 }
 
-.thumbnail img{
+.thumbnail img, .single-thumbnail img{
 	border-style: solid;
 	border-width: 2px;
 	border-color: #ffffff;
@@ -97,6 +97,18 @@ div.main .column{
 	height:200px;
 }
 
+
 @media screen and (max-width: 800px) {
 	.thumbnail img{width:80%; height:80%;}
+	.single-thumbnail img{width:20%; height:20%;}
+}
+
+div.cards img{
+	width:100%;
+	height:100%;
+}
+
+#Illust{
+	margin-right: 10%;
+	margin-left: 10%;
 }

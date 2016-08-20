@@ -2,6 +2,8 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="node_modules/semantic-ui/dist/semantic.min.css">
+	<script type="text/javascript"
+ src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<script src="node_modules/semantic-ui/dist/semantic.min.js"></script>
 	<script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
 
@@ -123,13 +125,37 @@ $('.ui.button')
 
 	<div class="line">
 	</div>
-
+	
 	<div class="ui item" id="Illust" data-tab="tab-name2">
 	<h3>イラスト </h3>
 	<br>
-	Under Construction
+  	<div class="ui four stackable cards"></div>
+  	<script>
+    $.getJSON("http://motiget.tumblr.com/api/read/json?num=24&callback=?", function(data) {
+        $.each(data.posts, function(i, posts) {
+            var photo = this['photo-url-500'];
+            var url = this['url'];
+            if (this['type'] === "photo") {
+                $('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img src="' + photo + '" \/><\/a><\/div>');
+            } else {
+                return;
+            }
+        });
+    });
+	</script>
 
 	</div>
+	
+	<div class="line">
+	</div>
+
+	Under Construction. </br>
+	他のイラストはtumblrとかpixivとかで.<br>
+	<br>
+	
+	</div>
+
+
 	<div class="line">
 	</div>
 
@@ -139,12 +165,12 @@ $('.ui.button')
 
 	My GitHub Account
 
-	<!--
-    <div class="thumbnail">
+	
+    <div class="single-thumbnail">
 		<a href="https://github.com/motttey" target="_blank"  ><img src="images/octocat.png" alt="motttey_github"></a>
         <h4>motttey </h4>
 	</div>
-	-->
+	
 	<!--
 	<div data-theme="medium" data-height="" data-width="400" data-github="motttey" class="github-card"></div>
 	<script src="https//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
@@ -211,15 +237,12 @@ $('.ui.button')
      	<br>
 		<h3>Illust SNS</h3>
 		<div class="line"></div>
-			
-		<br>
+		My SNS Accounts
 		</div>
 		</div>
 
     	<div class="three column row">
-		
     	<div class="column">
-		<br>
 		<h3>Pixiv</h3>
 		<div class="line"></div>
 		My Pixiv account. 
@@ -232,8 +255,7 @@ $('.ui.button')
 		</div>
 
 		<div class="column">
-		<br>
-		<h3>Pixiv</h3>
+		<h3>DeviantART</h3>
 
 
 
@@ -249,7 +271,6 @@ $('.ui.button')
 		</div>
 
 		<div class="column">
-		<br>
 		<h3>NicoNicoSeiga</h3>
 		<div class="line"></div>
 		My NicoNicoSeiga account. 
