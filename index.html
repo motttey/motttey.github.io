@@ -17,14 +17,19 @@
 	<title>モチヅ庫</title>
 </head>
 
-<script>
-$('.ui.button')
-  .on('click', function() {
-    // programmatically activating tab
-    $.tab('change tab', 'tab-name');
-  })
-;
+<script type="text/javascript">
+$(function(){
+	$('a').click(function(){
+		var speed = 700;
+		var href= $(this).attr("href");
+		var target = $(href == "#" || href == "" ? 'html' : href);
+		var position = target.offset().top;
+		$("html, body").animate({scrollTop:position}, speed, "swing");
+		return false;
+	});
+});
 </script>
+
 
 <body>
 
@@ -37,7 +42,7 @@ $('.ui.button')
 	</div>
 
 <!-- menu -->
-	<div class="ui six item menu">
+	<div class="ui six item menu" id="Navigation">
   	<div class="item" data-tab="tab-name">
   		<a href="#Main">About</a>
   	</div>
@@ -123,7 +128,7 @@ $('.ui.button')
 
 	</div>
 
-	<div class="line">
+	<div class="boldline">
 	</div>
 	
 	<div class="ui item" id="Illust" data-tab="tab-name2">
@@ -131,7 +136,7 @@ $('.ui.button')
 	<br>
   	<div class="ui four stackable cards"></div>
   	<script>
-  	max = 2000;	//トータルの投稿数に置換するべき
+  	max = 2000;	//トータルの投稿数に置換
   	min = 0;
   	randomNumber = Math.random() * (max - min) + min;;
     $.getJSON("http://motiget.tumblr.com/api/read/json?num=24&start="+randomNumber+"&callback=?", function(data) {
@@ -147,6 +152,11 @@ $('.ui.button')
     });
 	</script>
 
+	<!-- More Button を つける-->
+	<!--
+	<i class="ellipsis vertical icon"></i>
+	-->
+	
 	</div>
 	
 	<div class="line">
@@ -159,7 +169,7 @@ $('.ui.button')
 	</div>
 
 
-	<div class="line">
+	<div class="boldline">
 	</div>
 
 	<div class="ui item" id="Code" data-tab="tab-name2">
@@ -181,7 +191,7 @@ $('.ui.button')
 
 
 	</div>
-	<div class="line">
+	<div class="boldline">
 	</div>
 
 	<div class="ui item"  id="Blog" data-tab="tab-name2">
@@ -191,7 +201,7 @@ $('.ui.button')
 
 
 	</div>
-	<div class="line">
+	<div class="boldline">
 	</div>
 
 	<div class="ui item" id="Acounts" data-tab="tab-name2">
@@ -293,7 +303,7 @@ $('.ui.button')
 	</div>
 
 	</div>
-	<div class="line">
+	<div class="boldline">
 	</div>
 
 	<div class="ui item" id="Link" data-tab="tab-name2">
@@ -303,10 +313,19 @@ $('.ui.button')
 
 	</div>
 
-	<div class="line">
+	<div class="boldline">
 	</div>
 	
 	<div class="footer">
+		<a href="#Main">About</a>		|
+  		<a href="#Illust">Illust</a>	|
+  		<a href="#Code">Code</a>		|
+  		<a href="#Blog">Blog</a>		|
+  		<a href="#Acounts">Acounts</a>	|
+  		<a href="#Link">Link</a>		
+  		<br>
+  		Copyright © 2008-2016 by Tagosaku Mochiduki
+  		<br>
 		私的利用範囲外での無断転載を禁じます.
 	</div>
 
