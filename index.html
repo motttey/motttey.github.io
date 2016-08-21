@@ -31,6 +31,39 @@ $(function(){
 </script>
 
 <script type="text/javascript">
+
+$(function() {
+	NavigationHeight = 20;
+	NavigationFix_Start = 600;
+    var navigation = $('#Navigation');
+    //表示位置
+    var navTop = navigation.offset().top+NavigationFix_Start;
+    //ナビゲーションの高さ（シャドウの分だけ足してます）
+    var navHeight = navigation.height()+NavigationHeight;
+    var showFlag = false;
+    navigation.css('top', -navHeight+'px');
+    //ナビゲーションの位置まできたら表示
+    $(window).scroll(function () {
+        var winTop = $(this).scrollTop();
+        if (winTop >= navTop) {
+            if (showFlag == false) {
+                showFlag = true;
+                navigation.addClass('navigation-fixed').stop().animate({'top' : '0px'}, 200);
+            }
+        } else if (winTop <= navTop) {
+            if (showFlag) {
+                showFlag = false;
+                navigation.stop().animate({'top' : -navHeight+'px'}, 200, function(){
+                    navigation.removeClass('navigation-fixed');
+                });
+            }
+        }
+    });
+});
+
+</script>
+
+<script type="text/javascript">
 		function SelectTimeline(val){
 		switch(val){
 			case 0:UserName="motttey";
