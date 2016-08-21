@@ -1,7 +1,6 @@
 
 @import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
 
-
 body{
 	font-family: 'Noto Sans Japanese', serif;
 	background-color:#00bcd4;
@@ -10,7 +9,6 @@ body{
 	width: 100%;
 	height: 100%;
 }
-
 
 div.line{
 	width:80%;
@@ -33,11 +31,7 @@ div.boldline{
 	margin-top: 10px;
 	margin-bottom:10px;
 }
-/*
-.header{
-	background-color:#000000;
-}
-*/
+
 
 /*Buttonのstyle修正*/
 #RandomImageViewButton:hover, #RandomImageViewButton:active, #RandomImageViewButton:focus{
@@ -108,8 +102,6 @@ div.main .column{
 	padding-bottom:20px;
 }
 
-
-
 .ui.menu .item a{
 	color:#ffffff;
 }
@@ -118,8 +110,6 @@ div.main .column{
 	color:#00bcd4;
 	/*background-color: #ffffff;*/
 }
-
-
 
 .ui.menu .item:active{
 	color:#00bcd4;
@@ -130,8 +120,6 @@ div.main .column{
 	background-color: #ffffff;
 
 }
-
-
 
 .column{
 	border-width: 1px;
@@ -173,11 +161,6 @@ div.cards img{
 	margin-left: 10%;
 }
 
-
-i.ellipsis{
-	padding-top: 100px;
-	font-size:80px;
-}
 .ui.card, .ui.cards > .card{
 	background: #00bcd4;
 	box-shadow: none;
@@ -199,7 +182,6 @@ i.ellipsis{
 	padding-left: 5%;
 	padding-right: 5%;
 }
-
 
 #LinkTable h3, #LinkTable h3:link{
 	color:#ffffff;
