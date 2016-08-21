@@ -39,10 +39,17 @@ div.boldline{
 }
 */
 
+/*Buttonのstyle修正*/
+.ui.inverted.button:hover, .ui.inverted.button:active, .ui.inverted.button:focus{
+	color: #00bcd4;
+	transition:all ease-in .5s;
+}
+
 #About{
 	background-image: url(images/aboutbg.png);
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: 30%;
 	/*opacity: 0.5;*/
 }
 
@@ -57,6 +64,10 @@ div.boldline{
 #Navigation{
 	font-size: 24px;
 }
+@media screen and (max-width: 800px) {
+	#Navigation{font-size:60%;}
+}
+
 #HeaderImage{
 	text-align: center;
 	/*width: 1000px;*/
@@ -82,21 +93,31 @@ div.main .column{
 	padding-top: 20px;
 	padding-bottom:20px;
 }
+
+
+
 .ui.menu .item a{
 	color:#ffffff;
 }
-.ui.menu .item a:hover{
+
+.ui.menu .item:hover a{
 	color:#00bcd4;
+	/*background-color: #ffffff;*/
 }
 
-.ui.menu .item.active{
+
+
+.ui.menu .item:active{
 	color:#00bcd4;
 }
 
 .ui.menu .item:hover{
 	color:#00bcd4;
-	background-color:#ffffff;
+	background-color: #ffffff;
+
 }
+
+
 
 .column{
 	border-width: 1px;

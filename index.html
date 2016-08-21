@@ -143,8 +143,9 @@ $(function(){
   	<script>
   	max = 2000;	//トータルの投稿数に置換
   	min = 0;
+  	ViewIllustNum = 24;
   	randomNumber = Math.random() * (max - min) + min;;
-    $.getJSON("http://motiget.tumblr.com/api/read/json?num=24&start="+randomNumber+"&callback=?", function(data) {
+    $.getJSON("http://motiget.tumblr.com/api/read/json?num="+ViewIllustNum+"&start="+randomNumber+"&callback=?", function(data) {
         $.each(data.posts, function(i, posts) {
             var photo = this['photo-url-500'];
             var url = this['url'];
@@ -161,6 +162,38 @@ $(function(){
 	<!--
 	<i class="ellipsis vertical icon"></i>
 	-->
+	
+	<br>
+	<button class="ui inverted button" onClick="ViewIllustOnButtonClick()">More</button>
+
+	
+
+	<script>
+	function ViewIllustOnButtonClick(){
+  	illustCounter = 4;
+  	for(var i = 0; i < illustCounter; i++){
+  		/*$('div.cards').append('a');*/
+  		GetRandomIllust();
+    }
+	}
+	function GetRandomIllust(){
+		max = 2000;	//トータルの投稿数に置換
+  		min = 0;
+  		ViewIllustNum = 1;
+		randomNumber = Math.random() * (max - min) + min;;
+    	$.getJSON("http://motiget.tumblr.com/api/read/json?num="+ViewIllustNum+"&start="+randomNumber+"&callback=?", function(data) {
+        	$.each(data.posts, function(i, posts) {
+            	var photo = this['photo-url-500'];
+            	var url = this['url'];
+            	if (this['type'] === "photo") {
+                	$('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img src="' + photo + '" \/><\/a><\/div>');
+            	} else {
+                	return;
+            	}
+        	});
+    	});
+	}
+	</script>
 
 	</div>
 	
@@ -213,7 +246,6 @@ $(function(){
 		
 		<div class="one column row">
     	<div class="column">
-     	<br>
 		<h2>Accounts</h2>
 		<div class="line"></div>
 		There're my acounts. 
