@@ -40,9 +40,14 @@ div.boldline{
 */
 
 /*Buttonのstyle修正*/
-.ui.inverted.button:hover, .ui.inverted.button:active, .ui.inverted.button:focus{
+#RandomImageViewButton:hover, #RandomImageViewButton:active, #RandomImageViewButton:focus{
 	color: #00bcd4;
 	transition:all ease-in .5s;
+}
+
+#twitterModal{
+	width:auto;
+	height:auto;
 }
 
 #About{
@@ -179,4 +184,15 @@ i.ellipsis{
 
 .footer a{
 	color:#ffffff;
+}
+
+.column .embed-tweets{
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+
+#LinkTable h3, #LinkTable h3:link{
+	color:#ffffff;
+	text-decoration: underline;
 }
