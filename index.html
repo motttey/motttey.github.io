@@ -535,7 +535,17 @@ $(function() {
         	//マウスアウト処理
         	$(this).css('text-decoration', 'none');
     	}
-		);
+	);
+	$('#LinkTable img').hover(
+    	function(){  
+        	//マウスオーバー処理
+        	$(this).css('border-width', '2px');
+    	},
+    	function(){
+        	//マウスアウト処理
+        	$(this).css('border-width', '0px');
+    	}
+	);
     </script>    
 
 </body>

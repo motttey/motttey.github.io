@@ -183,6 +183,12 @@ div.cards img{
 	padding-right: 5%;
 }
 
+#LinkTable img{
+	border-style: solid;
+	border-width: 0px;
+	border-color: #ffffff;
+}
+
 #LinkTable h3{
 	color:#ffffff;
 	/*text-decoration: underline;*/
