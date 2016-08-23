@@ -194,22 +194,12 @@ $(function() {
 	<h2>イラスト </h2>
 	<br>
   	<div class="ui four stackable cards"></div>
+  	
   	<script>
-  	max = 2000;	//トータルの投稿数に置換
-  	min = 0;
-  	ViewIllustNum = 24;
-  	randomNumber = Math.random() * (max - min) + min;;
-    $.getJSON("http://motiget.tumblr.com/api/read/json?num="+ViewIllustNum+"&start="+randomNumber+"&callback=?", function(data) {
-        $.each(data.posts, function(i, posts) {
-            var photo = this['photo-url-500'];
-            var url = this['url'];
-            if (this['type'] === "photo") {
-                $('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img src="' + photo + '" \/><\/a><\/div>');
-            } else {
-                return;
-            }
-        });
-    });
+  	$(document).ready( function(){
+  		DefaultIllustNum = 16;
+	  	ViewIllust(DefaultIllustNum);
+	});
 	</script>
 
 	<!-- More Button を つける-->
@@ -222,13 +212,19 @@ $(function() {
 	
 
 	<script>
+
 	function ViewIllustOnButtonClick(){
-  	illustCounter = 4;
-  	for(var i = 0; i < illustCounter; i++){
-  		/*$('div.cards').append('a');*/
-  		GetRandomIllust();
-    }
+	  	illustNum = 4;
+	  	ViewIllust(illustNum);
 	}
+
+	function ViewIllust(NUM){
+  		for(var i = 0; i < NUM; i++){
+  		/*$('div.cards').append('a');*/
+  			GetRandomIllust();
+    	}
+	}
+
 	function GetRandomIllust(){
 		max = 2000;	//トータルの投稿数に置換
   		min = 0;
