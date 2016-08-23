@@ -183,7 +183,7 @@ div.cards img{
 	padding-right: 5%;
 }
 
-#LinkTable h3, #LinkTable h3:link{
+#LinkTable h3{
 	color:#ffffff;
-	text-decoration: underline;
+	/*text-decoration: underline;*/
 }

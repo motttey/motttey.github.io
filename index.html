@@ -525,7 +525,18 @@ $(function() {
 		私的利用範囲外での無断転載を禁じます.
 	</div>
 
-          
+    <script>
+	$('#LinkTable h3').hover(
+    	function(){  
+        	//マウスオーバー処理
+        	$(this).css('text-decoration', 'underline');
+    	},
+    	function(){
+        	//マウスアウト処理
+        	$(this).css('text-decoration', 'none');
+    	}
+		);
+    </script>    
 
 </body>
 </html>
