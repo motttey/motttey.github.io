@@ -53,7 +53,7 @@ a, a:hover, a:link{
 	background-image: url(images/aboutbg.png);
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: 400px;
+	background-size: 600px;
 	/*opacity: 0.5;*/
 }
 
@@ -136,7 +136,7 @@ div.main .column{
 }
 
 .thumbnail img:hover, .single-thumbnail img:hover{
-	opacity:0.5;
+	opacity: 0.5;
 	transition:all ease-in .5s;
 }
 
@@ -145,8 +145,8 @@ div.main .column{
 	border-width: 2px;
 	border-color: #ffffff;
 	border-radius: 50%;
-	width:200px;
-	height:200px;
+	width: 200px;
+	height: 200px;
 	background-color: #ffffff;
 }
 
