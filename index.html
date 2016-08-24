@@ -16,6 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="dist/semantic.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/cropper/1.0.0/cropper.min.css" rel="stylesheet" type="text/css" media="all"/>
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">
+
 
 	<title>モチヅ庫</title>
 </head>
@@ -217,7 +219,6 @@ $(function() {
 
 	function ViewIllustOnButtonClick(){
 	  	illustNum = 4;
-	  	ResizeImageHeight();
 	  	ViewIllust(illustNum);
 	}
 
@@ -244,6 +245,7 @@ $(function() {
             	var url = this['url'];
             	//TODO: タグごとの表示
             	if (this['type'] === "photo") {
+            		ResizeImageHeight();
                 	$('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
             	} else {
                 	return;
@@ -258,11 +260,13 @@ $(function() {
 
 	<br>
 	
+	<!-- タグごとに表示とかする -->
+
 	<div class="line">
 	</div>
 	<p>
-	Under Construction. <br>
-	他のイラストはtumblrとかpixivとかで.<br>
+
+	随時追加予定, 他のイラストはtumblrやpixivでも確認できます.<br>
 	</p>
 	
 	</div>
@@ -295,11 +299,20 @@ $(function() {
 	</div>
 
 	<div class="ui item"  id="Blog" data-tab="tab-name2">
-	<h2>ブログ</h2>
-	<p>Under Construction</p>
+	<h2>Blog</h2>
 
+	<blockquote>
+		立派すぎる決心は, きっと三日坊主になるから.
+	</blockquote>
 
+	<div id="BlogTable">
+		<p><a href="http://d.hatena.ne.jp/motttey/" target="_blank"><h3>Hatena</h3></a></p>
+		<p><a href="http://generation1991.g.hatena.ne.jp/motttey/" target="_blank"><h3>Hatena(g91)</h3></a></p>
+		<p><a href="http://motttey.tumblr.com/" target="_blank"><h3>Tumblr</h3></a></p>
 	</div>
+	
+	</div>
+	
 	<div class="boldline">
 	</div>
 

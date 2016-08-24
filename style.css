@@ -194,9 +194,22 @@ div.cards img{
   text-decoration: none;
 
 }
-#LinkTable h3::after{
+
+
+#BlogTable h3{
+	font-size:96px;
+	position: relative;
+  	display: inline;
+  	text-decoration: none;
+  	line-height: 0.8em;
+	font-family: 'Passion One', cursive;
+}
+
+
+#LinkTable h3::after, #BlogTable h3::after{
 	content: '';
 	position: absolute;
+	margin-bottom: 0.2em;
   	bottom: 0;
   	left: 0;
 	width:100%;
@@ -206,10 +219,8 @@ div.cards img{
   	transition: all .4s ease;
 }
 
-#LinkTable h3:hover::after {
-
+#LinkTable h3:hover::after, #BlogTable h3:hover::after {
   transform: scaleX(1);
-  
 }
 
 #LinkTable img{
@@ -232,10 +243,26 @@ div.cards img{
   	*/
 }
 
-.cards .card{
-
-}
 .cards img{
 	background-color: #ffffff;
 }
 
+blockquote{
+	font-size: 24pt;
+	font-family: 'Noto Sans Japanese', serif;
+}
+blockquote::before{
+	content:"“";
+	font-size:64px;
+	line-height:1em;
+	font-family: 'Passion One', cursive;
+
+}
+
+blockquote::after{
+	content:"”";
+	font-size:64px;
+	line-height:1em;
+	font-family: 'Passion One', cursive;
+
+}
