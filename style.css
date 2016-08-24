@@ -174,7 +174,7 @@ div.cards img{
 .ui.card > .image, .ui.cards > .card > .image{
 	border-radius: 5%;
 	border-style: solid;
-	border-width: 2px;
+	border-width: 5%;
 	border-color: #ffffff;
 	box-shadow: 0 1px 3px 0 #d4d4d5,0 0 0 1px #d4d4d5;
 }
@@ -210,12 +210,32 @@ div.cards img{
 
   transform: scaleX(1);
   
-
 }
 
 #LinkTable img{
 	border-style: solid;
 	border-width: 0px;
 	border-color: #ffffff;
+}
+.cards{
+	width: 100%;
+	height: auto;
+}
+.cards .card{
+	overflow: hidden;
+	background-color: #ffffff;
+	height: 20%;
+	/*
+  	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
+  	*/
+}
+
+.cards .card{
+
+}
+.cards img{
+	background-color: #ffffff;
 }
 

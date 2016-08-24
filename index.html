@@ -5,6 +5,7 @@
  	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="dist/semantic.min.js"></script>
 	<script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/1.0.0/cropper.min.js"></script>
 
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
 	<meta charset = "utf-8">
@@ -13,6 +14,7 @@
 	<meta description = "望月 田吾作(もちづき たごさく)が描いたドラえもんをはじめとした絵や漫画の掲載を目的としたサイト.">
 
 	<link rel="stylesheet" type="text/css" href="dist/semantic.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/cropper/1.0.0/cropper.min.css" rel="stylesheet" type="text/css" media="all"/>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 
 	<title>モチヅ庫</title>
@@ -62,6 +64,26 @@ $(function() {
         }
     });
 });
+</script>
+
+<script>
+
+	function ResizeImageHeight(){
+		CardWidth = $('.cards .card').width();
+		$(".cards .card").css("height", CardWidth + "px");
+	}
+	$(document).ready(function(){
+		//画面高さ取得
+		ResizeImageHeight();
+	});
+	$(window).loaded(function(){
+		//画面高さ取得
+		ResizeImageHeight();
+	});
+	$(window).resize(function() {
+		//画面リサイズ時の高さ取得
+		ResizeImageHeight();
+	});
 
 </script>
 
@@ -195,6 +217,7 @@ $(function() {
 
 	function ViewIllustOnButtonClick(){
 	  	illustNum = 4;
+	  	ResizeImageHeight();
 	  	ViewIllust(illustNum);
 	}
 
@@ -221,7 +244,7 @@ $(function() {
             	var url = this['url'];
             	//TODO: タグごとの表示
             	if (this['type'] === "photo") {
-                	$('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img src="' + photo + '" \/><\/a><\/div>');
+                	$('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
             	} else {
                 	return;
             	}
@@ -229,6 +252,7 @@ $(function() {
     	});
 	}
 	</script>
+
 
 	</div>
 
