@@ -29,7 +29,8 @@ $(function(){
 		var speed = 700;
 		var href= $(this).attr("href");
 		var target = $(href == "#" || href == "" ? 'html' : href);
-		var position = target.offset().top;
+		var offset = 20;
+		var position = target.offset().top - $("#Navigation").height() - offset;
 		$("html, body").animate({scrollTop:position}, speed, "swing");
 		return false;
 	});
@@ -39,15 +40,14 @@ $(function(){
 <script type="text/javascript">
 
 $(function() {
-	NavigationHeight = 20;
-	NavigationFix_Start = 600;
+	var NavigationFix_Start = 600;
     var navigation = $('#Navigation');
     //表示位置
-    var navTop = navigation.offset().top+NavigationFix_Start;
+    var navTop = navigation.offset().top + NavigationFix_Start;
     //ナビゲーションの高さ
-    var navHeight = navigation.height()+NavigationHeight;
+    var navHeight = navigation.height();
     var showFlag = false;
-    navigation.css('top', -navHeight+'px');
+    navigation.css('top', navHeight+'px');
     //ナビゲーションの位置まできたら表示
     $(window).scroll(function () {
         var winTop = $(this).scrollTop();
@@ -75,10 +75,6 @@ $(function() {
 		$(".cards .card").css("height", CardWidth + "px");
 	}
 	$(document).ready(function(){
-		//画面高さ取得
-		ResizeImageHeight();
-	});
-	$(window).loaded(function(){
 		//画面高さ取得
 		ResizeImageHeight();
 	});
@@ -200,7 +196,6 @@ $(function() {
  			});
 			</script>
  							 			
-
 		</div>
     	</div>
 
