@@ -6501,7 +6501,9 @@ AWS.SequentialExecutor = AWS.util.inherit({
         try {
           listener.apply(self, args);
         } catch (err) {
-          error = AWS.util.error(error || new Error(), err);
+          //error = AWS.util.error(error || new Error(), err);
+          window.location.href = "past.html";
+
         }
         if (error && self._haltHandlersOnError) {
           doneCallback.call(self, error);

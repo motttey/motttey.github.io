@@ -39,9 +39,13 @@ a, a:hover, a:link{
 
 
 /*Buttonのstyle修正*/
-#RandomImageViewButton:hover, #RandomImageViewButton:active, #RandomImageViewButton:focus{
+#RandomImageViewButton:hover, #RandomImageViewButton:active, #RandomImageViewButton:focus,
+#submituserinfo:hover, #submituserinfo:active, #submituserinfo:focus{
 	color: #00bcd4;
 	transition:all ease-in .5s;
+}
+#submituserinfo{
+	font-size: 20px;
 }
 
 #twitterModal{
@@ -176,7 +180,6 @@ div.cards img{
 .ui.card > .image, .ui.cards > .card > .image{
 	border-radius: 5%;
 	border-style: solid;
-	border-width: 5%;
 	border-color: #ffffff;
 	box-shadow: 0 1px 3px 0 #d4d4d5,0 0 0 1px #d4d4d5;
 }
@@ -247,6 +250,26 @@ div.cards img{
 
 .cards img{
 	background-color: #ffffff;
+}
+
+.ui .form{
+	color:#00bcd4;
+}
+form{
+	color:#00bcd4;
+}
+.ui.form input[type="text"]{
+	width: 40%;
+	font-size: 28px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+} 
+.ui.form .field > label{
+	font-size: 36pt;
+	font-family: 'Passion One', cursive;
+	color:#ffffff;
 }
 
 /*引用のスタイル*/
