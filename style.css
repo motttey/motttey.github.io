@@ -137,12 +137,11 @@ div.main .column{
 	border-color: #ffffff;
 }
 
-.thumbnail, .zips {
+.thumbnail{
 	list-style:none;
 }
 
-
-.thumbnail img:hover, .single-thumbnail img:hover, .zips img:hover{
+.thumbnail img:hover, .single-thumbnail img:hover{
 	opacity: 0.5;
 	transition:all ease-in .5s;
 }
@@ -156,32 +155,7 @@ div.main .column{
 	height: 200px;
 	background-color: #ffffff;
 }
-.zips img{
-	border-style: solid;
-	border-width: 2px;
-	border-color: #ffffff;
-	border-radius: 25%;
-	width: 200px;
-	height: 200px;
-	background-color: #ffffff;	
-	position: relative;
-}
 
-.zips-over{
-  position: absolute;
-  bottom: 30%;
-  left: 0px;
-  width:100%;
-  color: #fff;
- }
-p.img-over-text{
-  color:#ffffff;
-  text-shadow: -1px 0 #00bcd4, 0 1px #00bcd4, 1px 0 #00bcd4, 0 -1px #00bcd4;
-  font-size: 64px;
-  font-family: 'Passion One', cursive;
-  text-align: center;
-  width: 100%;
-}
 
 @media screen and (max-width: 800px) {
 	.thumbnail img{width:80%; height:80%;}
@@ -317,9 +291,4 @@ blockquote::after{
 	line-height:1em;
 	font-family: 'Passion One', cursive;
 
-}
-h1{
-	font-size:96px;
-	line-height:1em;
-	font-family: 'Passion One', cursive;	
 }
