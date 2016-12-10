@@ -22,10 +22,17 @@
 
 	<script type="text/javascript">
 	<!--
-
+	url = "http://motttey.github.io/pastform.html";
 	jQuery(document).ready(function($){ 
-		console.log("test" + document.referrer);
+		$('#SpecialPage').css('display', 'none');	
 
+		console.log("test" + document.referrer);
+		if(document.referrer != url){
+			window.location.href = "pastform.html";
+		}
+		else{
+			$('#SpecialPage').css('display', 'block');	
+		}
 	});
 
 	// -->
@@ -36,8 +43,8 @@
 
 <body>
 
-<div class="ui item" id="Illust" data-tab="tab-name2">
-	<h2>DORA THE PAST</h2>
+<div class="ui item" id="SpecialPage" data-tab="tab-name2">
+	<h1>DORA THE PAST</h1>
 
 
 	<blockquote>
@@ -81,6 +88,5 @@
       
 	</div>
 	</div>	
-
 
 </body>
