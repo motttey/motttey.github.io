@@ -184,8 +184,16 @@ p.img-over-text{
 }
 
 @media screen and (max-width: 800px) {
-	.thumbnail img{width:80%; height:80%;}
-	.single-thumbnail img{width:20%; height:20%;}
+	.thumbnail img{
+		width:80%; height:80%;
+	}
+	.single-thumbnail img{
+		width:20%; height:20%;
+	}
+	blockquote{
+		font-size: 16pt;
+	}
+
 }
 
 div.cards img{
