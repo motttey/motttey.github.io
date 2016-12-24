@@ -193,6 +193,9 @@ p.img-over-text{
 	blockquote{
 		font-size: 16pt;
 	}
+	#SpecialPage img{
+		width:30%; height:30%;
+	}
 
 }
 
