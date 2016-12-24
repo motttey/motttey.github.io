@@ -329,9 +329,9 @@ h1{
 		width:20%; height:20%;
 	}
 	blockquote{
-		font-size: 16pt;
+		font-size: 16px;
 	}
 	p.img-over-text{
-		font-size: 32pt;
+		font-size: 32px;
 	}
 }
