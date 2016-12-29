@@ -297,6 +297,7 @@ form{
 /*長文のスタイル*/
 p.sentence{
 	width: 60%;
+	text-align: center;
 }
 
 /*引用のスタイル*/
