@@ -294,6 +294,11 @@ form{
 	color:#ffffff;
 }
 
+/*長文のスタイル*/
+p.sentence{
+	width: 60%;
+}
+
 /*引用のスタイル*/
 blockquote{
 	font-size: 24pt;
