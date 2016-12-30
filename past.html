@@ -28,11 +28,11 @@
 
 		console.log("test" + document.referrer);
 		
-		if(document.referrer != url){
-			//window.location.href = "pastform.html";
+		if(document.referrer == url){
+			$('#SpecialPage').css('display', 'block');	
 		}
 		else{
-			$('#SpecialPage').css('display', 'block');	
+			window.location.href = "pastform.html";
 		}
 		
 	});
