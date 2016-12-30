@@ -21,14 +21,24 @@
 	<title>モチヅ庫</title>
 
 	<script type="text/javascript">
-	<!--
+	
+	url = "http://motttey.github.io/pastform.html";
 
 	jQuery(document).ready(function($){ 
 		console.log("test" + document.referrer);
 
+		
+		if (document.referrer != url) {
+			$('#SpecialPage').css('display', 'none');	
+			window.location.href = "pastform.html";		
+		}
+		else {
+			console.log("Success to Login");
+		}
+		
+		$('#SpecialPage').css('display', 'block');			
 	});
-
-	// -->
+	
 	</script>
 
 </head>
@@ -36,24 +46,53 @@
 
 <body>
 
-<div class="ui item" id="Illust" data-tab="tab-name2">
-	<h2>DORA THE PAST</h2>
 
+<div class="ui item" id="SpecialPage" data-tab="tab-name2">
+	<h1>DORA THE PAST</h1>
+	<h1>Special Site</h1>
 
 	<blockquote>
-		望月田吾作の集大成。
+	すごーくおもしろいんだ! すごーくゆかいなんだ!
 	</blockquote>
+	<h2>以下より所望のファイルをダウンロードしてください.</h2>
+	<h2>本文および掲載イラストの使用について</h2>
+	<p class = "sentence">配布ファイルの著作権は全て制作者である望月田吾作が有するものとします, つきましては, 本文や掲載イラスト等の個人的利用(編集・加工を含む)については許可しますが, Web上での転載・再配布・販売・芸術作品への利用等の制作者の不利益になるような利用については禁止とさせて頂きます.
+	また, その他の個人利用を超過した範囲での使用については連絡頂きたく思います.
+	</p>
+	<p>連絡先 motitago(at)gmail.com</p>
+
 
 	<div class="line"> </div>
-	<h2>Downloads</h2>
+	<h2>Main Contents</h2>
+	<div class="line"> </div>
+
+	<div class="ui grid">
+	<div class="one column row">
+
+	<div class="column">
+		<div class="zips">
+			<a href="http://motttey.s17.xrea.com/body-pdf.zip" target="_blank" download="body-pdf.zip">
+				<img src="images/bookbg.png" alt="botttey" data-content="botttey">
+				<div class="zips-over"><p class="img-over-text">Boby</p></div>
+			</a>
+
+		</div>
+      
+	</div>
+
+	</div>
+	</div>	
+
+	<h2>Pictures</h2>
+	<div class="line"> </div>
 
 	<div class="ui grid">
 	<div class="three column row">
 	<div class="column">
 		<div class="zips">
-			<a href="images/motttey.png" download="motttey.png">
-				<img src="images/motttey.png" alt="motttey" data-content="motttey">
-				<div class="zips-over"><p class="img-over-text">Book</p></div>
+			<a href="http://motttey.s17.xrea.com/0-49.zip" download="0-49.png">
+				<img src="images/contentbg.png" alt="motttey" data-content="motttey">
+				<div class="zips-over"><p class="img-over-text">No.0-49</p></div>
 			</a>
 
 		</div>
@@ -61,9 +100,9 @@
 
 	<div class="column">
 		<div class="zips">
-			<a href="images/mt_tg.png" target="_blank" download="mt_tg.png">
-				<img src="images/mt_tg.png" alt="mt_tg" data-content="mt_tg">
-				<div class="zips-over"><p class="img-over-text">Contents</p></div>
+			<a href="http://motttey.s17.xrea.com/50-79.zip" download="50-79.png">
+				<img src="images/contentbg.png" alt="mt_tg" data-content="mt_tg">
+				<div class="zips-over"><p class="img-over-text">No.50-79</p></div>
 			</a>
 
 		</div>
@@ -72,9 +111,9 @@
 
 	<div class="column">
 		<div class="zips">
-			<a href="http://motttey.s17.xrea.com/bonus.zip" target="_blank" download="bonus.zip">
-				<img src="images/botttey.png" alt="botttey" data-content="botttey">
-				<div class="zips-over"><p class="img-over-text">Bonus</p></div>
+			<a href="http://motttey.s17.xrea.com/80-109.zip" download="80-109.png">
+				<img src="images/contentbg.png" alt="botttey" data-content="botttey">
+				<div class="zips-over"><p class="img-over-text">No.80-109</p></div>
 			</a>
 
 		</div>
@@ -82,5 +121,56 @@
 	</div>
 	</div>	
 
+	<div class="three column row">
+	<div class="column">
+		<div class="zips">
+			<a href="http://motttey.s17.xrea.com/110-139.zip" download="110-139.png">
+				<img src="images/contentbg.png" alt="motttey" data-content="motttey">
+				<div class="zips-over"><p class="img-over-text">No.110-139</p></div>
+			</a>
 
+		</div>
+	</div>
+
+	<div class="column">
+		<div class="zips">
+			<a href="http://motttey.s17.xrea.com/140-172.zip" download="140-172.png">
+				<img src="images/contentbg.png" alt="mt_tg" data-content="mt_tg">
+				<div class="zips-over"><p class="img-over-text">No.140-172</p></div>
+			</a>
+
+		</div>
+		
+	</div>
+
+	<div class="column">
+		<div class="zips">
+			<a href="http://motttey.s17.xrea.com/173-189.zip" download="173-189.zip">
+				<img src="images/contentbg.png" alt="botttey" data-content="botttey">
+				<div class="zips-over"><p class="img-over-text">No.173-189</p></div>
+			</a>
+
+		</div>
+      
+	</div>
+	</div>	
+	</div>
+
+	<h2>Bonus</h2>
+	<div class="line"> </div>
+
+	<div class="ui grid">
+	<div class="one column row">
+	<div class="column">
+		<div class="zips">
+			<a href="http://motttey.s17.xrea.com/bonus.zip"  download="bonus.zip">
+				<img src="images/bonusbg.png" alt="botttey" data-content="botttey">
+				<div class="zips-over"><p class="img-over-text">Bonus</p></div>
+			</a>
+
+		</div>
+      
+	</div>
+	</div>	
+	</div>
 </body>
