@@ -21,14 +21,13 @@
 	<title>モチヅ庫</title>
 
 	<script type="text/javascript">
-	
-	url = "http://motttey.github.io/pastform.html";
+	//refererを元に遷移	
+	const url = "http://motttey.github.io/pastform.html";
 
 	jQuery(document).ready(function($){ 
 		console.log("test" + document.referrer);
 
-		
-		if (document.referrer != url) {
+		if (document.referrer !== url) {
 			$('#SpecialPage').css('display', 'none');	
 			window.location.href = "pastform.html";		
 		}
