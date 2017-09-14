@@ -146,9 +146,10 @@ $(function() {
 
 		<div class="line"></div>
 		<p>
-		望月 田吾作(もちづき たごさく)が描いたドラえもんをはじめとした絵や漫画の掲載を目的としたサイトです.<br>
-
-		当サイトは版権作品に関した過激なパロディ表現などを含む為、苦手な方はご了承下さい. <br>
+			望月 田吾作(もちづき たごさく)が描いたドラえもんをはじめとした絵や漫画の掲載を目的としたサイトです.
+		</p>
+		<p>
+			当サイトは版権作品に関した過激なパロディ表現などを含む為、苦手な方はご了承下さい. <br>
 		</p>
 	</div>
 	</div>
@@ -243,11 +244,11 @@ $(function() {
 	}
 
 	function GetRandomIllust(){
-		max = 2000;	//トータルの投稿数に置換
+		max = 2200;	//トータルの投稿数に置換
   		min = 0;
   		ViewIllustNum = 1;
 		randomNumber = Math.random() * (max - min) + min;;
-    	$.getJSON("http://motiget.tumblr.com/api/read/json?num="+ViewIllustNum+"&start="+randomNumber+"&callback=?", function(data) {
+    	$.getJSON("http://motiget-blog.tumblr.com/api/read/json?num="+ViewIllustNum+"&start="+randomNumber+"&callback=?", function(data) {
         	$.each(data.posts, function(i, posts) {
             	var photo = this['photo-url-500'];
             	var url = this['url'];
@@ -369,10 +370,6 @@ $(function() {
 
 			</div>
 
-			<!--
-			<button class="ui inverted button" id="OpenModal">More</button>
-			-->
-
 		</div>
 
     	<div class="column">
@@ -492,7 +489,7 @@ $(function() {
 	</div>
 
 	<div class="ui item" id="Link" data-tab="tab-name2">
-	<h2>リンク </h2>
+	<h2>リンク</h2>
 
 	<blockquote>
 		しかし, 機械で友達をつくるなんて, かわいそうだね.	
@@ -501,7 +498,7 @@ $(function() {
 	<div class="line">
 	</div>
 		<p>
-		当サイトはリンクフリーです. 以下のバナーをお使いください.
+			当サイトはリンクフリーです. 以下のバナーをお使いください.
 		</p>
 		<img src="images/banner.png" alt="banner"> <br>
 
@@ -522,17 +519,18 @@ $(function() {
 	
 	<div class="footer">
 		<p>
-		<a href="#About">About</a>		|
-  		<a href="#Illust">Illust</a>	|
-  		<a href="#Code">Code</a>		|
-  		<a href="#Blog">Blog</a>		|
-  		<a href="#Acounts">Acounts</a>	|
-  		<a href="#Link">Link</a>		
+			<a href="#About">About</a>		|
+  			<a href="#Illust">Illust</a>	|
+  			<a href="#Code">Code</a>		|
+  			<a href="#Blog">Blog</a>		|
+  			<a href="#Acounts">Acounts</a>	|
+  			<a href="#Link">Link</a>		
   		</p>
   		<p>
-  		Copyright © 2008-2016 by Tagosaku Mochiduki
-  		<br>
-		私的利用範囲外での無断転載を禁じます.
+  			Copyright © 2008-2016 by Tagosaku Mochiduki
+		</p>
+		<p>
+			私的利用範囲外での無断転載を禁じます.
 		</p>
 	</div>
 
