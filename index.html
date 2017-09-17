@@ -66,22 +66,19 @@ $(function() {
         }
     });
 });
-</script>
 
-<script>
-
-	function ResizeImageHeight(){
-		CardWidth = $('.cards .card').width();
-		$(".cards .card").css("height", CardWidth + "px");
-	}
-	$(document).ready(function(){
-		//画面高さ取得
-		ResizeImageHeight();
-	});
-	$(window).resize(function() {
-		//画面リサイズ時の高さ取得
-		ResizeImageHeight();
-	});
+function ResizeImageHeight(){
+	CardWidth = $('.cards .card').width();
+	$(".cards .card").css("height", CardWidth + "px");
+}
+$(document).ready(function(){
+	//画面高さ取得
+	ResizeImageHeight();
+});
+$(window).resize(function() {
+	//画面リサイズ時の高さ取得
+	ResizeImageHeight();
+});
 
 </script>
 
@@ -182,7 +179,7 @@ $(function() {
     	<div class="line"></div>
     	<p>
 		連絡は以下のアドレスにどうぞ. <br>
-		Skypeなど申請される場合はこのサイトから来た旨を書いて頂ければほぼ承認できます. 
+		Skypeなどに申請される場合はこのサイトから来た旨を書いて頂ければほぼ承認できます. 
 		<br>
     	motitago(at)gmail.com
 		</p>    	
@@ -285,23 +282,23 @@ $(function() {
 	</div>
 
 	<div class="ui item" id="Code" data-tab="tab-name2">
-	<h2>コード </h2>
+		<h2>コード </h2>
 
-	<blockquote>
-		ていどひくい.
-	</blockquote>
+		<blockquote>
+			ていどひくい.
+		</blockquote>
 
-	<div class="line">
-	</div>
+		<div class="line">
+		</div>
 
-	<h3>My Skill(Pretentious)</h3>
-	<p>C/C#/Java/JavaScript/HTML5/CSS3/PHP/Unity/MatLab, Mathematica, Python, R </p>
+		<h3>My Skill(Pretentious)</h3>
+		<p>C/C#/Java/JavaScript/HTML5/CSS3/PHP/Rails/Unity/MatLab, Mathematica, Python, R </p>
 
-	</div>
-	
-    <div class="single-thumbnail">
-		<a href="https://github.com/motttey" target="_blank"  ><img src="images/octocat.png" alt="motttey_github"></a>
-        <h4>motttey </h4>
+	    <div class="single-thumbnail thumbnai">
+			<a href="https://github.com/motttey" target="_blank">
+			<img src="images/octocat.png" alt="motttey_github"></a>
+	        <h4>motttey </h4>
+		</div>
 	</div>
 	
 	<!--
@@ -310,22 +307,22 @@ $(function() {
 	-->
 
 	</div>
+
 	<div class="boldline">
 	</div>
 
 	<div class="ui item"  id="Blog" data-tab="tab-name2">
-	<h2>Blog</h2>
+		<h2>Blog</h2>
 
-	<blockquote>
-		立派すぎる決心は, きっと三日ぼうずになるから.
-	</blockquote>
+		<blockquote>
+			立派すぎる決心は, きっと三日ぼうずになるから.
+		</blockquote>
 
-	<div id="BlogTable">
-		<p><a href="http://d.hatena.ne.jp/motttey/" target="_blank"><h3>Hatena</h3></a></p>
-		<p><a href="http://generation1991.g.hatena.ne.jp/motttey/" target="_blank"><h3>Hatena(g91)</h3></a></p>
-		<p><a href="http://motttey.tumblr.com/" target="_blank"><h3>Tumblr</h3></a></p>
-	</div>
-	
+		<div id="BlogTable">
+			<p><a href="http://d.hatena.ne.jp/motttey/" target="_blank"><h3>Hatena</h3></a></p>
+			<p><a href="http://generation1991.g.hatena.ne.jp/motttey/" target="_blank"><h3>Hatena(g91)</h3></a></p>
+			<p><a href="http://motttey.tumblr.com/" target="_blank"><h3>Tumblr</h3></a></p>
+		</div>
 	</div>
 	
 	<div class="boldline">
