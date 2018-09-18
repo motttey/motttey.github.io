@@ -19,6 +19,36 @@
 	<title>モチヅ庫</title>
 </head>
 
+<script>
+
+$(document).ready( function(){
+		DefaultIllustNum = 16;
+		ViewIllust(DefaultIllustNum);
+});
+
+function ViewIllust(NUM){
+		for(var i = 0; i < NUM; i++){
+		/*$('div.cards').append('a');*/
+			GetRandomIllust();
+		}
+}
+
+function GetRandomIllust(){
+	var max = 1477;	//トータルの投稿数に置換
+	var min = 0;
+	var ViewIllustNum = 1;
+	var randomNumber = Math.random() * (max - min) + min;;
+	// var illusts = $.getJSON("output.json");
+	$.getJSON("output.json", function(data) {
+		var target_data = data[parseInt(randomNumber)];
+		var photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
+		var url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
+		//TODO: タグごとの表示
+		$('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
+	});
+}
+</script>
+
 <body>
 
 	<div class="header">
@@ -31,8 +61,15 @@
 
 	<div class="main">
 		<div class="stats">
+			<!--
+				1477
+				4195893
+				94469
+				11880
+			-->
 		</div>
 		<div class="gallery">
+			<div class="ui four stackable cards"></div>
 		</div>
 	</div>
 
