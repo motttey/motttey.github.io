@@ -27,10 +27,16 @@ $(document).ready( function(){
 });
 
 function ViewIllust(NUM){
-		for(var i = 0; i < NUM; i++){
-		/*$('div.cards').append('a');*/
-			GetRandomIllust();
-		}
+	for(var i = 0; i < NUM; i++){
+	/*$('div.cards').append('a');*/
+		GetRandomIllust();
+	}
+}
+
+function ResizeImageHeight(){
+	// TODO: 横長画像のcrop
+	var CardWidth = $('.cards .card').width();
+	$(".cards .card").css("height", CardWidth + "px");
 }
 
 function GetRandomIllust(){
@@ -43,7 +49,7 @@ function GetRandomIllust(){
 		var target_data = data[parseInt(randomNumber)];
 		var photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
 		var url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
-		//TODO: タグごとの表示
+		ResizeImageHeight();
 		$('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
 	});
 }

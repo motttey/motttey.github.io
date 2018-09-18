@@ -14,8 +14,8 @@
 	<meta description = "望月 田吾作(もちづき たごさく)が描いたドラえもんをはじめとした絵や漫画の掲載を目的としたサイト.">
 
 	<link rel="stylesheet" type="text/css" href="dist/semantic.min.css">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/cropper/1.0.0/cropper.min.css" rel="stylesheet" type="text/css" media="all"/>
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/cropper/1.0.0/cropper.min.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">
 
 
@@ -68,7 +68,7 @@ $(function() {
 });
 
 function ResizeImageHeight(){
-	CardWidth = $('.cards .card').width();
+	var CardWidth = $('.cards .card').width();
 	$(".cards .card").css("height", CardWidth + "px");
 }
 $(document).ready(function(){
@@ -83,7 +83,7 @@ $(window).resize(function() {
 </script>
 
 <script type="text/javascript">
-		function SelectTimeline(val){
+	function SelectTimeline(val){
 		switch(val){
 			case 0:UserName="motttey";
 			case 1:UserName="mt_tg";
@@ -91,9 +91,8 @@ $(window).resize(function() {
 			default: UserName='';
 		}
 		script = 'test';
-
-        $('#ViewTwitterTimeline').append(script);
- 		}
+	  $('#ViewTwitterTimeline').append(script);
+	}
 </script>
 
 <body>
@@ -235,29 +234,28 @@ $(window).resize(function() {
 
 	function ViewIllust(NUM){
   		for(var i = 0; i < NUM; i++){
-  		/*$('div.cards').append('a');*/
   			GetRandomIllust();
     	}
 	}
 
 	function GetRandomIllust(){
-		max = 2200;	//トータルの投稿数に置換
-  		min = 0;
-  		ViewIllustNum = 1;
-		randomNumber = Math.random() * (max - min) + min;;
-    	$.getJSON("http://motiget-blog.tumblr.com/api/read/json?num="+ViewIllustNum+"&start="+randomNumber+"&callback=?", function(data) {
-        	$.each(data.posts, function(i, posts) {
-            	var photo = this['photo-url-500'];
-            	var url = this['url'];
-            	//TODO: タグごとの表示
-            	if (this['type'] === "photo") {
-            		ResizeImageHeight();
-                	$('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
-            	} else {
-                	return;
-            	}
-        	});
-    	});
+		var max = 2200;	//トータルの投稿数に置換
+  	var min = 0;
+  	var ViewIllustNum = 1;
+		var randomNumber = Math.random() * (max - min) + min;;
+  	$.getJSON("http://motiget-blog.tumblr.com/api/read/json?num="+ViewIllustNum+"&start="+randomNumber+"&callback=?", function(data) {
+      	$.each(data.posts, function(i, posts) {
+          	var photo = this['photo-url-500'];
+          	var url = this['url'];
+          	//TODO: タグごとの表示
+          	if (this['type'] === "photo") {
+          		ResizeImageHeight();
+              	$('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
+          	} else {
+              	return;
+          	}
+      	});
+  	});
 	}
 	</script>
 
@@ -536,7 +534,6 @@ $(window).resize(function() {
     	function(){
         	//マウスオーバー処理
         	//$(this).css('text-decoration', 'underline');
-
     	},
     	function(){
         	//マウスアウト処理
