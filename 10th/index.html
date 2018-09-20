@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script type="text/javascript"
- 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="../dist/semantic.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
 
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
 	<meta charset = "utf-8">
@@ -40,9 +40,46 @@
 
 <script>
 
+var primary_stats = {
+	total_illusts: 1478,
+	total_views: 4198198,
+	total_bookmarks: 94505,
+	total_comments: 11881,
+};
+
+function showPrimaryStats(){
+	console.log(Object.entries(primary_stats));
+
+	/*
+	d3.select(".stats")
+		.selectAll("h2")
+		.data(Object.entries(primary_stats))
+		.append("h2")
+		.attr("id", function(d,i){
+			return d[0];
+		})
+		.text(function(d,i){
+			return d[0] + ": " + d[1];
+		})
+	*/
+
+	Object.entries(primary_stats).forEach(function(stat){
+		var num = 0;
+		setInterval(function(){
+			if (num <= stat[1]){
+				$('#' + stat[0]).html(stat[0] + ": " + num);
+				num = num + parseInt(stat[1]/100);
+			} else {
+				$('#' + stat[0]).html(stat[0] + ": " + stat[1]);
+			}
+		},1);
+	});
+}
+
 $(document).ready( function(){
-		DefaultIllustNum = 16;
-		ViewIllust(DefaultIllustNum);
+	var DefaultIllustNum = 16;
+	ViewIllust(DefaultIllustNum);
+	showPrimaryStats();
 });
 
 function ViewIllust(NUM){
@@ -116,6 +153,11 @@ function GetRandomIllust(){
 		<div class="stats">
 			<h2>statics of motttey</h2>
 			<!-- D3.js infographics -->
+			<h1 id ="total_illusts"> </h1>
+			<h1 id ="total_views"> </h1>
+			<h1 id ="total_bookmarks"> </h1>
+			<h1 id ="total_comments"> </h1>
+
 		</div>
 
 		<div class="line"></div>
