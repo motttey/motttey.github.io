@@ -17,6 +17,25 @@
 
 
 	<title>モチヅ庫</title>
+	<style>
+		div.line {
+			margin-top: 30px;
+			margin-bottom: 30px;
+		}
+		div.boldline {
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+		.introduction p {
+			letter-spacing: 8px;
+			margin-left: 20%;
+			margin-right: 20%;
+		}
+		.main {
+			margin-left: 10%;
+			margin-right: 10%;
+		}
+	</style>
 </head>
 
 <script>
@@ -28,15 +47,19 @@ $(document).ready( function(){
 
 function ViewIllust(NUM){
 	for(var i = 0; i < NUM; i++){
-	/*$('div.cards').append('a');*/
 		GetRandomIllust();
 	}
 }
 
-function ResizeImageHeight(){
+function ResizeImageHeight(id){
 	// TODO: 横長画像のcrop
-	var CardWidth = $('.cards .card').width();
-	$(".cards .card").css("height", CardWidth + "px");
+	var CardWidth = $("#" + id).width();
+	var Cardheight = $("#" + id).height();
+	var image = $("#" + id + " img");
+	console.log(image[0].height);
+	if (image.height() < image.width() ) {
+		// $("#" + id).css("margin-top", (image.width() - image.height())/2)
+	}
 }
 
 function GetRandomIllust(){
@@ -49,8 +72,9 @@ function GetRandomIllust(){
 		var target_data = data[parseInt(randomNumber)];
 		var photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
 		var url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
-		ResizeImageHeight();
-		$('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
+		var id = "i" + target_data["id"];
+		$('div.cards').append('  <div class="card" id="'+id+'"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
+		ResizeImageHeight(id);
 	});
 }
 </script>
@@ -63,7 +87,7 @@ function GetRandomIllust(){
     <h2>UNDER CONSTRUCTION</h2>
 	</div>
 
-  <div class="line"></div>
+  <div class="boldline"></div>
 
 	<div class="main">
 		<div class="stats">
@@ -74,10 +98,42 @@ function GetRandomIllust(){
 				11880
 			-->
 		</div>
+		<div class="introduction">
+			<h2>introduction</h2>
+				<p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト </p>
+		</div>
+
+		<div class="line"></div>
+
+		<div class="stats">
+			<h2>statics of motttey</h2>
+			<!-- D3.js infographics -->
+		</div>
+
+		<div class="line"></div>
+
 		<div class="gallery">
+			<h2>illust gallery</h2>
 			<div class="ui four stackable cards"></div>
 		</div>
+
+		<div class="line"></div>
+
+		<div class="stats">
+			<h2>Comments</h2>
+		</div>
+
 	</div>
+
+	<div class="boldline"></div>
 
   <div class="footer">
   	<p>
