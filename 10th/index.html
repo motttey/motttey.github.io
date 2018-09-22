@@ -18,7 +18,7 @@
 
 	<title>モチヅ庫</title>
 	<style>
-		div.line {
+		div.line , #search-keywords{
 			margin-top: 30px;
 			margin-bottom: 30px;
 		}
@@ -137,7 +137,7 @@ function GetRandomIllust(data, index){
 	var ViewIllustNum = 1;
 	var randomNumber = Math.random() * (max - min) + min;;
 	// var illusts = $.getJSON("output.json");
-	var target_data = ($('s-random').hasClass('active'))? data[parseInt(randomNumber)] : data[index];
+	var target_data = ($('#s-random').hasClass('active'))? data[parseInt(randomNumber)] : data[index];
 	var photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
 	var url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
 	var id = "i" + target_data["id"];
@@ -193,12 +193,19 @@ function GetRandomIllust(data, index){
 
 		<div class="gallery">
 			<h2>illust gallery</h2>
+
 			<div class="ui four item menu" id="search-mode">
 				<a class="item active" id="s-random">Random</a>
 			  <a class="item" id="s-bookmark">Bookmark</a>
 			  <a class="item" id="s-view">View</a>
 				<a class="item" id="s-comments">Comments</a>
 			</div>
+
+			<div class="ui massive icon input" id="search-keywords">
+			  <input placeholder="Search keywords..." type="text">
+			  <!-- <i class="search icon"></i> -->
+			</div>
+
 			<div class="ui four stackable cards" id="gallery-cards"></div>
 		</div>
 
