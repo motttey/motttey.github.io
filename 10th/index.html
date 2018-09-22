@@ -93,6 +93,25 @@ $(document).ready( function(){
 				new_data = setSortTargetKey($(this).attr('id'), data);
 				ViewIllust(DefaultIllustNum, new_data);
 		});
+
+		var max = 16;
+		$('#search-keywords').keypress( function (e) {
+			if ( e.which == 13 ) {
+				query = $('#search-keywords input').val()
+				output_data = [];
+				data.forEach(function(illust, index){
+					illust["tags"].forEach(function(tag){
+						if (tag["name"].indexOf(query) != -1) {
+							output_data.push(illust);
+						}
+					})
+				})
+				console.log(output_data);
+				$('div.card').remove();
+				ViewIllust(max, output_data);
+			}
+		});
+
 		ViewIllust(DefaultIllustNum, data);
 		showPrimaryStats();
 	});
@@ -132,7 +151,7 @@ function ResizeImageHeight(id){
 }
 
 function GetRandomIllust(data, index){
-	var max = 1477;	//トータルの投稿数に置換
+	var max = data.length;	//トータルの投稿数に置換
 	var min = 0;
 	var ViewIllustNum = 1;
 	var randomNumber = Math.random() * (max - min) + min;;
