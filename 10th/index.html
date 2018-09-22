@@ -47,8 +47,15 @@ var primary_stats = {
 	total_comments: 11881,
 };
 
+function sortObjectByKey(array, key) {
+	array.sort(function(a, b) {
+    return (a[key] > b[key]) ? -1 : 1;
+  });
+	console.log(array);
+	return array;
+}
+
 function showPrimaryStats(){
-	console.log(Object.entries(primary_stats));
 
 	/*
 	d3.select(".stats")
@@ -77,14 +84,40 @@ function showPrimaryStats(){
 }
 
 $(document).ready( function(){
-	var DefaultIllustNum = 16;
-	ViewIllust(DefaultIllustNum);
-	showPrimaryStats();
+	$.getJSON("output.json", function(data) {
+		var DefaultIllustNum = 16;
+		$('#search-mode .item')
+		 .on('click', function(d) {
+				$(this).addClass('active').siblings('.item').removeClass('active');
+				$('div.card').remove();
+				new_data = setSortTargetKey($(this).attr('id'), data);
+				ViewIllust(DefaultIllustNum, new_data);
+		});
+		ViewIllust(DefaultIllustNum, data);
+		showPrimaryStats();
+	});
 });
 
-function ViewIllust(NUM){
+function setSortTargetKey(id, data){
+	switch (id){
+		case 's-random':
+			break;
+		case 's-bookmark':
+			data = sortObjectByKey(data, 'bookmark')
+			break;
+		case 's-view':
+			data = sortObjectByKey(data, 'view')
+			break;
+		case 's-comments':
+			data = sortObjectByKey(data, 'comments')
+			break;
+	}
+	return data;
+}
+
+function ViewIllust(NUM, data) {
 	for(var i = 0; i < NUM; i++){
-		GetRandomIllust();
+		GetRandomIllust(data, i);
 	}
 }
 
@@ -93,26 +126,23 @@ function ResizeImageHeight(id){
 	var CardWidth = $("#" + id).width();
 	var Cardheight = $("#" + id).height();
 	var image = $("#" + id + " img");
-	console.log(image[0].height);
 	if (image.height() < image.width() ) {
 		// $("#" + id).css("margin-top", (image.width() - image.height())/2)
 	}
 }
 
-function GetRandomIllust(){
+function GetRandomIllust(data, index){
 	var max = 1477;	//トータルの投稿数に置換
 	var min = 0;
 	var ViewIllustNum = 1;
 	var randomNumber = Math.random() * (max - min) + min;;
 	// var illusts = $.getJSON("output.json");
-	$.getJSON("output.json", function(data) {
-		var target_data = data[parseInt(randomNumber)];
-		var photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
-		var url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
-		var id = "i" + target_data["id"];
-		$('div.cards').append('  <div class="card" id="'+id+'"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
-		ResizeImageHeight(id);
-	});
+	var target_data = ($('s-random').hasClass('active'))? data[parseInt(randomNumber)] : data[index];
+	var photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
+	var url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
+	var id = "i" + target_data["id"];
+	$('div.cards').append('  <div class="card" id="'+id+'"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
+	ResizeImageHeight(id);
 }
 </script>
 
@@ -157,14 +187,19 @@ function GetRandomIllust(){
 			<h1 id ="total_views"> </h1>
 			<h1 id ="total_bookmarks"> </h1>
 			<h1 id ="total_comments"> </h1>
-
 		</div>
 
 		<div class="line"></div>
 
 		<div class="gallery">
 			<h2>illust gallery</h2>
-			<div class="ui four stackable cards"></div>
+			<div class="ui four item menu" id="search-mode">
+				<a class="item active" id="s-random">Random</a>
+			  <a class="item" id="s-bookmark">Bookmark</a>
+			  <a class="item" id="s-view">View</a>
+				<a class="item" id="s-comments">Comments</a>
+			</div>
+			<div class="ui four stackable cards" id="gallery-cards"></div>
 		</div>
 
 		<div class="line"></div>
