@@ -94,20 +94,28 @@ $(document).ready( function(){
 				ViewIllust(DefaultIllustNum, new_data);
 		});
 
-		var max = 16;
 		$('#search-keywords').keypress( function (e) {
 			if ( e.which == 13 ) {
-				query = $('#search-keywords input').val()
-				output_data = [];
+				var queries = $('#search-keywords input').val().split(/\s+/)
+				var queries_length = queries.length
+				var output_data = [];
+				// キーワードの重複, 類似クエリに対応
+				// 0研の時の表示検討
 				data.forEach(function(illust, index){
-					illust["tags"].forEach(function(tag){
-						if (tag["name"].indexOf(query) != -1) {
-							output_data.push(illust);
-						}
-					})
-				})
+					var matched_count = 0;
+					queries.forEach(function(query){
+						illust["tags"].forEach(function(tag){
+							if (tag["name"].indexOf(query) != -1) {
+								matched_count++;
+							}
+						});
+					});
+
+					if (matched_count >= queries_length) output_data.push(illust);
+				});
 				console.log(output_data);
 				$('div.card').remove();
+				var max = (output_data.length > DefaultIllustNum)? 16 :output_data.length;
 				ViewIllust(max, output_data);
 			}
 		});
@@ -154,9 +162,9 @@ function GetRandomIllust(data, index){
 	var max = data.length;	//トータルの投稿数に置換
 	var min = 0;
 	var ViewIllustNum = 1;
-	var randomNumber = Math.random() * (max - min) + min;;
+	var randomNumber = Math.random() * (max - min) + min;
 	// var illusts = $.getJSON("output.json");
-	var target_data = ($('#s-random').hasClass('active'))? data[parseInt(randomNumber)] : data[index];
+	var target_data = ($('#s-random').hasClass('active') && data.length > 1000)? data[parseInt(randomNumber)] : data[index];
 	var photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
 	var url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
 	var id = "i" + target_data["id"];
