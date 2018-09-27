@@ -168,9 +168,9 @@ function ResizeImageHeight(id){
 }
 
 function getRandomNumber(max, min){
-	var randomNumber = 0;
+	var randomNumber = parseInt(Math.random() * (max - min) + min);
 	while(selected_indexes.includes(randomNumber)){
-		randomNumber = parseInt(Math.random() * (max - min) + min)
+		randomNumber = parseInt(Math.random() * (max - min) + min);
 	}
 	selected_indexes.push(randomNumber);
 	return randomNumber;
@@ -221,6 +221,10 @@ function GetRandomIllust(data, index){
 					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
 					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
 					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト </p>
+				<p>
+				2018.11.4
+				</p>
+ 				<img src="img/signature.png" alt="sign" width="200"></img>
 		</div>
 
 		<div class="line"></div>
