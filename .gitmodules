@@ -1,0 +1,3 @@
+[submodule "jquery.inview"]
+	path = jquery.inview
+	url = https://github.com/protonet/jquery.inview
