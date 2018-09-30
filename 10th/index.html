@@ -31,7 +31,7 @@
 			letter-spacing: 5px;
 		}
 
-		div.line , #search-keywords{
+		div.line, #search-keywords, #gallery-cards{
 			margin-top: 30px;
 			margin-bottom: 30px;
 		}
@@ -117,7 +117,12 @@ $(document).ready( function(){
 				$(this).addClass('active').siblings('.item').removeClass('active');
 				$('div.card').remove();
 				new_data = setSortTargetKey($(this).attr('id'), data);
-				ViewIllust(DefaultIllustNum, new_data);
+				ViewIllust(0, DefaultIllustNum, new_data);
+		});
+
+		$('#RandomImageViewButton')
+		 .on('click', function(d) {
+			 ViewIllustOnButtonClick(data);
 		});
 
 		$('#search-keywords').keypress( function (e) {
@@ -143,11 +148,11 @@ $(document).ready( function(){
 				console.log(output_data);
 				$('div.card').remove();
 				var max = (output_data.length > DefaultIllustNum)? 16 :output_data.length;
-				ViewIllust(max, output_data);
+				ViewIllust(0, max, output_data);
 			}
 		});
 
-		ViewIllust(DefaultIllustNum, data);
+		ViewIllust(0, DefaultIllustNum, data);
 		showPrimaryStats();
 	});
 });
@@ -170,8 +175,14 @@ function setSortTargetKey(id, data){
 	return data;
 }
 
-function ViewIllust(NUM, data) {
-	for(var i = 0; i < NUM; i++){
+function ViewIllustOnButtonClick(data){
+		var existin_illust_num = $('div.card').length;
+		var illust_num = (data.length > 4)? 4 :data.length;
+		ViewIllust(existin_illust_num, illust_num, data);
+}
+
+function ViewIllust(start, NUM, data) {
+	for(var i = start; i < start + NUM; i++){
 		GetRandomIllust(data, i);
 	}
 }
@@ -275,6 +286,8 @@ function GetRandomIllust(data, index){
 			</div>
 
 			<div class="ui four stackable cards" id="gallery-cards"></div>
+			<button class="ui inverted button" id="RandomImageViewButton">More</button>
+
 		</div>
 
 		<div class="line"></div>
