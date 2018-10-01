@@ -51,6 +51,26 @@
 			margin-left: 10%;
 			margin-right: 10%;
 		}
+
+		.axis path {
+			stroke: white;
+			stroke-width: 3px;
+		}
+
+		#stat_svg {
+			width: 600px;
+			height: 400px;
+		}
+
+		.tick text{
+			fill: white;
+			font-family: 'Passion One', cursive;
+			font-size: 16px;
+		}
+		.tick line {
+			stroke: white;
+		}
+
 	</style>
 </head>
 
@@ -132,7 +152,7 @@ $(document).ready( function(){
 				var output_data = [];
 				selected_indexes = [];
 				// キーワードの重複, 類似クエリに対応
-				// 0研の時の表示検討
+				// 0件の時の表示検討
 				data.forEach(function(illust, index){
 					var matched_count = 0;
 					queries.forEach(function(query){
@@ -154,6 +174,7 @@ $(document).ready( function(){
 
 		ViewIllust(0, DefaultIllustNum, data);
 		showPrimaryStats();
+		drawStatGraphs();
 	});
 });
 
@@ -219,6 +240,61 @@ function GetRandomIllust(data, index){
 	$('div.cards').append('  <div class="card" id="'+id+'"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
 	ResizeImageHeight(id);
 }
+
+function drawStatGraphs(){
+	var illust_num = [
+		{"year": 2008, "num": 156},
+		{"year": 2009, "num": 561},
+		{"year": 2010, "num": 355},
+		{"year": 2011, "num": 122},
+		{"year": 2012, "num": 79},
+		{"year": 2013, "num": 61},
+		{"year": 2014, "num": 35},
+		{"year": 2015, "num": 19},
+		{"year": 2016, "num": 41},
+		{"year": 2017, "num": 31},
+		{"year": 2018, "num": 19},
+	];
+	var width = 500;
+	var height = 300;
+	var margin = 40;
+	var x_bar_scale = d3.scaleBand().rangeRound([margin, width]).padding(0.1);
+  var y_bar_scale = d3.scaleLinear().rangeRound([height, margin]);
+
+	var bar_g = d3.select("#stat_svg").append("g")
+			.attr("width", width)
+	    .attr("transform", "translate(" + 0 + "," + 0 + ")");
+
+	x_bar_scale.domain(illust_num.map(function(d) { return d["year"]; }));
+  y_bar_scale.domain([0, d3.max(illust_num, function(d) { return d["num"]; })]);
+
+  bar_g.append("g")
+      .attr("class", "axis bar_axis-x")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x_bar_scale));
+
+  bar_g.append("g")
+      .attr("class", "axis bar_axis-y")
+			.attr("transform", "translate(" + margin + "," + 0 + ")")
+      .call(d3.axisLeft(y_bar_scale))
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "0.71em")
+      .attr("text-anchor", "end")
+      .text("Frequency")
+			.style("font-color", "white");
+
+  bar_g.selectAll(".bar")
+    .data(illust_num)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x_bar_scale(d["year"]); })
+      .attr("y", function(d) { return y_bar_scale(d["num"]); })
+			.attr("fill", "white")
+      .attr("width", x_bar_scale.bandwidth())
+      .attr("height", function(d) { return height - y_bar_scale(d["num"]); });
+}
 </script>
 
 <body>
@@ -232,14 +308,6 @@ function GetRandomIllust(data, index){
   <div class="boldline"></div>
 
 	<div class="main">
-		<div class="stats">
-			<!--
-				1477
-				4195893
-				94469
-				11880
-			-->
-		</div>
 		<div class="introduction">
 			<h2>introduction</h2>
 				<p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
@@ -266,6 +334,7 @@ function GetRandomIllust(data, index){
 			<h1 id ="total_views" class="each_stats"> </h1>
 			<h1 id ="total_bookmarks" class="each_stats"> </h1>
 			<h1 id ="total_comments" class="each_stats"> </h1>
+			<svg id="stat_svg"> </svg>
 		</div>
 
 		<div class="line"></div>
