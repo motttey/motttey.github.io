@@ -130,6 +130,14 @@ $(document).ready( function(){
 		}
 	});
 
+	$('#stat_svg').on('inview', function(event, isInView) {
+	  if (isInView) {
+	    $(this).addClass('feedIn');
+	  } else {
+			$(this).removeClass('feedIn');
+		}
+	});
+
 	$.getJSON("output.json", function(data) {
 		var DefaultIllustNum = 16;
 		$('#search-mode .item')
@@ -174,6 +182,7 @@ $(document).ready( function(){
 
 		ViewIllust(0, DefaultIllustNum, data);
 		showPrimaryStats();
+		initializeSVG();
 		drawStatGraphs();
 	});
 });
@@ -241,6 +250,23 @@ function GetRandomIllust(data, index){
 	ResizeImageHeight(id);
 }
 
+function initializeSVG(){
+	var width = 500;
+	var height = 300;
+
+	var bar_g = d3.select("#stat_svg").append("svg").append("g")
+			.attr("id", "bar_g")
+			.attr("width", width)
+			.attr("height", height)
+	    .attr("transform", "translate(" + 0 + "," + 0 + ")");
+
+	var pie_g = d3.select("#stat_svg").append("svg").append("g")
+			.attr("id", "pie_g")
+			.attr("width", width)
+			.attr("height", height)
+	    .attr("transform", "translate(" + width/2 + "," + height*2 + ")");
+}
+
 function drawStatGraphs(){
 	var illust_num = [
 		{"year": 2008, "num": 156},
@@ -261,12 +287,10 @@ function drawStatGraphs(){
 	var x_bar_scale = d3.scaleBand().rangeRound([margin, width]).padding(0.1);
   var y_bar_scale = d3.scaleLinear().rangeRound([height, margin]);
 
-	var bar_g = d3.select("#stat_svg").append("g")
-			.attr("width", width)
-	    .attr("transform", "translate(" + 0 + "," + 0 + ")");
-
 	x_bar_scale.domain(illust_num.map(function(d) { return d["year"]; }));
   y_bar_scale.domain([0, d3.max(illust_num, function(d) { return d["num"]; })]);
+
+	var bar_g = d3.select("#bar_g");
 
   bar_g.append("g")
       .attr("class", "axis bar_axis-x")
@@ -318,15 +342,13 @@ function drawStatGraphs(){
 		.innerRadius(pie_radius * 0.9)
 		.outerRadius(pie_radius * 0.9);
 
-	var pie_svg = d3.select("#stat_svg").append("g")
-			.attr("width", width)
-	    .attr("transform", "translate(" + pie_width + "," + 500 + ")");
+	var pie_g = d3.select("#pie_g");
 
-	var pie_slices = pie_svg.append("g")
+	var pie_slices = pie_g.append("g")
 		.attr("class", "slices");
-	var labels = pie_svg.append("g")
+	var pie_labels = pie_g.append("g")
 		.attr("class", "labels");
-	var pie_lines = pie_svg.append("g")
+	var pie_lines = pie_g.append("g")
 		.attr("class", "lines");
 
 	var pie_arcs = pie_slices.selectAll(".arc")
@@ -339,7 +361,7 @@ function drawStatGraphs(){
 	      .attr("fill", function(d, i) { return (i==0)? "white": "none" })
 				.attr("stroke", "white");
 
-	var pie_text = labels.selectAll("text")
+	var pie_text = pie_labels.selectAll("text")
 		.data(pie(total_illust_num))
 		.enter()
 		.append("text")
@@ -368,7 +390,7 @@ function drawStatGraphs(){
 				.style("fill", "none")
 				.style("stroke", "white");
 
-	var pie_title_text = pie_svg.append("svg:text")
+	var pie_title_text = pie_g.append("svg:text")
 				    .attr("dy", ".35em")
 				    .attr("text-anchor", "middle")
 				    .attr("style","font-family:Passion One")
@@ -415,7 +437,9 @@ function drawStatGraphs(){
 			<h1 id ="total_views" class="each_stats"> </h1>
 			<h1 id ="total_bookmarks" class="each_stats"> </h1>
 			<h1 id ="total_comments" class="each_stats"> </h1>
-			<svg id="stat_svg"> </svg>
+			<div class="stat_svg_outer">
+				<svg id="stat_svg"> </svg>
+			</div>
 		</div>
 
 		<div class="line"></div>
