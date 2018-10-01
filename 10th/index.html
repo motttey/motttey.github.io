@@ -59,10 +59,10 @@
 
 		#stat_svg {
 			width: 600px;
-			height: 400px;
+			height:800px;
 		}
 
-		.tick text{
+		.tick text, .labels text{
 			fill: white;
 			font-family: 'Passion One', cursive;
 			font-size: 16px;
@@ -294,6 +294,87 @@ function drawStatGraphs(){
 			.attr("fill", "white")
       .attr("width", x_bar_scale.bandwidth())
       .attr("height", function(d) { return height - y_bar_scale(d["num"]); });
+
+	var total_illust_num = [
+		{"name": "my illust tagged 'doraemon'", "num": 986},
+		{"name": "other illust tagged 'doraemon'", "num": 22897}
+	];
+
+	var pie_width = 300;
+  var	pie_height = 300;
+	var pie_radius = pie_width / 2;
+
+	var pie = d3.pie()
+		.sort(null)
+		.value(function(d) {
+			return d["num"];
+		});
+
+	var arc = d3.arc()
+		.outerRadius(pie_radius * 0.8)
+		.innerRadius(pie_radius * 0.4);
+
+	var outerArc = d3.arc()
+		.innerRadius(pie_radius * 0.9)
+		.outerRadius(pie_radius * 0.9);
+
+	var pie_svg = d3.select("#stat_svg").append("g")
+			.attr("width", width)
+	    .attr("transform", "translate(" + pie_width + "," + 500 + ")");
+
+	var pie_slices = pie_svg.append("g")
+		.attr("class", "slices");
+	var labels = pie_svg.append("g")
+		.attr("class", "labels");
+	var pie_lines = pie_svg.append("g")
+		.attr("class", "lines");
+
+	var pie_arcs = pie_slices.selectAll(".arc")
+	    .data(pie(total_illust_num))
+	    .enter().append("g")
+	      .attr("class", "arc");
+
+	pie_arcs.append("path")
+	      .attr("d", arc)
+	      .attr("fill", function(d, i) { return (i==0)? "white": "none" })
+				.attr("stroke", "white");
+
+	var pie_text = labels.selectAll("text")
+		.data(pie(total_illust_num))
+		.enter()
+		.append("text")
+		.attr("dy", ".35em")
+		.text(function(d) {
+			return d.data["name"];
+		})
+    .attr("transform", function(d, i) {
+			console.log(outerArc.centroid(d));
+			var pos = outerArc.centroid(d);
+			var margin = (i%2 === 0)? -1 * 2 * pie_radius: 0.8 * pie_radius;
+			pos[0] = pos[0] + margin;
+			return "translate(" + pos  + ")";
+		});
+
+	var pie_polyline = pie_lines.selectAll("polyline")
+				.data(pie(total_illust_num))
+				.enter()
+				.append("polyline")
+				.attr("points", function(d, i){
+						var pos = outerArc.centroid(d);
+						var margin = (i%2 === 0)? -1 : 1;
+						pos[0] = pie_radius * 0.5 * margin;
+						return [arc.centroid(d), outerArc.centroid(d), pos];
+				})
+				.style("fill", "none")
+				.style("stroke", "white");
+
+	var pie_title_text = pie_svg.append("svg:text")
+				    .attr("dy", ".35em")
+				    .attr("text-anchor", "middle")
+				    .attr("style","font-family:Passion One")
+				    .attr("font-size","40")
+				    .attr("fill","#fff")
+				    .text("parsentage of illists");
 }
 </script>
 
@@ -361,7 +442,7 @@ function drawStatGraphs(){
 
 		<div class="line"></div>
 
-		<div class="stats">
+		<div class="comments">
 			<h2>Comments</h2>
 			各界の著名人からのコメントお待ちしております
 			<div id="disqus_thread">
