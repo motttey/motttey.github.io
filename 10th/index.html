@@ -41,13 +41,13 @@
 			margin-bottom: 50px;
 		}
 
-		.introduction p {
+		#introduction p {
 			letter-spacing: 8px;
 			margin-left: 20%;
 			margin-right: 20%;
 		}
 
-		.main {
+		#main {
 			margin-left: 10%;
 			margin-right: 10%;
 		}
@@ -79,7 +79,7 @@
 			text-align: left;
 		}
 
-		.profile img {
+		#profile img {
 			width: 55%;
 			height: 55%;
 		}
@@ -383,7 +383,6 @@ function drawStatGraphs(){
 			return d.data["name"];
 		})
     .attr("transform", function(d, i) {
-			console.log(outerArc.centroid(d));
 			var pos = outerArc.centroid(d);
 			var margin = (i%2 === 0)? -1 * 2 * pie_radius: 0.8 * pie_radius;
 			pos[0] = pos[0] + margin;
@@ -415,7 +414,7 @@ function drawStatGraphs(){
 
 <body>
 
-	<div class="header">
+	<div id="header">
     <h1>Tagosaku Mochiduki 10th Special Site</h1>
 
     <h2>UNDER CONSTRUCTION</h2>
@@ -423,8 +422,8 @@ function drawStatGraphs(){
 
   <div class="boldline"></div>
 
-	<div class="main">
-		<div class="introduction">
+	<div id="main">
+		<div id="introduction">
 			<h2>introduction</h2>
 				<p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
 					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
@@ -434,7 +433,8 @@ function drawStatGraphs(){
 					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
 					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
 					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
-					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト </p>
+					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+				</p>
 				<p>
 				2018.11.4
 				</p>
@@ -443,7 +443,7 @@ function drawStatGraphs(){
 
 		<div class="line"></div>
 
-		<div class="profile">
+		<div id="profile">
 			<h2>who is tagosaku mochiduki</h2>
 			<div class="ui two column grid">
 				<div class="column">
@@ -485,7 +485,7 @@ function drawStatGraphs(){
 
 		<div class="line"></div>
 
-		<div class="stats">
+		<div id="stats">
 			<h2>statics of tagosaku mochiduki</h2>
 			<!-- D3.js infographics -->
 			<h1 id ="total_illusts" class="each_stats"> </h1>
@@ -499,7 +499,7 @@ function drawStatGraphs(){
 
 		<div class="line"></div>
 
-		<div class="gallery">
+		<div id="gallery">
 			<h2>illust gallery</h2>
 
 			<div class="ui four item menu" id="search-mode">
@@ -521,7 +521,7 @@ function drawStatGraphs(){
 
 		<div class="line"></div>
 
-		<div class="comments">
+		<div id="comments">
 			<h2>Comments</h2>
 			各界の著名人からのコメントお待ちしております
 			<div id="disqus_thread">
@@ -553,7 +553,7 @@ function drawStatGraphs(){
 
 	<div class="boldline"></div>
 
-  <div class="footer">
+  <div id="footer">
   	<p>
   		Copyright © 2008-2018 by Tagosaku Mochiduki
 		</p>
