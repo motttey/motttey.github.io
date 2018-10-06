@@ -39,17 +39,36 @@
 			}
 		}
 
+		@-webkit-keyframes slide-top {
+		  0% {
+		    -webkit-transform: translateY(100px);
+		            transform: translateY(100px);
+		  }
+		  100% {
+		    -webkit-transform: translateY(0);
+		            transform: translateY(0);
+		  }
+		}
+		@keyframes slide-top {
+		  0% {
+		    -webkit-transform: translateY(100px);
+		            transform: translateY(100px);
+		  }
+		  100% {
+		    -webkit-transform: translateY(0);
+		            transform: translateY(0);
+		  }
+		}
+
 		/* フェードイン */
 		.feedIn {
 			animation: fadeIn 2s ease 0s 1 normal;
 			-webkit-animation: fadeIn 2s ease 1 normal;
 		}
 
-		.slidein {
-			animation-duration: 3s;
-			animation-name: slide;
-			-webkit-animation-duration: 3s;
-			-webkit-animation-name: slide;
+		.slideTop {
+			-webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+			animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 		}
 
 		h2 {
@@ -167,14 +186,16 @@ $(document).ready( function(){
 	    $(this).addClass('feedIn');
 	  } else {
 			$(this).removeClass('feedIn');
+			// $(this).css('opacity',0);
 		}
 	});
 
-	$('.each_stats, #stat_svg_outer').on('inview', function(event, isInView) {
+	$('.each_stats, #stat_svg_outer, li').on('inview', function(event, isInView) {
 	  if (isInView) {
-	    $(this).addClass('bounce');
+	    $(this).addClass('slideTop');
 	  } else {
-			$(this).removeClass('bounce');
+			$(this).removeClass('slideTop');
+			// $(this).css('opacity',0);
 		}
 	});
 
