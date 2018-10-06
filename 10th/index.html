@@ -14,15 +14,42 @@
 
 	<link rel="stylesheet" type="text/css" href="../dist/semantic.min.css">
 	<link rel="stylesheet" type="text/css" href="../style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
+
 	<link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">
 
 
 	<title>モチヅ庫</title>
 	<style>
+		@-webkit-keyframes slide {
+			from {
+				margin-top: 30%;
+			}
+			to {
+				margin-top: 0%;
+			}
+		}
+
+		@keyframes slide {
+			from {
+				margin-top: 30%;
+			}
+			to {
+				margin-top: 0%;
+			}
+		}
+
 		/* フェードイン */
 		.feedIn {
 			animation: fadeIn 2s ease 0s 1 normal;
 			-webkit-animation: fadeIn 2s ease 1 normal;
+		}
+
+		.slidein {
+			animation-duration: 3s;
+			animation-name: slide;
+			-webkit-animation-duration: 3s;
+			-webkit-animation-name: slide;
 		}
 
 		h2 {
@@ -135,7 +162,7 @@ function showPrimaryStats(){
 }
 
 $(document).ready( function(){
-	$('img, .each_stats').on('inview', function(event, isInView) {
+	$('img').on('inview', function(event, isInView) {
 	  if (isInView) {
 	    $(this).addClass('feedIn');
 	  } else {
@@ -143,11 +170,11 @@ $(document).ready( function(){
 		}
 	});
 
-	$('#stat_svg').on('inview', function(event, isInView) {
+	$('.each_stats, #stat_svg_outer').on('inview', function(event, isInView) {
 	  if (isInView) {
-	    $(this).addClass('feedIn');
+	    $(this).addClass('bounce');
 	  } else {
-			$(this).removeClass('feedIn');
+			$(this).removeClass('bounce');
 		}
 	});
 
@@ -459,8 +486,8 @@ function drawStatGraphs(){
 							<ul style="list-style-type:none">
 							  <li><span class="li_header">1995</span>: 誕生</li>
 							  <li><span class="li_header">2008</span>: pixiv 登録</li>
-							  <li><span class="li_header">2009</span>: イラスト投稿のピーク</li>
-								<li><span class="li_header">2010</span>: </li>
+							  <li><span class="li_header">2009</span>: </li>
+								<li><span class="li_header">2010</span>: 1000枚突破</li>
 							  <li><span class="li_header">2011</span>: </li>
 							  <li><span class="li_header">2012</span>: </li>
 								<li><span class="li_header">2013</span>: </li>
@@ -492,7 +519,7 @@ function drawStatGraphs(){
 			<h1 id ="total_views" class="each_stats"> </h1>
 			<h1 id ="total_bookmarks" class="each_stats"> </h1>
 			<h1 id ="total_comments" class="each_stats"> </h1>
-			<div class="stat_svg_outer">
+			<div id="stat_svg_outer">
 				<svg id="stat_svg"> </svg>
 			</div>
 		</div>
