@@ -60,6 +60,27 @@
 		  }
 		}
 
+		@-webkit-keyframes slide-left {
+		  0% {
+		    -webkit-transform: translateX(100px);
+		            transform: translateX(100px);
+		  }
+		  100% {
+		    -webkit-transform: translateX(0);
+		            transform: translateX(0);
+		  }
+		}
+		@keyframes slide-left {
+		  0% {
+		    -webkit-transform: translateX(100px);
+		            transform: translateX(100px);
+		  }
+		  100% {
+		    -webkit-transform: translateX(0);
+		            transform: translateX(0);
+		  }
+		}
+
 		/* フェードイン */
 		.feedIn {
 			animation: fadeIn 2s ease 0s 1 normal;
@@ -69,6 +90,11 @@
 		.slideTop {
 			-webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 			animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+		}
+
+		.slideLeft {
+			-webkit-animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+			animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 		}
 
 		h2 {
@@ -153,20 +179,6 @@ function sortObjectByKey(array, key) {
 }
 
 function showPrimaryStats(){
-
-	/*
-	d3.select(".stats")
-		.selectAll("h2")
-		.data(Object.entries(primary_stats))
-		.append("h2")
-		.attr("id", function(d,i){
-			return d[0];
-		})
-		.text(function(d,i){
-			return d[0] + ": " + d[1];
-		})
-	*/
-
 	Object.entries(primary_stats).forEach(function(stat){
 		var num = 0;
 		setInterval(function(){
@@ -190,11 +202,20 @@ $(document).ready( function(){
 		}
 	});
 
-	$('.each_stats, #stat_svg_outer, li').on('inview', function(event, isInView) {
+	$('.each_stats, #stat_svg_outer').on('inview', function(event, isInView) {
 	  if (isInView) {
 	    $(this).addClass('slideTop');
 	  } else {
 			$(this).removeClass('slideTop');
+			// $(this).css('opacity',0);
+		}
+	});
+
+	$('li').on('inview', function(event, isInView) {
+	  if (isInView) {
+	    $(this).addClass('slideLeft');
+	  } else {
+			$(this).removeClass('slideLeft');
 			// $(this).css('opacity',0);
 		}
 	});
@@ -473,6 +494,10 @@ function drawStatGraphs(){
 	<div id="main">
 		<div id="introduction">
 			<h2>introduction</h2>
+				<blockquote>
+					いい感じのメッセージ
+				</blockquote>
+
 				<p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
 					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
 					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
@@ -496,7 +521,7 @@ function drawStatGraphs(){
 			<div class="ui two column grid">
 				<div class="column">
 					<div class="thumbnail">
-						<img src="../images/seiga.png" alt="NicoNicoSeiga"/>
+						<img src="../images/seiga.png" alt="profile_image"/>
 					</div>
 				</div>
 				<div class="column">
@@ -514,8 +539,8 @@ function drawStatGraphs(){
 								<li><span class="li_header">2013</span>: </li>
 							  <li><span class="li_header">2014</span>: </li>
 							  <li><span class="li_header">2015</span>: </li>
-								<li><span class="li_header">2016</span>: </li>
-								<li><span class="li_header">2017</span>: </li>
+								<li><span class="li_header">2016</span>: C91 'DORA THE PAST'を発行</li>
+								<li><span class="li_header">2017</span>: C93 同人誌'PERFECT BLUE'を発行</li>
 								<li><span class="li_header">2018</span>: 10周年</li>
 							</ul>
 						</div>
