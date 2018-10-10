@@ -39,6 +39,31 @@
 			}
 		}
 
+		@-webkit-keyframes zoom-in {
+		  0% {
+				opacity: 0%;
+		    -webkit-transform: scale(1.5);
+		            transform: scale(1.5);
+		  }
+		  100% {
+				opacity: 100%;
+		    -webkit-transform: scale(1);
+		            transform: scale(1);
+		  }
+		}
+		@keyframes zoom-in {
+			0% {
+				opacity: 0%;
+		    -webkit-transform: scale(1.5);
+		            transform: scale(1.5);
+		  }
+		  100% {
+				opacity: 100%;
+		    -webkit-transform: scale(1);
+		            transform: scale(1);
+		  }
+		}
+
 		@-webkit-keyframes slide-top {
 		  0% {
 		    -webkit-transform: translateY(100px);
@@ -85,6 +110,11 @@
 		.feedIn {
 			animation: fadeIn 2s ease 0s 1 normal;
 			-webkit-animation: fadeIn 2s ease 1 normal;
+		}
+
+		.zoomIn{
+			-webkit-animation: zoom-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+			animation: zoom-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 		}
 
 		.slideTop {
@@ -195,9 +225,9 @@ function showPrimaryStats(){
 $(document).ready( function(){
 	$('img').on('inview', function(event, isInView) {
 	  if (isInView) {
-	    $(this).addClass('feedIn');
+	    $(this).addClass('zoomIn');
 	  } else {
-			$(this).removeClass('feedIn');
+			$(this).removeClass('zoomIn');
 			// $(this).css('opacity',0);
 		}
 	});
@@ -484,9 +514,10 @@ function drawStatGraphs(){
 <body>
 
 	<div id="header">
-    <h1>Tagosaku Mochiduki 10th Special Site</h1>
+    <h1>Tagosaku Mochiduki <br> 10th Special Site</h1>
 
     <h2>UNDER CONSTRUCTION</h2>
+		<!-- 背景に各キャラの画像を入れる -->
 	</div>
 
   <div class="boldline"></div>
@@ -518,6 +549,8 @@ function drawStatGraphs(){
 
 		<div id="profile">
 			<h2>who is tagosaku mochiduki</h2>
+			<h3>Tagosaku Mochiduki (望月 田吾作) a.k.a 望月, 望月宕作, motttey, Mochiduki Tagosalk</h3>
+			Hyper Doraemon Creator
 			<div class="ui two column grid">
 				<div class="column">
 					<div class="thumbnail">
@@ -527,8 +560,7 @@ function drawStatGraphs(){
 				<div class="column">
 					<div class="ui two column grid">
 						<div class="column">
-							<h3>Tagosaku Mochiduki a.k.a motttey</h3>
-							Hyper Doraemon Creator
+							<h3>My History</h3>
 							<ul style="list-style-type:none">
 							  <li><span class="li_header">1995</span>: 誕生</li>
 							  <li><span class="li_header">2008</span>: pixiv 登録</li>
@@ -546,10 +578,13 @@ function drawStatGraphs(){
 						</div>
 						<div class="column">
 							<h3>My Accounts</h3>
-							<li><span class="li_header">Account 1</span>: </li>
-							<li><span class="li_header">Account 2</span>: </li>
-							<li><span class="li_header">Account 3</span>: </li>
-							<li><span class="li_header">Account 4</span>: </li>
+							<ul style="list-style-type:none">
+								<li><span class="li_header">Twitter</span>: </li>
+								<li><span class="li_header">Pawoo</span>: </li>
+								<li><span class="li_header">Pixiv</span>: </li>
+								<li><span class="li_header">NicoNico 3</span>: </li>
+								<li><span class="li_header">DeviantART</span>: </li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -565,6 +600,8 @@ function drawStatGraphs(){
 			<h1 id ="total_views" class="each_stats"> </h1>
 			<h1 id ="total_bookmarks" class="each_stats"> </h1>
 			<h1 id ="total_comments" class="each_stats"> </h1>
+
+			<h3>statics of submissions</h3>
 			<div id="stat_svg_outer">
 				<svg id="stat_svg"> </svg>
 			</div>
