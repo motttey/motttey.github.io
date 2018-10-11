@@ -233,7 +233,6 @@ div.cards img{
 
 }
 
-
 #BlogTable h3{
 	font-size:96px;
 	position: relative;
@@ -242,7 +241,6 @@ div.cards img{
   	line-height: 0.8em;
 	font-family: 'Passion One', cursive;
 }
-
 
 #LinkTable h3::after, #BlogTable h3::after{
 	content: '';

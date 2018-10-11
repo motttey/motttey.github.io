@@ -21,6 +21,16 @@
 
 	<title>モチヅ庫</title>
 	<style>
+		@media screen and (max-width: 800px) {
+			h2 {
+				font-size: 24px;
+				letter-spacing: 3px;
+			}
+			h1 {
+				font-size: 54px;
+			}
+		}
+
 		@-webkit-keyframes slide {
 			from {
 				margin-top: 30%;
@@ -180,10 +190,42 @@
 		ul {
 			text-align: left;
 		}
+		ul a {
+			/*float: right;*/
+			margin: -10px;
+		}
 
 		#profile img {
 			width: 55%;
 			height: 55%;
+		}
+
+		.card:hover > .image{
+			border-spacing: 10px 10px;
+			border-radius: 5%;
+			border-style: bold;
+			border-color: #ffffff;
+		}
+
+		.menu {
+			border-color: #ffffff;
+		}
+
+		a::after {
+			content: '';
+			position: absolute;
+			margin-bottom: 0.2em;
+	  	bottom: 0;
+	  	left: -10px;
+			width: 70%;
+			height:1px;
+			background-color:#ffffff;
+			transform: scaleX(0);
+		  transition: all .4s ease;
+		}
+
+		a:hover::after {
+		  transform: scaleX(1);
 		}
 
 	</style>
@@ -551,6 +593,7 @@ function drawStatGraphs(){
 			<h2>who is tagosaku mochiduki</h2>
 			<h3>Tagosaku Mochiduki (望月 田吾作) a.k.a 望月, 望月宕作, motttey, Mochiduki Tagosalk</h3>
 			Hyper Doraemon Creator
+			<br>
 			<div class="ui two column grid">
 				<div class="column">
 					<div class="thumbnail">
@@ -578,13 +621,28 @@ function drawStatGraphs(){
 						</div>
 						<div class="column">
 							<h3>My Accounts</h3>
-							<ul style="list-style-type:none">
-								<li><span class="li_header">Twitter</span>: </li>
-								<li><span class="li_header">Pawoo</span>: </li>
-								<li><span class="li_header">Pixiv</span>: </li>
-								<li><span class="li_header">NicoNico 3</span>: </li>
-								<li><span class="li_header">DeviantART</span>: </li>
-							</ul>
+
+							<div class="ui two column grid">
+								<div class="column">
+									<ul id="my_account_list" style="list-style-type:none">
+										<li><span class="li_header">Twitter</span>:</li>
+										<li><span class="li_header">Pawoo</span>: </li>
+										<li><span class="li_header">Pixiv</span>: </li>
+										<li><span class="li_header">NicoNico</span>: </li>
+										<li><span class="li_header">DeviantART</span>: </li>
+									</ul>
+								</div>
+								<div class="column">
+									<ul id="my_account_list" style="list-style-type:none">
+										<li><a href="https://twitter.com/mt_tg">mt_tg</a></li>
+										<li><a href="https://pawoo.net/web/accounts/20796">motttey</a></li>
+										<li><a href="https://www.pixiv.net/member.php?id=415546">motttey</a></li>
+										<li><a href="http://seiga.nicovideo.jp/user/illust/7323407">7323407</a></li>
+										<li><a href="https://www.deviantart.com/motttey">motttey</a></li>
+									</ul>
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>
