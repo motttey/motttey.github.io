@@ -335,13 +335,16 @@ $(document).ready( function(){
 				var queries_length = queries.length
 				var output_data = [];
 				selected_indexes = [];
-				// キーワードの重複, 類似クエリに対応
+				
+				// クエリの表記揺れに対応
 				// 0件の時の表示検討
 				data.forEach(function(illust, index){
 					var matched_count = 0;
-					queries.forEach(function(query){
-						illust["tags"].forEach(function(tag){
-							if (tag["name"].indexOf(query) != -1) {
+					var queries_found = {};
+					illust["tags"].forEach(function(tag){
+						queries.forEach(function(query){
+							if (tag["name"].indexOf(query) != -1　&& query in queries_found === false) {
+								queries_found[query] = true;
 								matched_count++;
 							}
 						});
