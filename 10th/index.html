@@ -8,7 +8,7 @@
 
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
 	<meta charset = "utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=1280px">
 	<meta author = "望月田吾作">
 	<meta description = "望月 田吾作(もちづき たごさく)が描いたドラえもんをはじめとした絵や漫画の掲載を目的としたサイト.">
 
@@ -335,7 +335,7 @@ $(document).ready( function(){
 				var queries_length = queries.length
 				var output_data = [];
 				selected_indexes = [];
-				
+
 				// クエリの表記揺れに対応
 				// 0件の時の表示検討
 				data.forEach(function(illust, index){
@@ -430,7 +430,7 @@ function GetRandomIllust(data, index){
 }
 
 function initializeSVG(){
-	var width = 500;
+	var width = 600;
 	var height = 300;
 
 	var bar_g = d3.select("#stat_svg").append("svg").append("g")
@@ -460,9 +460,9 @@ function drawStatGraphs(){
 		{"year": 2017, "num": 31},
 		{"year": 2018, "num": 19},
 	];
-	var width = 500;
+	var width = 600;
 	var height = 300;
-	var margin = 40;
+	var margin = 30;
 	var x_bar_scale = d3.scaleBand().rangeRound([margin, width]).padding(0.1);
   var y_bar_scale = d3.scaleLinear().rangeRound([height, margin]);
 
@@ -503,8 +503,8 @@ function drawStatGraphs(){
 		{"name": "other illust tagged 'doraemon'", "num": 22897}
 	];
 
-	var pie_width = 300;
-  var	pie_height = 300;
+	var pie_width = 280;
+  var	pie_height = 280;
 	var pie_radius = pie_width / 2;
 
 	var pie = d3.pie()
@@ -616,7 +616,7 @@ function drawStatGraphs(){
 
 		<div id="profile">
 			<h2>who is tagosaku mochiduki</h2>
-			<h3>Tagosaku Mochiduki (望月 田吾作) a.k.a 望月, 望月宕作, motttey, Mochiduki Tagosalk</h3>
+			<p>Tagosaku Mochiduki (望月 田吾作) a.k.a 望月, 望月宕作, motttey, Mochiduki Tagosalk</p>
 			<p> is Hyper Doraemon Creator </p>
 			<br>
 			<div class="ui two column grid">
