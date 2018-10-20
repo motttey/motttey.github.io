@@ -8,7 +8,7 @@
 
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
 	<meta charset = "utf-8">
-	<meta name="viewport" content="width=1280px">
+	<meta name="viewport" content="width=1280">
 	<meta author = "望月田吾作">
 	<meta description = "望月 田吾作(もちづき たごさく)が描いたドラえもんをはじめとした絵や漫画の掲載を目的としたサイト.">
 
@@ -257,6 +257,8 @@
 
 var selected_indexes = [];
 
+var init_data, output_data;
+
 var primary_stats = {
 	total_illusts: 1478,
 	total_views: 4198198,
@@ -315,25 +317,28 @@ $(document).ready( function(){
 	});
 
 	$.getJSON("output.json", function(data) {
+		init_data = data;
+		output_data = data;
+
 		var DefaultIllustNum = 16;
 		$('#search-mode .item')
 		 .on('click', function(d) {
 				$(this).addClass('active').siblings('.item').removeClass('active');
 				$('div.card').remove();
-				new_data = setSortTargetKey($(this).attr('id'), data);
-				ViewIllust(0, DefaultIllustNum, new_data);
+				output_data = setSortTargetKey($(this).attr('id'), init_data);
+				ViewIllust(0, DefaultIllustNum, output_data);
 		});
 
 		$('#RandomImageViewButton')
 		 .on('click', function(d) {
-			 ViewIllustOnButtonClick(data);
+			 ViewIllustOnButtonClick(output_data);
 		});
 
 		$('#search-keywords').keypress( function (e) {
 			if ( e.which == 13 ) {
 				var queries = $('#search-keywords input').val().split(/\s+/)
 				var queries_length = queries.length
-				var output_data = [];
+				output_data = [];
 				selected_indexes = [];
 
 				// クエリの表記揺れに対応
@@ -359,12 +364,21 @@ $(document).ready( function(){
 			}
 		});
 
-		ViewIllust(0, DefaultIllustNum, data);
+		ViewIllust(0, DefaultIllustNum, output_data);
+		controlVisibleOfButton(output_data.length, DefaultIllustNum)
 		showPrimaryStats();
 		initializeSVG();
 		drawStatGraphs();
 	});
 });
+
+function controlVisibleOfButton(data_length, start){
+	if (data_length > start + 4) {
+		$('#RandomImageViewButton').show();
+	} else {
+		$('#RandomImageViewButton').hide();
+	}
+}
 
 function setSortTargetKey(id, data){
 	selected_indexes = [];
@@ -386,7 +400,7 @@ function setSortTargetKey(id, data){
 
 function ViewIllustOnButtonClick(data){
 		var existin_illust_num = $('div.card').length;
-		var illust_num = (data.length > 4)? 4 :data.length;
+		var illust_num = (data.length > 4)? 4 : data.length;
 		ViewIllust(existin_illust_num, illust_num, data);
 }
 
@@ -394,6 +408,7 @@ function ViewIllust(start, NUM, data) {
 	for(var i = start; i < start + NUM; i++){
 		GetRandomIllust(data, i);
 	}
+	controlVisibleOfButton(data.length, start + NUM);
 }
 
 function ResizeImageHeight(id){
