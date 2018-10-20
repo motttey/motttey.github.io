@@ -571,25 +571,25 @@ function drawStatGraphs(){
 		});
 
 	var pie_polyline = pie_lines.selectAll("polyline")
-				.data(pie(total_illust_num))
-				.enter()
-				.append("polyline")
-				.attr("points", function(d, i){
-						var pos = outerArc.centroid(d);
-						var margin = (i%2 === 0)? -1 : 1;
-						pos[0] = pie_radius * 0.5 * margin;
-						return [arc.centroid(d), outerArc.centroid(d), pos];
-				})
-				.style("fill", "none")
-				.style("stroke", "white");
+			.data(pie(total_illust_num))
+			.enter()
+			.append("polyline")
+			.attr("points", function(d, i){
+					var pos = outerArc.centroid(d);
+					var margin = (i%2 === 0)? -1 : 1;
+					pos[0] = pie_radius * 0.5 * margin;
+					return [arc.centroid(d), outerArc.centroid(d), pos];
+			})
+			.style("fill", "none")
+			.style("stroke", "white");
 
 	var pie_title_text = pie_g.append("svg:text")
-				    .attr("dy", ".35em")
-				    .attr("text-anchor", "middle")
-				    .attr("style","font-family:Passion One")
-				    .attr("font-size","40")
-				    .attr("fill","#fff")
-				    .text("parsentage of illists");
+			.attr("dy", ".35em")
+			.attr("text-anchor", "middle")
+			.attr("style","font-family:Passion One")
+			.attr("font-size","40")
+			.attr("fill","#fff")
+			.text("parsentage of illists");
 }
 </script>
 
@@ -610,16 +610,16 @@ function drawStatGraphs(){
 				<blockquote>
 					いい感じのメッセージ
 				</blockquote>
-
-				<p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
-					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
-					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
-					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
-					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
-					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
-					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
-					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
-					テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+				<p>
+					"ドラえもん"という作品を中心に, 十年ほど絵を描き続けてきました.
+				</p>
+				<p>
+					"学生時代に力を入れたこと"を聞かれてそう回答する人は多くないと思いますし, 自身もそのような表現を用いることはないでしょう.
+					しかし, 継続は自信につながり, それを支えとしてここまでやってこれたと思っております.
+					ドラえもんは当然実現されていないテクノロジーですが, 自分にとってのドラえもんは創作に夢中になれたことなんじゃないかと.
+				</p>
+				<p>
+					今までありがとうございました. 今後ともよろしくお願いいたします.
 				</p>
 				<p>
 				2018.11.4
