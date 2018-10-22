@@ -154,7 +154,7 @@
 			margin-top: 30px;
 		}
 
-		#search-keywords, #gallery-cards, #RandomImageViewButton{
+		#search-keywords, #gallery-cards, #RandomImageViewButton {
 			margin-top: 30px;
 		}
 
@@ -204,9 +204,10 @@
 			height:800px;
 		}
 
-		.tick text, .labels text{
+		.tick text, .labels text {
 			fill: white;
 			font-family: 'Passion One', cursive;
+			letter-spacing: 2px;
 			font-size: 16px;
 		}
 		.tick line {
@@ -215,6 +216,7 @@
 
 		span.li_header {
 			font-family: 'Passion One', cursive;
+			letter-spacing: 3px;
 		}
 
 		ul {
@@ -223,12 +225,11 @@
 		ul a {
 			/*float: right;*/
 			text-align: center;
-			margin: -10%;
 		}
 
 		#profile img {
-			width: 55%;
-			height: 55%;
+			width: 70%;
+			height: 70%;
 		}
 
 		.card:hover > .image{
@@ -248,7 +249,7 @@
 			margin-bottom: 0.2em;
 	  	bottom: 0;
 	  	left: -10px;
-			width: 100%;
+			width: 60%;
 			height:1px;
 			background-color:#ffffff;
 			transform: scaleX(0);
@@ -484,7 +485,7 @@ function drawStatGraphs(){
 		{"year": 2017, "num": 31},
 		{"year": 2018, "num": 21},
 	];
-	
+
 	var width = 600;
 	var height = 300;
 	var margin = 30;
@@ -644,55 +645,51 @@ function drawStatGraphs(){
 			<p>Tagosaku Mochiduki (望月 田吾作) a.k.a 望月, 望月宕作, motttey, Mochiduki Tagosalk</p>
 			<p> is Hyper Doraemon Creator </p>
 			<br>
-			<div class="ui two column grid">
+			<div class="ui three column grid">
 				<div class="column">
 					<div class="thumbnail">
 						<img src="../images/seiga.png" alt="profile_image"/>
 					</div>
 				</div>
 				<div class="column">
+					<h3>My History</h3>
+					<ul style="list-style-type:none">
+						<li><span class="li_header">1995</span>: 誕生</li>
+						<li><span class="li_header">2001</span>: ドラえもんと出会う</li>
+						<li><span class="li_header">2008</span>: pixiv 登録</li>
+						<li><span class="li_header">2009</span>: 1年に500枚越を投稿</li>
+						<li><span class="li_header">2010</span>: 1000枚突破</li>
+						<li><span class="li_header">2011</span>: 進学を機に投稿ペース減少</li>
+						<li><span class="li_header">2012</span>: twitterでのイラスト投稿開始</li>
+						<li><span class="li_header">2013</span>: ランキング最高位を記録</li>
+						<li><span class="li_header">2014</span>: 合同誌'パラレルソレイユ'初参加</li>
+						<li><span class="li_header">2015</span>: 成人</li>
+						<li><span class="li_header">2016</span>: C91 'DORA THE PAST'を発行</li>
+						<li><span class="li_header">2017</span>: C93 同人誌'PERFECT BLUE'を発行</li>
+						<li><span class="li_header">2018</span>: 10周年</li>
+					</ul>
+				</div>
+				<div class="column">
+					<h3>My Accounts</h3>
+
 					<div class="ui two column grid">
 						<div class="column">
-							<h3>My History</h3>
-							<ul style="list-style-type:none">
-							  <li><span class="li_header">1995</span>: 誕生</li>
-							  <li><span class="li_header">2008</span>: pixiv 登録</li>
-							  <li><span class="li_header">2009</span>: </li>
-								<li><span class="li_header">2010</span>: 1000枚突破</li>
-							  <li><span class="li_header">2011</span>: </li>
-							  <li><span class="li_header">2012</span>: </li>
-								<li><span class="li_header">2013</span>: </li>
-							  <li><span class="li_header">2014</span>: </li>
-							  <li><span class="li_header">2015</span>: </li>
-								<li><span class="li_header">2016</span>: C91 'DORA THE PAST'を発行</li>
-								<li><span class="li_header">2017</span>: C93 同人誌'PERFECT BLUE'を発行</li>
-								<li><span class="li_header">2018</span>: 10周年</li>
+							<ul id="my_account_list" style="list-style-type:none">
+								<li><span class="li_header">Twitter</span>:</li>
+								<li><span class="li_header">Pawoo</span>: </li>
+								<li><span class="li_header">Pixiv</span>: </li>
+								<li><span class="li_header">NicoNico</span>: </li>
+								<li><span class="li_header">DeviantART</span>: </li>
 							</ul>
 						</div>
 						<div class="column">
-							<h3>My Accounts</h3>
-
-							<div class="ui two column grid">
-								<div class="column">
-									<ul id="my_account_list" style="list-style-type:none">
-										<li><span class="li_header">Twitter</span>:</li>
-										<li><span class="li_header">Pawoo</span>: </li>
-										<li><span class="li_header">Pixiv</span>: </li>
-										<li><span class="li_header">NicoNico</span>: </li>
-										<li><span class="li_header">DeviantART</span>: </li>
-									</ul>
-								</div>
-								<div class="column">
-									<ul id="my_account_list" style="list-style-type:none">
-										<li><a href="https://twitter.com/mt_tg">mt_tg</a></li>
-										<li><a href="https://pawoo.net/web/accounts/20796">motttey</a></li>
-										<li><a href="https://www.pixiv.net/member.php?id=415546">motttey</a></li>
-										<li><a href="http://seiga.nicovideo.jp/user/illust/7323407">7323407</a></li>
-										<li><a href="https://www.deviantart.com/motttey">motttey</a></li>
-									</ul>
-								</div>
-							</div>
-
+							<ul id="my_account_list" style="list-style-type:none">
+								<li><a href="https://twitter.com/mt_tg">mt_tg</a></li>
+								<li><a href="https://pawoo.net/web/accounts/20796">motttey</a></li>
+								<li><a href="https://www.pixiv.net/member.php?id=415546">motttey</a></li>
+								<li><a href="http://seiga.nicovideo.jp/user/illust/7323407">7323407</a></li>
+								<li><a href="https://www.deviantart.com/motttey">motttey</a></li>
+							</ul>
 						</div>
 					</div>
 				</div>
