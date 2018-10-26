@@ -270,17 +270,17 @@ var selected_indexes = [];
 var init_data, output_data;
 
 var primary_stats = {
-	total_illusts: 1525,
-	total_views: 4396083,
-	total_bookmarks: 97180,
-	total_comments: 23790,
+	total_illusts: 1526,
+	total_views: 4399372,
+	total_bookmarks: 97258,
+	total_comments: 23794,
 };
 
 function sortObjectByKey(array, key) {
 	array.sort(function(a, b) {
     return (a[key] > b[key]) ? -1 : 1;
   });
-	console.log(array);
+	// console.log(array);
 	return array;
 }
 
@@ -367,7 +367,7 @@ $(document).ready( function(){
 
 					if (matched_count >= queries_length) output_data.push(illust);
 				});
-				console.log(output_data);
+				// console.log(output_data);
 				$('div.card').remove();
 				var max = (output_data.length > DefaultIllustNum)? 16 :output_data.length;
 				ViewIllust(0, max, output_data);
@@ -422,10 +422,9 @@ function ViewIllust(start, NUM, data) {
 }
 
 function ResizeImageHeight(id){
-	// TODO: 横長画像のcrop
-	var CardWidth = $("#" + id).width();
-	var Cardheight = $("#" + id).height();
-	var image = $("#" + id + " img");
+	let CardWidth = $("#" + id).width();
+	let Cardheight = $("#" + id).height();
+	let image = $("#" + id + " img");
 	if (image.height() < image.width() ) {
 		// $("#" + id).css("margin-top", (image.width() - image.height())/2)
 	}
@@ -445,7 +444,7 @@ function GetRandomIllust(data, index){
 	var min = 0;
 	var ViewIllustNum = 1;
 	var randomNumber = getRandomNumber(max, min);
-	// var illusts = $.getJSON("output.json");
+
 	var target_data = ($('#s-random').hasClass('active'))? data[randomNumber] : data[index];
 	var photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
 	var url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
@@ -455,16 +454,16 @@ function GetRandomIllust(data, index){
 }
 
 function initializeSVG(){
-	var width = 600;
-	var height = 300;
+	let width = 600;
+	let height = 300;
 
-	var bar_g = d3.select("#stat_svg").append("svg").append("g")
+	let bar_g = d3.select("#stat_svg").append("svg").append("g")
 			.attr("id", "bar_g")
 			.attr("width", width)
 			.attr("height", height)
 	    .attr("transform", "translate(" + 0 + "," + 0 + ")");
 
-	var pie_g = d3.select("#stat_svg").append("svg").append("g")
+	let pie_g = d3.select("#stat_svg").append("svg").append("g")
 			.attr("id", "pie_g")
 			.attr("width", width)
 			.attr("height", height)
@@ -483,7 +482,7 @@ function drawStatGraphs(){
 		{"year": 2015, "num": 23},
 		{"year": 2016, "num": 42},
 		{"year": 2017, "num": 31},
-		{"year": 2018, "num": 21},
+		{"year": 2018, "num": 22},
 	];
 
 	var width = 600;
@@ -625,9 +624,13 @@ function drawStatGraphs(){
 					"ドラえもん"という作品を中心に, 十年ほど絵を描き続けてきました.
 				</p>
 				<p>
+				<!--
 					"学生時代に力を入れたこと"を聞かれてそう回答する人は多くないと思いますし, 自身もそのような表現を用いることはないでしょう.
 					しかし, 継続は自信につながり, それを支えとしてここまでやってこれたと思っております.
+				</p>
+				<p>
 					ドラえもんは当然実現されていないテクノロジーですが, 自分にとってのドラえもんは創作に夢中になれたことなんじゃないかと.
+				-->
 				</p>
 				<p>
 					今までありがとうございました. 今後ともよろしくお願いいたします.
