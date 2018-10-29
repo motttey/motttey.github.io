@@ -26,17 +26,16 @@
 <script>
 
 var selected_indexes = [];
-
 var init_data, output_data;
 
-var primary_stats = {
+const primary_stats = {
 	total_illusts: 1526,
 	total_views: 4399372,
 	total_bookmarks: 97258,
 	total_comments: 23794,
 };
 
-var illust_num = [
+const illust_num = [
 	{"year": 2008, "num": 156},
 	{"year": 2009, "num": 568},
 	{"year": 2010, "num": 369},
@@ -48,6 +47,11 @@ var illust_num = [
 	{"year": 2016, "num": 42},
 	{"year": 2017, "num": 31},
 	{"year": 2018, "num": 22},
+];
+
+const total_illust_num = [
+	{"name": "my illust tagged 'doraemon'", "num": 986},
+	{"name": "other illust tagged 'doraemon'", "num": 22897}
 ];
 
 function sortObjectByKey(array, key) {
@@ -110,12 +114,12 @@ $(document).ready( function(){
 				$(this).addClass('active').siblings('.item').removeClass('active');
 				$('div.card').remove();
 				output_data = setSortTargetKey($(this).attr('id'), init_data);
-				ViewIllust(0, DefaultIllustNum, output_data);
+				viewIllust(0, DefaultIllustNum, output_data);
 		});
 
 		$('#RandomImageViewButton')
 		 .on('click', function(d) {
-			 ViewIllustOnButtonClick(output_data);
+			 viewIllustOnButtonClick(output_data);
 		});
 
 		$('#search-keywords').keypress( function (e) {
@@ -144,11 +148,11 @@ $(document).ready( function(){
 				// console.log(output_data);
 				$('div.card').remove();
 				var max = (output_data.length > DefaultIllustNum)? 16 :output_data.length;
-				ViewIllust(0, max, output_data);
+				viewIllust(0, max, output_data);
 			}
 		});
 
-		ViewIllust(0, DefaultIllustNum, output_data);
+		viewIllust(0, DefaultIllustNum, output_data);
 		controlVisibleOfButton(output_data.length, DefaultIllustNum)
 		showPrimaryStats();
 		initializeSVG();
@@ -182,20 +186,20 @@ function setSortTargetKey(id, data){
 	return data;
 }
 
-function ViewIllustOnButtonClick(data){
-		var existin_illust_num = $('div.card').length;
-		var illust_num = (data.length > 4)? 4 : data.length;
-		ViewIllust(existin_illust_num, illust_num, data);
+function viewIllustOnButtonClick(data){
+	var existin_illust_num = $('div.card').length;
+	var illust_num = (data.length > 4)? 4 : data.length;
+	viewIllust(existin_illust_num, illust_num, data);
 }
 
-function ViewIllust(start, NUM, data) {
+function viewIllust(start, NUM, data) {
 	for(var i = start; i < start + NUM; i++){
-		GetRandomIllust(data, i);
+		getRandomIllust(data, i);
 	}
 	controlVisibleOfButton(data.length, start + NUM);
 }
 
-function ResizeImageHeight(id){
+function resizeImageHeight(id){
 	let CardWidth = $("#" + id).width();
 	let Cardheight = $("#" + id).height();
 	let image = $("#" + id + " img");
@@ -213,18 +217,18 @@ function getRandomNumber(max, min){
 	return randomNumber;
 }
 
-function GetRandomIllust(data, index){
-	var max = data.length;	//トータルの投稿数に置換
-	var min = 0;
-	var ViewIllustNum = 1;
-	var randomNumber = getRandomNumber(max, min);
+function getRandomIllust(data, index){
+	const max = data.length;	//トータルの投稿数に置換
+	const min = 0;
+	const ViewIllustNum = 1;
+	const randomNumber = getRandomNumber(max, min);
 
 	var target_data = ($('#s-random').hasClass('active'))? data[randomNumber] : data[index];
 	var photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
 	var url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
 	var id = "i" + target_data["id"];
 	$('div.cards').append('  <div class="card" id="'+id+'"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
-	ResizeImageHeight(id);
+	// resizeImageHeight(id);
 }
 
 function initializeSVG(){
@@ -249,13 +253,13 @@ function drawStatGraphs(){
 	const width = 600;
 	const height = 300;
 	const margin = 30;
-	var x_bar_scale = d3.scaleBand().rangeRound([margin, width]).padding(0.1);
-  var y_bar_scale = d3.scaleLinear().rangeRound([height, margin]);
+	let x_bar_scale = d3.scaleBand().rangeRound([margin, width]).padding(0.1);
+  let y_bar_scale = d3.scaleLinear().rangeRound([height, margin]);
 
 	x_bar_scale.domain(illust_num.map(function(d) { return d["year"]; }));
   y_bar_scale.domain([0, d3.max(illust_num, function(d) { return d["num"]; })]);
 
-	var bar_g = d3.select("#bar_g");
+	let bar_g = d3.select("#bar_g");
 
   bar_g.append("g")
       .attr("class", "axis bar_axis-x")
@@ -284,39 +288,34 @@ function drawStatGraphs(){
       .attr("width", x_bar_scale.bandwidth())
       .attr("height", function(d) { return height - y_bar_scale(d["num"]); });
 
-	var total_illust_num = [
-		{"name": "my illust tagged 'doraemon'", "num": 986},
-		{"name": "other illust tagged 'doraemon'", "num": 22897}
-	];
-
 	const pie_width = 280;
   const	pie_height = 280;
 	const pie_radius = pie_width / 2;
 
-	var pie = d3.pie()
+	let pie = d3.pie()
 		.sort(null)
 		.value(function(d) {
 			return d["num"];
 		});
 
-	var arc = d3.arc()
+	let arc = d3.arc()
 		.outerRadius(pie_radius * 0.8)
 		.innerRadius(pie_radius * 0.4);
 
-	var outerArc = d3.arc()
+	let outerArc = d3.arc()
 		.innerRadius(pie_radius * 0.9)
 		.outerRadius(pie_radius * 0.9);
 
-	var pie_g = d3.select("#pie_g");
+	let pie_g = d3.select("#pie_g");
 
-	var pie_slices = pie_g.append("g")
+	let pie_slices = pie_g.append("g")
 		.attr("class", "slices");
-	var pie_labels = pie_g.append("g")
+	let pie_labels = pie_g.append("g")
 		.attr("class", "labels");
-	var pie_lines = pie_g.append("g")
+	let pie_lines = pie_g.append("g")
 		.attr("class", "lines");
 
-	var pie_arcs = pie_slices.selectAll(".arc")
+	let pie_arcs = pie_slices.selectAll(".arc")
 	    .data(pie(total_illust_num))
 	    .enter().append("g")
 	      .attr("class", "arc");
@@ -326,7 +325,7 @@ function drawStatGraphs(){
 	      .attr("fill", function(d, i) { return (i==0)? "white": "none" })
 				.attr("stroke", "white");
 
-	var pie_text = pie_labels.selectAll("text")
+	let pie_text = pie_labels.selectAll("text")
 		.data(pie(total_illust_num))
 		.enter()
 		.append("text")
@@ -341,7 +340,7 @@ function drawStatGraphs(){
 			return "translate(" + pos  + ")";
 		});
 
-	var pie_polyline = pie_lines.selectAll("polyline")
+	let pie_polyline = pie_lines.selectAll("polyline")
 			.data(pie(total_illust_num))
 			.enter()
 			.append("polyline")
@@ -354,7 +353,7 @@ function drawStatGraphs(){
 			.style("fill", "none")
 			.style("stroke", "white");
 
-	var pie_title_text = pie_g.append("svg:text")
+	let pie_title_text = pie_g.append("svg:text")
 			.attr("dy", ".35em")
 			.attr("text-anchor", "middle")
 			.attr("style","font-family:Passion One")
@@ -367,8 +366,6 @@ function drawStatGraphs(){
 <body>
 	<div id="header">
     <h1>Tagosaku Mochiduki <br> 10th Special Site</h1>
-
-    <h2>UNDER CONSTRUCTION</h2>
 	</div>
 
   <div class="boldline"></div>
@@ -406,6 +403,7 @@ function drawStatGraphs(){
 			<h2>who is tagosaku mochiduki</h2>
 			<p>Tagosaku Mochiduki (望月 田吾作) a.k.a 望月, 望月宕作, motttey, Mochiduki Tagosalk</p>
 			<p> is Hyper Doraemon Creator </p>
+			<p> 富山生まれ, 東京育ち </p>
 			<br>
 			<div class="ui three column grid">
 				<div class="column">
@@ -416,16 +414,12 @@ function drawStatGraphs(){
 				<div class="column">
 					<h3>My History</h3>
 					<ul style="list-style-type:none">
-						<li><span class="li_header">1995</span>: 誕生</li>
+						<li><span class="li_header">1995</span>: 誕生 (7/18) </li>
 						<li><span class="li_header">2001</span>: ドラえもんと出会う</li>
 						<li><span class="li_header">2008</span>: pixiv 登録</li>
-						<li><span class="li_header">2009</span>: 1年に500枚越を投稿</li>
 						<li><span class="li_header">2010</span>: 1000枚突破</li>
-						<li><span class="li_header">2011</span>: 進学を機に投稿ペース減少</li>
-						<li><span class="li_header">2012</span>: twitterでのイラスト投稿開始</li>
-						<li><span class="li_header">2013</span>: ランキング最高位を記録</li>
+						<li><span class="li_header">2011</span>: twitterでのイラスト投稿開始</li>
 						<li><span class="li_header">2014</span>: 合同誌'パラレルソレイユ'初参加</li>
-						<li><span class="li_header">2015</span>: 成人</li>
 						<li><span class="li_header">2016</span>: C91 'DORA THE PAST'を発行</li>
 						<li><span class="li_header">2017</span>: C93 同人誌'PERFECT BLUE'を発行</li>
 						<li><span class="li_header">2018</span>: 10周年</li>
@@ -442,6 +436,7 @@ function drawStatGraphs(){
 								<li><span class="li_header">Pixiv</span>: </li>
 								<li><span class="li_header">NicoNico</span>: </li>
 								<li><span class="li_header">DeviantART</span>: </li>
+								<li><span class="li_header">Tumblr</span>: </li>
 							</ul>
 						</div>
 						<div class="column">
@@ -451,6 +446,7 @@ function drawStatGraphs(){
 								<li><a href="https://www.pixiv.net/member.php?id=415546">motttey</a></li>
 								<li><a href="http://seiga.nicovideo.jp/user/illust/7323407">7323407</a></li>
 								<li><a href="https://www.deviantart.com/motttey">motttey</a></li>
+								<li><a href="http://motiget-blog.tumblr.com/">motiget</a></li>
 							</ul>
 						</div>
 					</div>
@@ -504,7 +500,6 @@ function drawStatGraphs(){
 			各界の著名人からのコメントお待ちしております
 			<div id="disqus_thread">
 				<script>
-
 				/**
 				*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 				*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
@@ -539,5 +534,4 @@ function drawStatGraphs(){
 			私的利用範囲外での無断転載を禁じます.
 		</p>
 	</div>
-
 </div>

@@ -152,10 +152,10 @@ p {
 #main {
   background-image: url("./img/10thnobi.png");
   /* background-color: rgba(255,0,0,0.3); */
-  background-size: auto 100%;
+  background-size: auto 80%;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: bottom right;
 }
 
 #introduction p {
