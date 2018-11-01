@@ -3,9 +3,9 @@ var init_data, output_data;
 
 const primary_stats = {
 	total_illusts: 1526,
-	total_views: 4399372,
-	total_bookmarks: 97258,
-	total_comments: 23794,
+	total_views: 4426602,
+	total_bookmarks: 97817,
+	total_comments: 23796,
 };
 
 const illust_num = [
@@ -23,8 +23,8 @@ const illust_num = [
 ];
 
 const total_illust_num = [
-	{"name": "my illust tagged 'doraemon'", "num": 986},
-	{"name": "other illust tagged 'doraemon'", "num": 22897}
+	{"name": "my illust tagged 'doraemon'", "num": 988},
+	{"name": "other illust tagged 'doraemon'", "num": 24032}
 ];
 
 function sortObjectByKey(array, key) {

@@ -8,6 +8,13 @@
   }
 }
 
+@media screen and (max-height: 800px) {
+  #main {
+    background-size: 400px 400px;
+  }
+}
+
+
 @-webkit-keyframes slide {
   from {
     margin-top: 30%;
@@ -143,7 +150,7 @@ div.boldline {
 
 p {
   font-family: 'Noto Sans Japanese', sans-serif;
-  letter-spacing: 7px;
+  letter-spacing: 5px;
   font-weight: 200;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -202,7 +209,6 @@ span.li_header {
 }
 #my_account_link {
   text-align: center;
-
 }
 
 #profile img {
