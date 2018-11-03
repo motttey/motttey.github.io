@@ -2,9 +2,9 @@ var selected_indexes = [];
 var init_data, output_data;
 
 const primary_stats = {
-	total_illusts: 1526,
-	total_views: 4426602,
-	total_bookmarks: 97817,
+	total_illusts: 1527,
+	total_views: 4428197,
+	total_bookmarks: 97856,
 	total_comments: 23796,
 };
 
@@ -19,12 +19,12 @@ const illust_num = [
 	{"year": 2015, "num": 23},
 	{"year": 2016, "num": 42},
 	{"year": 2017, "num": 31},
-	{"year": 2018, "num": 22},
+	{"year": 2018, "num": 23},
 ];
 
 const total_illust_num = [
-	{"name": "my illust tagged 'doraemon'", "num": 988},
-	{"name": "other illust tagged 'doraemon'", "num": 24032}
+	{"name": "my illust tagged 'doraemon'", "num": 989},
+	{"name": "other illust tagged 'doraemon'", "num": 24042}
 ];
 
 function sortObjectByKey(array, key) {
