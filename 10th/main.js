@@ -3,9 +3,9 @@ var init_data, output_data;
 
 const primary_stats = {
 	total_illusts: 1527,
-	total_views: 4428197,
-	total_bookmarks: 97856,
-	total_comments: 23796,
+	total_views: 4429711,
+	total_bookmarks: 97900,
+	total_comments: 23800,
 };
 
 const illust_num = [
