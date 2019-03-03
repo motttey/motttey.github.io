@@ -31,11 +31,11 @@
 //#間の移動のアニメーション
 $(function(){
 	$('a').click(function(){
-		var speed = 700;
-		var href= $(this).attr("href");
-		var target = $(href == "#" || href == "" ? 'html' : href);
-		var offset = 20;
-		var position = target.offset().top - $("#Navigation").height() - offset;
+		const speed = 700;
+		let href= $(this).attr("href");
+		let target = $(href == "#" || href == "" ? 'html' : href);
+		const offset = 20;
+		let position = target.offset().top - $("#Navigation").height() - offset;
 		$("html, body").animate({scrollTop:position}, speed, "swing");
 		return false;
 	});
@@ -45,31 +45,31 @@ $(function(){
 <script type="text/javascript">
 
 $(function() {
-	var NavigationFix_Start = 600;
-    var navigation = $('#Navigation');
-    //表示位置
-    var navTop = navigation.offset().top + NavigationFix_Start;
-    //ナビゲーションの高さ
-    var navHeight = navigation.height();
-    var showFlag = false;
-    navigation.css('top', navHeight+'px');
-    //ナビゲーションの位置まできたら表示
-    $(window).scroll(function () {
-        var winTop = $(this).scrollTop();
-        if (winTop >= navTop) {
-            if (showFlag == false) {
-                showFlag = true;
-                navigation.addClass('navigation-fixed').stop().animate({'top' : '0px'}, 200);
-            }
-        } else if (winTop <= navTop) {
-            if (showFlag) {
-                showFlag = false;
-                navigation.stop().animate({'top' : -navHeight+'px'}, 200, function(){
-                    navigation.removeClass('navigation-fixed');
-                });
-            }
-        }
-    });
+	const NavigationFix_Start = 600;
+  let navigation = $('#Navigation');
+  //表示位置
+  let navTop = navigation.offset().top + NavigationFix_Start;
+  //ナビゲーションの高さ
+  let navHeight = navigation.height();
+  let showFlag = false;
+  navigation.css('top', navHeight+'px');
+  //ナビゲーションの位置まできたら表示
+  $(window).scroll(function () {
+      let winTop = $(this).scrollTop();
+      if (winTop >= navTop) {
+          if (showFlag == false) {
+              showFlag = true;
+              navigation.addClass('navigation-fixed').stop().animate({'top' : '0px'}, 200);
+          }
+      } else if (winTop <= navTop) {
+          if (showFlag) {
+              showFlag = false;
+              navigation.stop().animate({'top' : -navHeight+'px'}, 200, function(){
+                  navigation.removeClass('navigation-fixed');
+              });
+          }
+      }
+  });
 
 });
 
@@ -245,21 +245,21 @@ $(window).resize(function() {
 	}
 
 	function GetRandomIllust(){
-		var max = 2200;	//トータルの投稿数に置換
-  	var min = 0;
-  	var ViewIllustNum = 1;
-		var randomNumber = Math.random() * (max - min) + min;;
+		const max = 2200;	//トータルの投稿数に置換
+  	const min = 0;
+  	const ViewIllustNum = 1;
+		let randomNumber = Math.random() * (max - min) + min;;
   	$.getJSON("http://motiget-blog.tumblr.com/api/read/json?num="+ViewIllustNum+"&start="+randomNumber+"&callback=?", function(data) {
       	$.each(data.posts, function(i, posts) {
-          	var photo = this['photo-url-500'];
-          	var url = this['url'];
-          	//TODO: タグごとの表示
-          	if (this['type'] === "photo") {
-          		ResizeImageHeight();
-              	$('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
-          	} else {
-              	return;
-          	}
+        	let photo = this['photo-url-500'];
+        	let url = this['url'];
+        	//TODO: タグごとの表示
+        	if (this['type'] === "photo") {
+        		ResizeImageHeight();
+            $('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
+        	} else {
+            return;
+        	}
       	});
   	});
 	}
@@ -527,7 +527,7 @@ $(window).resize(function() {
 		</p>
 	</div>
 
-    <script>
+<script>
 	$('#LinkTable h3').hover(
     	function(){
         	//マウスオーバー処理
@@ -550,7 +550,7 @@ $(window).resize(function() {
         	$(this).css('transition', 'all ease-in .5s');
     	}
 	);
-    </script>
+</script>
 
 </body>
 </html>
