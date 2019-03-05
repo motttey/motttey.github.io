@@ -2,14 +2,15 @@
 <html>
 <head>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script src="dist/semantic.min.js"></script>
 	<script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+	<script src="dist/semantic.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/1.0.0/cropper.min.js"></script>
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
 	<meta charset = "utf-8">
 	<meta name="viewport" content="width=800px">
-	<meta author = "望月田吾作">
+	<meta author = "望月 田吾作">
 	<meta description = "望月 田吾作(もちづき たごさく)が描いたドラえもんをはじめとした絵や漫画の掲載を目的としたサイト.">
 
 	<meta name="twitter:card" content="summary_large_image" />
@@ -74,7 +75,7 @@ $(function() {
 });
 
 function ResizeImageHeight(){
-	var CardWidth = $('.cards .card').width();
+	let CardWidth = $('.cards .card').width();
 	$(".cards .card").css("height", CardWidth + "px");
 }
 $(document).ready(function(){
@@ -229,17 +230,17 @@ $(window).resize(function() {
 	<script>
 
 	function ViewIllustOnButtonClick(){
-	  	illustNum = 4;
+	  	const illustNum = 4;
 	  	ViewIllust(illustNum);
 	}
 
 	$(document).ready( function(){
-  		DefaultIllustNum = 16;
+  		const DefaultIllustNum = 16;
 	  	ViewIllust(DefaultIllustNum);
 	});
 
 	function ViewIllust(NUM){
-  		for(var i = 0; i < NUM; i++){
+  		for(let i = 0; i < NUM; i++){
   			GetRandomIllust();
     	}
 	}
@@ -303,6 +304,8 @@ $(window).resize(function() {
 				<img src="images/octocat.png" alt="motttey_github">
 			</a>
       <h4>motttey</h4>
+			<a class="github-button" href="https://github.com/motttey" data-size="large" data-show-count="true" aria-label="Follow @motttey on GitHub">Follow @motttey</a>
+
 		</div>
 	</div>
 
