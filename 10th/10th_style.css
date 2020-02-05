@@ -216,11 +216,18 @@ span.li_header {
   height: 70%;
 }
 
+/*
 .card:hover > .image{
   border-spacing: 10px 10px;
   border-radius: 5%;
   border-style: bold;
   border-color: #ffffff;
+}
+*/
+.cards .card{
+	overflow: hidden;
+	background-color: #ffffff;
+	vertical-align: middle;
 }
 
 .menu {

@@ -1,5 +1,5 @@
-var selected_indexes = [];
-var init_data, output_data;
+let selected_indexes = [];
+let init_data, output_data;
 
 const primary_stats = {
 	total_illusts: 1527,
@@ -37,7 +37,7 @@ function sortObjectByKey(array, key) {
 
 function showPrimaryStats(){
 	Object.entries(primary_stats).forEach(function(stat){
-		var num = 0;
+		let num = 0;
 		setInterval(function(){
 			if (num <= stat[1]){
 				$('#' + stat[0]).html(stat[0] + ": " + num);
@@ -81,7 +81,7 @@ $(document).ready( function(){
 		init_data = data;
 		output_data = data;
 
-		var DefaultIllustNum = 16;
+		const DefaultIllustNum = 12;
 		$('#search-mode .item')
 		 .on('click', function(d) {
 				$(this).addClass('active').siblings('.item').removeClass('active');
@@ -97,16 +97,16 @@ $(document).ready( function(){
 
 		$('#search-keywords').keypress( function (e) {
 			if ( e.which == 13 ) {
-				var queries = $('#search-keywords input').val().split(/\s+/)
-				var queries_length = queries.length
+				let queries = $('#search-keywords input').val().split(/\s+/)
+				const queries_length = queries.length
 				output_data = [];
 				selected_indexes = [];
 
 				// クエリの表記揺れに対応
 				// 0件の時の表示検討
 				data.forEach(function(illust, index){
-					var matched_count = 0;
-					var queries_found = {};
+					let matched_count = 0;
+					let queries_found = {};
 					illust["tags"].forEach(function(tag){
 						queries.forEach(function(query){
 							if (tag["name"].indexOf(query) != -1　&& query in queries_found === false) {
@@ -120,7 +120,7 @@ $(document).ready( function(){
 				});
 				// console.log(output_data);
 				$('div.card').remove();
-				var max = (output_data.length > DefaultIllustNum)? 16 :output_data.length;
+				const max = (output_data.length > DefaultIllustNum)? 16 :output_data.length;
 				viewIllust(0, max, output_data);
 			}
 		});
@@ -160,13 +160,13 @@ function setSortTargetKey(id, data){
 }
 
 function viewIllustOnButtonClick(data){
-	var existin_illust_num = $('div.card').length;
-	var illust_num = (data.length > 4)? 4 : data.length;
+	let existin_illust_num = $('div.card').length;
+	const illust_num = (data.length > 4)? 4 : data.length;
 	viewIllust(existin_illust_num, illust_num, data);
 }
 
 function viewIllust(start, NUM, data) {
-	for(var i = start; i < start + NUM; i++){
+	for(let i = start; i < start + NUM; i++){
 		getRandomIllust(data, i);
 	}
 	controlVisibleOfButton(data.length, start + NUM);
@@ -182,7 +182,7 @@ function resizeImageHeight(id){
 }
 
 function getRandomNumber(max, min){
-	var randomNumber = parseInt(Math.random() * (max - min) + min);
+	const randomNumber = parseInt(Math.random() * (max - min) + min);
 	while(selected_indexes.includes(randomNumber)){
 		randomNumber = parseInt(Math.random() * (max - min) + min);
 	}
@@ -196,10 +196,10 @@ function getRandomIllust(data, index){
 	const ViewIllustNum = 1;
 	const randomNumber = getRandomNumber(max, min);
 
-	var target_data = ($('#s-random').hasClass('active'))? data[randomNumber] : data[index];
-	var photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
-	var url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
-	var id = "i" + target_data["id"];
+	let target_data = ($('#s-random').hasClass('active'))? data[randomNumber] : data[index];
+	let photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
+	let url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
+	let id = "i" + target_data["id"];
 	$('div.cards').append('  <div class="card" id="'+id+'"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
 	// resizeImageHeight(id);
 }
@@ -307,8 +307,8 @@ function drawStatGraphs(){
 			return d.data["name"];
 		})
     .attr("transform", function(d, i) {
-			var pos = outerArc.centroid(d);
-			var margin = (i%2 === 0)? -1 * 2 * pie_radius: 0.8 * pie_radius;
+			let pos = outerArc.centroid(d);
+			let margin = (i%2 === 0)? -1 * 2 * pie_radius: 0.8 * pie_radius;
 			pos[0] = pos[0] + margin;
 			return "translate(" + pos  + ")";
 		});
@@ -318,8 +318,8 @@ function drawStatGraphs(){
 			.enter()
 			.append("polyline")
 			.attr("points", function(d, i){
-					var pos = outerArc.centroid(d);
-					var margin = (i%2 === 0)? -1 : 1;
+					let pos = outerArc.centroid(d);
+					let margin = (i%2 === 0)? -1 : 1;
 					pos[0] = pie_radius * 0.5 * margin;
 					return [arc.centroid(d), outerArc.centroid(d), pos];
 			})
