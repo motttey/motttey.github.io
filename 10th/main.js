@@ -19,7 +19,8 @@ const illust_num = [
 	{"year": 2015, "num": 23},
 	{"year": 2016, "num": 42},
 	{"year": 2017, "num": 31},
-	{"year": 2018, "num": 23},
+	{"year": 2018, "num": 28},
+	{"year": 2019, "num": 37},
 ];
 
 const total_illust_num = [
@@ -118,6 +119,7 @@ $(document).ready( function(){
 
 					if (matched_count >= queries_length) output_data.push(illust);
 				});
+
 				// console.log(output_data);
 				$('div.card').remove();
 				const max = (output_data.length > DefaultIllustNum)? 16 :output_data.length;
@@ -197,7 +199,7 @@ function getRandomIllust(data, index){
 	const randomNumber = getRandomNumber(max, min);
 
 	let target_data = ($('#s-random').hasClass('active'))? data[randomNumber] : data[index];
-	let photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"];
+	let photo = "http://embed.pixiv.net/decorate.php?illust_id=" + target_data["id"] + "&mode=sns-automator";
 	let url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
 	let id = "i" + target_data["id"];
 	$('div.cards').append('  <div class="card" id="'+id+'"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
