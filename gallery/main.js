@@ -9,7 +9,7 @@ function drawScatter(){
   const canvas_height = 600;
 
   // create the camera with 45-degree field of view and an aspect ratio that matches the viewport
-  let camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  let camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.3, 2000);
   // move the camera 10 units back from the origin
   camera.position.z = 10;
   // create the renderer
@@ -53,42 +53,47 @@ function drawScatter(){
   line.type = THREE.Lines;
   scatterPlot.add(line);
 
-  // compute scales for attributes
-  let indexes = [
-    2,12,6
-  ];
+  let coordinate_bounds = {}
+  $.getJSON("all_illust.json", function(data) {
+    target_images = data.slice(0,100);
+    console.log(target_images);
 
-  let data = []
-  const M = 15;
-  const N = 100;
+    let coordinate_bounds = {}
+    const axes = ["tsne-X", "tsne-Y", "tsne-Z"];
+    axes.forEach((axis, i) => {
+      coordinate_bounds[axis] = [
+        Math.max.apply(Math, target_images.map(function(o) { return o[axis]; })),
+        Math.min.apply(Math, target_images.map(function(o) { return o[axis]; }))
+      ];
+    });
+    console.log(coordinate_bounds);
 
-  let rand = d3.randomNormal(0,5);
-  for (let i = 0; i < N; i++){
-    let each_data = [];
-    for (let j = 0; j < M; j++) {
-      each_data.push(rand());
-    }
-    data.push(each_data);
-  }
+    target_images.forEach(function (d) {
+      let texture = new THREE.TextureLoader().load("http://embed.pixiv.net/decorate.php?illust_id=" + d["id"] + "&mode=sns-automator");
+      let mat = new THREE.PointsMaterial(
+        { color:0xFFFFFF,
+          size: 20,
+          transparent: true,
+          map: texture,
+      });
 
-  let mat = new THREE.PointsMaterial({color:0xFFFFFF, size:2.5});
+      let scales = axes.map(function (axis) {
+        return d3.scaleSqrt()
+            .domain(coordinate_bounds[axis])
+            .range([-box_size, box_size]);
+      });
 
-  let scales = indexes.map(function (idx) {
-    return d3.scaleSqrt()
-        .domain(d3.extent(data, function (d) { return d[idx]; }))
-        .range([-box_size, box_size]);
+      let pointGeo = new THREE.Geometry();
+
+      let x = scales[0](d["tsne-X"]);
+      let y = scales[1](d["tsne-Y"]);
+      let z = scales[2](d["tsne-Z"]);
+      pointGeo.vertices.push(new THREE.Vector3(x,y,z));
+
+      let points = new THREE.Points(pointGeo, mat);
+      scatterPlot.add(points);
+    });
   });
-
-  let pointGeo = new THREE.Geometry();
-  data.forEach(function (d, i) {
-    let x = scales[0](d[indexes[0]]);
-    let y = scales[1](d[indexes[1]]);
-    let z = scales[2](d[indexes[2]]);
-    pointGeo.vertices.push(new THREE.Vector3(x,y,z));
-  });
-
-  let points = new THREE.Points(pointGeo, mat);
-  scatterPlot.add(points);
 
   // add a spotlight to the scene
   let light = new THREE.SpotLight();
@@ -100,7 +105,7 @@ function drawScatter(){
 
   function animate(t) {
     // update the aspect ratio and renderer size in case the window was resized
-    camera = new THREE.PerspectiveCamera( 45, canvas_width / canvas_height, 0.1, 1000 );
+    camera = new THREE.PerspectiveCamera( 30, canvas_width / canvas_height, 0.3, 2000 );
     renderer.setSize(canvas_width, canvas_height);
     // spin the camera in a circle
     camera.position.x = Math.sin(t/3000)*300;
