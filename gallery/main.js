@@ -1,6 +1,8 @@
 // retrieved from: http://msbarry.github.io/threejs-tool-page/
 
 window.onload = drawScatter;
+let mouse = new THREE.Vector2();
+let INTERSECTED;
 
 function drawScatter(){
   // create the scene
@@ -66,10 +68,14 @@ function drawScatter(){
         Math.min.apply(Math, target_images.map(function(o) { return o[axis]; }))
       ];
     });
-    console.log(coordinate_bounds);
 
     target_images.forEach(function (d) {
-      let texture = new THREE.TextureLoader().load("http://embed.pixiv.net/decorate.php?illust_id=" + d["id"] + "&mode=sns-automator");
+      const loader = new THREE.TextureLoader();
+	    loader.crossOrigin = true;
+
+      // let texture = loader.load("http://embed.pixiv.net/decorate.php?illust_id=" + d["id"] + "&mode=sns-automator");
+      let texture = loader.load("https://firebasestorage.googleapis.com/v0/b/doraemon-fileserver.appspot.com/o/" + d["id"] + ".png");
+
       let mat = new THREE.PointsMaterial(
         { color:0xFFFFFF,
           size: 20,
@@ -91,8 +97,13 @@ function drawScatter(){
       pointGeo.vertices.push(new THREE.Vector3(x,y,z));
 
       let points = new THREE.Points(pointGeo, mat);
+      pointGeo.name = d["id"].toString()
+      points.name = d["id"].toString()
+
       scatterPlot.add(points);
     });
+    console.log(scene.children);
+
   });
 
   // add a spotlight to the scene
@@ -102,6 +113,7 @@ function drawScatter(){
 
   renderer.setSize(canvas_width, canvas_height);
   animate(new Date().getTime());
+	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
   function animate(t) {
     // update the aspect ratio and renderer size in case the window was resized
@@ -118,4 +130,34 @@ function drawScatter(){
     // request the next animation frame to render again
     window.requestAnimationFrame(animate, renderer.domElement);
   };
+
+  function onDocumentMouseMove( event )
+  {
+  	// the following line would stop any other event handler from firing
+  	// (such as the mouse's TrackballControls)
+  	// event.preventDefault();
+
+  	// update the mouse variable
+    let mouseVector = new THREE.Vector3(
+        ( event.clientX / window.innerWidth ) * 2 - 1,
+      - ( event.clientY / window.innerHeight ) * 2 + 1,
+        1 );
+
+    mouseVector.unproject(camera);
+
+    let raycaster = new THREE.Raycaster( camera.position, mouseVector.sub( camera.position ).normalize() );
+
+    let intersects = raycaster.intersectObjects(scene.children[0].children.slice(1), true);
+    // console.log(intersects);
+    if (intersects.length>0){
+        intersects.forEach((item, i) => {
+          console.log('UUID is: ' + item.object.uuid);
+          console.log('name is:' + item.object.name);
+          item.object.material.color.setHex( Math.random() * 0xffffff);
+        });
+
+        console.log("Intersected object:", intersects.length);
+        // [ 0 ].object.material.color.setHex( Math.random() * 0xffffff);
+    }
+  }
 }
