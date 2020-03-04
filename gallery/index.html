@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" type="text/css" href="../dist/semantic.min.css">
 	<link rel="stylesheet" type="text/css" href="../style.css" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
 
 	<link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">
@@ -29,5 +30,32 @@
 	<div id="header">
     <h1>Illust Gallery</h1>
 	</div>
-  <div id="canvas_holder" width="1200" height="500"> </div>
+	<div class="ui grid">
+		<div class="one column row">
+			<div class="column">
+  			<div id="canvas_holder" > </div>
+			</div>
+		</div>
+	</div>
+
+	<div id="description" class="ui card">
+		<div class="blurring dimmable image">
+			<div class="ui inverted dimmer">
+				<div class="content">
+					<div class="center">
+						<div class="ui primary button">Add Friend</div>
+					</div>
+				</div>
+			</div>
+			<img id="image_thumb" src="">
+		</div>
+		<div class="≈">
+			<h2 id="image_title">Title</h2>
+			<div class="meta">
+				<p id="image_year">2019</p>
+				<p id="image_tags">#hoge. #fuga</p>
+			</div>
+		</div>
+	</div>
+
 </body>

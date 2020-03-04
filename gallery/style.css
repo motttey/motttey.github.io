@@ -1,0 +1,9 @@
+p {
+  color: white;
+}
+
+#description {
+  position: fixed;
+  top: 20%;
+  left: 70%;
+}
