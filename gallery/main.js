@@ -4,24 +4,26 @@ window.onload = drawScatter;
 let mouse = new THREE.Vector2();
 let INTERSECTED;
 const canvas_width = 1200;
-const canvas_height = 600;
+const canvas_height = 650;
 const canvas_offset_x = 200;
+
+let target_images = [];
+
+// create the scene
+let scene = new THREE.Scene();
+// create the camera with 45-degree field of view and an aspect ratio that matches the viewport
+let camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.3, 2000);
+// move the camera 10 units back from the origin
+console.log(camera.position);
+camera.position.z = 20;
+// camera.Translate(0, 0, -10);
+
+// create the renderer
+let renderer = new THREE.WebGLRenderer({ alpha: true });
 
 function v(x,y,z){ return new THREE.Vector3(x,y,z); }
 
 function drawScatter(){
-  // create the scene
-  let scene = new THREE.Scene();
-
-  // create the camera with 45-degree field of view and an aspect ratio that matches the viewport
-  let camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.3, 2000);
-  // move the camera 10 units back from the origin
-  console.log(camera.position);
-  camera.position.z = 20;
-  // camera.Translate(0, 0, -10);
-
-  // create the renderer
-  let renderer = new THREE.WebGLRenderer({ alpha: true });
   // make the renderer fill the viewport
   renderer.setSize(canvas_width, canvas_height);
 
@@ -81,7 +83,7 @@ function drawScatter(){
 	    loader.crossOrigin = true;
 
       // let texture = loader.load("http://embed.pixiv.net/decorate.php?illust_id=" + d["id"] + "&mode=sns-automator");
-      let texture = loader.load("./pixiv_images/" + d["id"] + ".png");
+      let texture = loader.load("./thumbnails/" + d["id"] + ".png");
 
       let mat = new THREE.PointsMaterial(
         { color:0xFFFFFF,
@@ -125,7 +127,7 @@ function drawScatter(){
 
   function animate(t) {
     // update the aspect ratio and renderer size in case the window was resized
-    camera = new THREE.PerspectiveCamera( 35, canvas_width / canvas_height, 0.3, 2000 );
+    camera = new THREE.PerspectiveCamera( 40, canvas_width / canvas_height, 0.3, 2000 );
     renderer.setSize(canvas_width, canvas_height);
     // spin the camera in a circle
     camera.position.x = Math.sin(t/3000)*250;
@@ -160,11 +162,17 @@ function drawScatter(){
     // console.log(intersects);
     if (intersects.length>0){
         intersects.forEach((item, i) => {
-          console.log('UUID is: ' + item.object.uuid);
-          console.log('name is:' + item.object.name);
-          item.object.material.color.setHex( Math.random() * 0xffffff);
+          // console.log('name is:' + item.object.name);
+          // item.object.material.color.setHex( Math.random() * 0xffffff);
+
+          let target_image = target_images.filter(img => img["id"] == item.object.name);
 
           document.getElementById("image_thumb").src = "http://embed.pixiv.net/decorate.php?illust_id=" + item.object.name + "&mode=sns-automator";
+
+          if (target_image.length > 0){
+            document.getElementById("image_title").innerHTML = target_image[0]["title"];
+            document.getElementById("image_tags").innerHTML = target_image[0]["tags"].map( (tag) => "#" + tag["name"]).join(",");
+          }
         });
 
         console.log("Intersected object:", intersects.length);
