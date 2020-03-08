@@ -1,53 +1,64 @@
-// retrieved from: http://msbarry.github.io/threejs-tool-page/
-window.onload = drawScatter;
 let mouse = new THREE.Vector2();
 let INTERSECTED;
 const canvas_width = 1200;
 const canvas_height = 650;
 const canvas_offset_x = 200;
+const box_size = 50;
+
+// global values for three.js
+let renderer, canvas, scene, camera, controls;
 
 let target_images = [];
 const axes = ["tsne-X", "tsne-Y", "tsne-Z"];
 
-// create the scene
-let scene = new THREE.Scene();
-// create the camera with 45-degree field of view and an aspect ratio that matches the viewport
-let camera = new THREE.Camera(30, window.innerWidth / window.innerHeight, 0.3, 2000);
-camera.position.set(0, 0, 1000);
-// move the camera 10 units back from the origin
-console.log(camera.position);
-camera.position.z = 20;
-// camera.Translate(0, 0, -10);
-
-// create the renderer
-let renderer = new THREE.WebGLRenderer({ alpha: true });
+window.addEventListener("load", init);
+document.addEventListener('mousemove', onDocumentMouseMove, false );
 
 function v(x,y,z){ return new THREE.Vector3(x,y,z); }
 
-function drawScatter(){
-  // make the renderer fill the viewport
-  renderer.setSize(canvas_width, canvas_height);
+function init() {
+  //レンダラーを作成
+  renderer = new THREE.WebGLRenderer({ alpha: true });
 
-  // add the DOM element that the renderer will draw to to the page
-  let canvas = document.getElementById("canvas_holder");
+  canvas = document.getElementById("canvas_holder");
   canvas.appendChild(renderer.domElement);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
-  let controls = new THREE.OrbitControls( camera, renderer.domElement);
+  //シーンを作成
+  scene = new THREE.Scene();
+
+  //カメラを作成
+  camera = new THREE.PerspectiveCamera(60, canvas_width / canvas_height, 0.3, 1000);
+
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
-  controls.enableDamping = true;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 1;
   controls.dampingFactor = 0.25;
   controls.enableZoom = true;
+
+  // make the renderer fill the viewport
+  renderer.setSize(canvas_width, canvas_height);
 
   // set the background color to almost-white
   renderer.setClearColor(0x00bcd4, 1.0);
   renderer.clear();
 
+  drawScatter();
+  renderScene();
+}
+
+//アニメーション
+function renderScene() {
+  requestAnimationFrame(renderScene);
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+function drawScatter(){
   let scatterPlot = new THREE.Object3D();
   scene.add(scatterPlot);
 
-  scatterPlot.rotation.y = 0.5;
-
-  const box_size = 50;
   // Draw the bounding box
   let lineGeo = new THREE.Geometry();
   lineGeo.vertices.push(
@@ -86,15 +97,14 @@ function drawScatter(){
 
     target_images.forEach(function (d) {
       const loader = new THREE.TextureLoader();
-	    loader.crossOrigin = true;
-
+      loader.crossOrigin = true;
       let texture = loader.load("./thumbnails/" + d["id"] + ".png");
 
-      let mat = new THREE.PointsMaterial(
-        { color:0xFFFFFF,
-          size: 30,
-          transparent: true,
-          map: texture,
+      let mat = new THREE.PointsMaterial({
+        color:0xFFFFFF,
+        size: 20,
+        transparent: true,
+        map: texture,
       });
 
       let scales = axes.map(function (axis) {
@@ -108,7 +118,7 @@ function drawScatter(){
       let x = scales[0](d["tsne-X"]);
       let y = scales[1](d["tsne-Y"]);
       let z = scales[2](d["tsne-Z"]);
-      pointGeo.vertices.push(new THREE.Vector3(x,y,z));
+      pointGeo.vertices.push(v(x,y,z));
 
       let points = new THREE.Points(pointGeo, mat);
       pointGeo.name = d["id"].toString()
@@ -116,43 +126,16 @@ function drawScatter(){
 
       scatterPlot.add(points);
     });
-    console.log(scene.children);
+    // console.log(scene.children);
   });
 
-  // add a spotlight to the scene
-  let light = new THREE.SpotLight();
-  light.position.set( -10, 20, 16 );
-  scene.add(light);
-
-  const geometry = new THREE.SphereGeometry(100, 32, 32);
-
   renderer.setSize(canvas_width, canvas_height);
+  renderer.setViewport(-1 * canvas_offset_x, 0,  canvas_width, canvas_height);
+
   controls.update();
   renderer.render(scene, camera);
 
-  animate(new Date().getTime() * 0.0001);
-	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-  // window.requestAnimationFrame(animate, renderer.domElement);
-
-  function animate(t) {
-    // update the aspect ratio and renderer size in case the window was resized
-    camera = new THREE.PerspectiveCamera( 40, canvas_width / canvas_height, 0.3, 2000 );
-
-    // request the next animation frame to render again
-    window.requestAnimationFrame(animate, renderer.domElement);
-
-    renderer.setSize(canvas_width, canvas_height);
-    // spin the camera in a circle
-    camera.position.x = Math.sin(t/3000)*250;
-    camera.position.y = 100;
-    camera.position.z = Math.cos(t/3000)*250;
-    // point the camera at the origin
-    camera.lookAt(scene.position);
-    // render the scene again
-    controls.update();
-    renderer.setViewport(-1 * canvas_offset_x, 0,  canvas_width, canvas_height);
-    renderer.render(scene, camera);
-  };
+  camera.position.set(100, 100, 100);
 }
 
 function onDocumentMouseMove( event )
@@ -162,7 +145,6 @@ function onDocumentMouseMove( event )
   // event.preventDefault();
   let raycaster = new THREE.Raycaster();
 
-  let mouse = THREE.Vector2;
   let mousePosition = calcMousePositionInCanvas(renderer.domElement, event);
   mouse.x = ((mousePosition[0] + canvas_offset_x) / canvas_width) * 2 - 1;
   mouse.y = - (mousePosition[1] / canvas_height) * 2 + 1;
@@ -172,25 +154,26 @@ function onDocumentMouseMove( event )
 
   // scene.add(new THREE.ArrowHelper(raycaster.ray.direction, raycaster.ray.origin, 300, 0xff0000) );
 
-  // console.log(intersects);
-  if (intersects.length>0){
-      intersects.forEach((item, i) => {
-        // console.log('name is:' + item.object.name);
-        // item.object.material.color.setHex( Math.random() * 0xffffff);
+  if (intersects.length > 0){
+    intersects.forEach((item, i) => {
+      // console.log('name is:' + item.object.name);
+      let target_image = target_images.filter(img => img["id"] == item.object.name);
 
-        let target_image = target_images.filter(img => img["id"] == item.object.name);
-
-        document.getElementById("image_thumb").src = "http://embed.pixiv.net/decorate.php?illust_id=" + item.object.name + "&mode=sns-automator";
-
-        if (target_image.length > 0){
-          document.getElementById("image_title").innerHTML = target_image[0]["title"];
-          document.getElementById("image_date").innerHTML = target_image[0]["date"].toString();
-          document.getElementById("image_tags").innerHTML = target_image[0]["tags"].map( (tag) => "#" + tag["name"]).join(" ");
-
-          document.getElementById("image_url").href = "https://www.pixiv.net/artworks/" + target_image[0]["id"];
-        }
-      });
+      if (target_image.length > 0){
+        setTargetImageProperties(target_image[0]);
+      }
+    });
   }
+}
+
+function setTargetImageProperties(target_image){
+  document.getElementById("image_thumb").src = "http://embed.pixiv.net/decorate.php?illust_id=" + target_image["id"] + "&mode=sns-automator";
+
+  document.getElementById("image_title").innerHTML = target_image["title"];
+  document.getElementById("image_date").innerHTML = target_image["date"].toString();
+  document.getElementById("image_tags").innerHTML = target_image["tags"].map( (tag) => "#" + tag["name"]).join(" ");
+
+  document.getElementById("image_url").href = "https://www.pixiv.net/artworks/" + target_image["id"];
 }
 
 function calcMousePositionInCanvas(canvas, event) {

@@ -16,8 +16,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:100" rel="stylesheet">
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.js"></script>
-	<script type="text/javascript" src="./OrbitControls.js"></script>
+	<script type="text/javascript" src="./three.js/build/three.js"></script>
+	<script type="text/javascript" src="./three.js/examples/js/controls/OrbitControls.js"></script>
 	<script src="../dist/semantic.min.js"></script>
 	<script src="../jquery.inview/jquery.inview.min.js"></script>
 	<script src="../jquery.inview/main.js"></script>
@@ -45,16 +45,18 @@
 				<div class="content">
 				</div>
 			</div>
-			<img id="image_thumb"/>
-			<a id="image_url"/>
+      <img id="image_thumb"/>
 		</div>
 		<div class="≈">
-			<h2 id="image_title">Title</h2>
+      <a id="image_url">
+        <h2 id="image_title">
+          Title
+        </h2>
+      </a>
 			<div class="meta">
 				<p id="image_date">2019</p>
 				<p id="image_tags">#tags</p>
 			</div>
 		</div>
 	</div>
-
 </body>
