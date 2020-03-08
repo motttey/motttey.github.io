@@ -1,5 +1,4 @@
 // retrieved from: http://msbarry.github.io/threejs-tool-page/
-
 window.onload = drawScatter;
 let mouse = new THREE.Vector2();
 let INTERSECTED;
@@ -13,7 +12,8 @@ const axes = ["tsne-X", "tsne-Y", "tsne-Z"];
 // create the scene
 let scene = new THREE.Scene();
 // create the camera with 45-degree field of view and an aspect ratio that matches the viewport
-let camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.3, 2000);
+let camera = new THREE.Camera(30, window.innerWidth / window.innerHeight, 0.3, 2000);
+camera.position.set(0, 0, 1000);
 // move the camera 10 units back from the origin
 console.log(camera.position);
 camera.position.z = 20;
@@ -31,6 +31,13 @@ function drawScatter(){
   // add the DOM element that the renderer will draw to to the page
   let canvas = document.getElementById("canvas_holder");
   canvas.appendChild(renderer.domElement);
+
+  let controls = new THREE.OrbitControls( camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.25;
+  controls.enableZoom = true;
+
   // set the background color to almost-white
   renderer.setClearColor(0x00bcd4, 1.0);
   renderer.clear();
@@ -117,28 +124,36 @@ function drawScatter(){
   light.position.set( -10, 20, 16 );
   scene.add(light);
 
-  renderer.setSize(canvas_width, canvas_height);
-  // animate(new Date().getTime() * 0.0001);
-	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-  window.requestAnimationFrame(animate, renderer.domElement);
-}
+  const geometry = new THREE.SphereGeometry(100, 32, 32);
 
-function animate(t) {
-  // update the aspect ratio and renderer size in case the window was resized
-  camera = new THREE.PerspectiveCamera( 40, canvas_width / canvas_height, 0.3, 2000 );
   renderer.setSize(canvas_width, canvas_height);
-  // spin the camera in a circle
-  camera.position.x = Math.sin(t/3000)*250;
-  camera.position.y = 100;
-  camera.position.z = Math.cos(t/3000)*250;
-  // point the camera at the origin
-  camera.lookAt(scene.position);
-  // render the scene again
-  renderer.setViewport(-1 * canvas_offset_x, 0,  canvas_width, canvas_height);
+  controls.update();
   renderer.render(scene, camera);
-  // request the next animation frame to render again
-  window.requestAnimationFrame(animate, renderer.domElement);
-};
+
+  animate(new Date().getTime() * 0.0001);
+	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+  // window.requestAnimationFrame(animate, renderer.domElement);
+
+  function animate(t) {
+    // update the aspect ratio and renderer size in case the window was resized
+    camera = new THREE.PerspectiveCamera( 40, canvas_width / canvas_height, 0.3, 2000 );
+
+    // request the next animation frame to render again
+    window.requestAnimationFrame(animate, renderer.domElement);
+
+    renderer.setSize(canvas_width, canvas_height);
+    // spin the camera in a circle
+    camera.position.x = Math.sin(t/3000)*250;
+    camera.position.y = 100;
+    camera.position.z = Math.cos(t/3000)*250;
+    // point the camera at the origin
+    camera.lookAt(scene.position);
+    // render the scene again
+    controls.update();
+    renderer.setViewport(-1 * canvas_offset_x, 0,  canvas_width, canvas_height);
+    renderer.render(scene, camera);
+  };
+}
 
 function onDocumentMouseMove( event )
 {

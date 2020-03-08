@@ -17,6 +17,7 @@
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.js"></script>
+	<script type="text/javascript" src="./OrbitControls.js"></script>
 	<script src="../dist/semantic.min.js"></script>
 	<script src="../jquery.inview/jquery.inview.min.js"></script>
 	<script src="../jquery.inview/main.js"></script>
@@ -42,18 +43,16 @@
 		<div class="blurring dimmable image">
 			<div class="ui inverted dimmer">
 				<div class="content">
-					<div class="center">
-						<div class="ui primary button">Add Friend</div>
-					</div>
 				</div>
 			</div>
-			<img id="image_thumb" src="">
+			<img id="image_thumb"/>
+			<a id="image_url"/>
 		</div>
 		<div class="≈">
 			<h2 id="image_title">Title</h2>
 			<div class="meta">
-				<!-- <p id="image_year">2019</p> -->
-				<p id="image_tags">#hoge, #fuga</p>
+				<p id="image_date">2019</p>
+				<p id="image_tags">#tags</p>
 			</div>
 		</div>
 	</div>
