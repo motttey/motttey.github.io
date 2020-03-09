@@ -4,6 +4,17 @@ p {
 
 #description {
   position: fixed;
-  top: 20%;
-  left: 70%;
+}
+
+@media (max-width: 1200px) {
+   #description {
+     top: 50%;
+     left: 50%;
+   }
+}
+@media (min-width: 1200px) {
+  #description {
+    top: 25%;
+    left: 70%;
+  }
 }

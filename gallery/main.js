@@ -43,6 +43,7 @@ function init() {
   renderer.setClearColor(0x00bcd4, 1.0);
   renderer.clear();
 
+  // render objects
   drawScatter();
   renderScene();
 
