@@ -12,8 +12,6 @@ let target_images = [];
 const axes = ["tsne-X", "tsne-Y", "tsne-Z"];
 
 window.addEventListener("load", init);
-document.addEventListener('mousemove', onDocumentMouseMove, false );
-document.addEventListener('touchstart', onTouchStart, false );
 
 function v(x,y,z){ return new THREE.Vector3(x,y,z); }
 
@@ -47,6 +45,10 @@ function init() {
 
   drawScatter();
   renderScene();
+
+  // mouse events
+  document.addEventListener('mousemove', onDocumentMouseMove, false);
+  document.addEventListener('touchstart', onTouchStart, true);
 }
 
 //アニメーション
@@ -142,7 +144,8 @@ function drawScatter(){
 function onDocumentMouseMove( event )
 {
   // event.preventDefault();
-  selectImage(event);
+  let mousePosition = calcMousePositionInCanvas(renderer.domElement, event);
+  selectImage(event, mousePosition);
 }
 
 function onTouchStart( event )
@@ -150,15 +153,15 @@ function onTouchStart( event )
   // the following line would stop any other event handler from firing
   // (such as the mouse's TrackballControls)
   // event.preventDefault();
-  selectImage(event);
+  let mousePosition = calcMousePositionInCanvas(renderer.domElement, event.touches[0]);
+  selectImage(event, mousePosition);
 }
 
-function selectImage(event){
+function selectImage(event, mousePos){
   let raycaster = new THREE.Raycaster();
+  mouse.x = ((mousePos[0] + canvas_offset_x) / canvas_width) * 2 - 1;
+  mouse.y = - (mousePos[1] / canvas_height) * 2 + 1;
 
-  let mousePosition = calcMousePositionInCanvas(renderer.domElement, event);
-  mouse.x = ((mousePosition[0] + canvas_offset_x) / canvas_width) * 2 - 1;
-  mouse.y = - (mousePosition[1] / canvas_height) * 2 + 1;
   raycaster.setFromCamera(mouse, camera);
 
   let intersects = raycaster.intersectObjects(scene.children[0].children.slice(1), true);
