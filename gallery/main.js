@@ -149,8 +149,7 @@ function onTouchStart( event )
 {
   // the following line would stop any other event handler from firing
   // (such as the mouse's TrackballControls)
-  alert("touch");
-  event.preventDefault();
+  // event.preventDefault();
   selectImage(event);
 }
 
