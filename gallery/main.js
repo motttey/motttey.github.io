@@ -13,7 +13,7 @@ const axes = ["tsne-X", "tsne-Y", "tsne-Z"];
 
 window.addEventListener("load", init);
 document.addEventListener('mousemove', onDocumentMouseMove, false );
-document.addEventListener('touchend', onTouchEnd, false );
+document.addEventListener('touchstart', onTouchStart, false );
 
 function v(x,y,z){ return new THREE.Vector3(x,y,z); }
 
@@ -141,16 +141,15 @@ function drawScatter(){
 
 function onDocumentMouseMove( event )
 {
-  // the following line would stop any other event handler from firing
-  // (such as the mouse's TrackballControls)
   // event.preventDefault();
   selectImage(event);
 }
 
-function onTouchEnd( event )
+function onTouchStart( event )
 {
   // the following line would stop any other event handler from firing
   // (such as the mouse's TrackballControls)
+  alert("touch");
   event.preventDefault();
   selectImage(event);
 }
