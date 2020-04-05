@@ -157,8 +157,6 @@ $(window).resize(function() {
 	</div>
 	</div>
 
-
-
 	<div class="three column row">
     <div class="column">
 			<h3>About Me</h3>
@@ -223,7 +221,6 @@ $(window).resize(function() {
 	<div class="line"> </div>
 	<br>
   	<div class="ui four stackable cards"></div>
-
 	<br>
 
 	<button class="ui inverted button" id="RandomImageViewButton" onClick="ViewIllustOnButtonClick()">More</button>
@@ -258,7 +255,7 @@ $(window).resize(function() {
         	//TODO: タグごとの表示
         	if (this['type'] === "photo") {
         		ResizeImageHeight();
-            $('div.cards').append('  <div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
+            $('div.cards').append('<div class="card"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div><\/div>');
         	} else {
             return;
         	}
