@@ -4,6 +4,7 @@ const canvas_width = 1200;
 const canvas_height = 650;
 const canvas_offset_x = 200;
 const box_size = 50;
+const image_max = 120;
 
 // global values for three.js
 let renderer, canvas, scene, camera, controls;
@@ -89,7 +90,7 @@ function drawScatter(){
 
   let coordinate_bounds = {}
   $.getJSON("all_illust.json", function(data) {
-    target_images = data.slice(0,100);
+    target_images = data.slice(0, image_max);
     console.log(target_images);
 
     axes.forEach((axis, i) => {
