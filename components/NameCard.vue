@@ -4,7 +4,18 @@
       <div>
         <h3 class="headline mb-0">Tagosaku Mochiduki</h3>
         <h5 class="mb-0">Hyper Draemon Creator</h5>
-
+        <h5>
+          <font-awesome-icon :icon="['fab','twitter']" />
+          @mt_tg
+        </h5>
+        <h5>
+          <font-awesome-icon :icon="['fas','home']" />
+          https://motttey.github.io/
+        </h5>
+        <h5>
+          <font-awesome-icon :icon="['fas','envelope']" />
+          motitago@gmail.com
+        </h5>
       </div>
     </v-card-title>
   </v-card>
