@@ -2,27 +2,47 @@
   <v-card id="NameCard" dark: false>
     <v-card-title primary-title>
       <div>
-        <h3 class="headline mb-0">Tagosaku Mochiduki</h3>
-        <h5 class="mb-0">Hyper Draemon Creator</h5>
-        <h5>
-          <font-awesome-icon :icon="['fab','twitter']" />
-          @mt_tg
-        </h5>
-        <h5>
-          <font-awesome-icon :icon="['fas','home']" />
-          https://motttey.github.io/
-        </h5>
-        <h5>
-          <font-awesome-icon :icon="['fas','envelope']" />
-          motitago@gmail.com
-        </h5>
+        <div id="card-main">
+          <h2 class="mb-0">Tagosaku Mochiduki</h2>
+          <h5 class="mb-0">Hyper Draemon Creator</h5>
+        </div>
+        <div id="card-links">
+          <h6>
+            <font-awesome-icon :icon="['fab','twitter']" />
+            @mt_tg
+          </h6>
+          <h6>
+            <font-awesome-icon :icon="['fas','image']" />
+            https://www.pixiv.net/users/415546
+          </h6>
+          <h6>
+            <font-awesome-icon :icon="['fas','home']" />
+            https://motttey.github.io/
+          </h6>
+          <h6>
+            <font-awesome-icon :icon="['fas','envelope']" />
+            motitago@gmail.com
+          </h6>
+        </div>
       </div>
     </v-card-title>
   </v-card>
 </template>
 
 <style>
-#NameCard > div{
+#card-main {
+  position: absolute;
+  top: 15%;
+  left: 5%;
+}
+
+#card-links {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+}
+
+#NameCard > div {
   height: 360px;
   width: 720px;
   box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
@@ -38,7 +58,7 @@
   background: #E3F2FD;
 }
 
-#NameCard:before{
+#NameCard:before {
   content: '';
   position: absolute;
 
