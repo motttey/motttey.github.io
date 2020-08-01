@@ -24,12 +24,26 @@
             motitago@gmail.com
           </h6>
         </div>
+        <img id="profile-img"
+          src="/mochiduko-20/doraemon-namecard.png"
+          alt="Doraemon"
+          class="mb-5"
+        >
       </div>
     </v-card-title>
   </v-card>
 </template>
 
 <style>
+
+#profile-img {
+  height: 100%;
+  top: 0;
+  left: 35%;
+  z-index: -1;
+  position: absolute;
+}
+
 #card-main {
   position: absolute;
   top: 15%;
@@ -63,16 +77,16 @@
   position: absolute;
 
   transform-origin: center;
-  transform: rotate(-72deg);
+  transform: rotate(-64deg);
 
   width: 720px;
   height: calc(20% + 360px);
   /* height: calc(100%); */
 
   top: 20%;
-  left: 30%;
+  left: 35%;
 
-  z-index: -1;
+  z-index: 0;
   background: linear-gradient(45deg, #00B8D4, #000000);
 }
 
