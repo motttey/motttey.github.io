@@ -3,26 +3,26 @@
     <v-card-title primary-title>
       <div>
         <div id="card-main">
-          <h2 class="mb-0">Tagosaku Mochiduki</h2>
-          <h5 class="mb-0">Hyper Draemon Creator</h5>
+          <h1 class="mb-3">Tagosaku Mochiduki</h1>
+          <h4 class="mb-0">Hyper Draemon Creator</h4>
         </div>
         <div id="card-links">
-          <h6>
+          <h5>
             <font-awesome-icon :icon="['fab','twitter']" />
             @mt_tg
-          </h6>
-          <h6>
+          </h5>
+          <h5>
             <font-awesome-icon :icon="['fas','image']" />
             https://www.pixiv.net/users/415546
-          </h6>
-          <h6>
+          </h5>
+          <h5>
             <font-awesome-icon :icon="['fas','home']" />
             https://motttey.github.io/
-          </h6>
-          <h6>
+          </h5>
+          <h5>
             <font-awesome-icon :icon="['fas','envelope']" />
             motitago@gmail.com
-          </h6>
+          </h5>
         </div>
         <img id="profile-img"
           src="/mochiduko-20/doraemon-namecard.png"
@@ -46,7 +46,7 @@
 
 #card-main {
   position: absolute;
-  top: 15%;
+  top: 12.5%;
   left: 5%;
 }
 
@@ -57,8 +57,8 @@
 }
 
 #NameCard > div {
-  height: 360px;
-  width: 720px;
+  height: 550px;
+  width: 910px;
   box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
   color: #263238;
   background: none;
@@ -81,13 +81,12 @@
 
   width: 720px;
   height: calc(20% + 360px);
-  /* height: calc(100%); */
 
   top: 20%;
-  left: 35%;
+  left: 52.5%;
 
   z-index: 0;
-  background: linear-gradient(45deg, #00B8D4, #000000);
+  background: linear-gradient(45deg, #1976D2, #FAFAFA);
 }
 
 </style>
