@@ -86,7 +86,7 @@
   left: 52.5%;
 
   z-index: 0;
-  background: linear-gradient(45deg, #1976D2, #FAFAFA);
+  background: linear-gradient(45deg, #0288D1, #FAFAFA);
 }
 
 </style>
