@@ -4,20 +4,26 @@
       <div>
         <div id="card-main">
           <h1 class="mb-3">Tagosaku Mochiduki</h1>
-          <h4 class="mb-0">Hyper Draemon Creator</h4>
+          <h4 class="mb-0">Hyper Doraemon Creator</h4>
         </div>
         <div id="card-links">
           <h5>
-            <font-awesome-icon :icon="['fab','twitter']" />
-            @mt_tg
+            <a href="https://twitter.com/mt_tg">
+              <font-awesome-icon :icon="['fab','twitter']" />
+              @mt_tg
+            </a>
           </h5>
           <h5>
-            <font-awesome-icon :icon="['fas','image']" />
-            https://www.pixiv.net/users/415546
+            <a href="https://www.pixiv.net/users/415546">
+              <font-awesome-icon :icon="['fas','image']" />
+              https://www.pixiv.net/users/415546
+            </a>
           </h5>
           <h5>
-            <font-awesome-icon :icon="['fas','home']" />
-            https://motttey.github.io/
+            <a href="https://motttey.github.io/">
+              <font-awesome-icon :icon="['fas','home']" />
+              https://motttey.github.io/
+            </a>
           </h5>
           <h5>
             <font-awesome-icon :icon="['fas','envelope']" />
@@ -35,6 +41,10 @@
 </template>
 
 <style>
+#card-links a {
+  text-decoration: none;
+  color: #263238;
+}
 
 #profile-img {
   height: 100%;
