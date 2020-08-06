@@ -77,6 +77,7 @@
 }
 
 #NameCard {
+  margin: 50px 0px;
   overflow: hidden;
   z-index: 1;
   background: #E3F2FD;
