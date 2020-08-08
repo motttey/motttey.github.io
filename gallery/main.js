@@ -50,7 +50,7 @@ function init() {
 
   // mouse events
   document.addEventListener('mousemove', onDocumentMouseMove, false);
-  document.addEventListener('touchstart', onTouchStart, true);
+  document.addEventListener('touchend', onTouchStart, true);
 }
 
 //アニメーション

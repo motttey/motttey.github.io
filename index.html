@@ -245,7 +245,7 @@ $(window).resize(function() {
 	});
 
 	function ViewIllust(NUM){
-  		for(let i = 0; i < NUM; i++){
+  		for (let i = 0; i < NUM; i++){
   			GetRandomIllust();
     	}
 	}
@@ -255,7 +255,7 @@ $(window).resize(function() {
   	const min = 0;
   	const ViewIllustNum = 1;
 		let randomNumber = Math.random() * (max - min) + min;;
-  	$.getJSON("http://motiget-blog.tumblr.com/api/read/json?num="+ViewIllustNum+"&start="+randomNumber+"&callback=?", function(data) {
+  	$.getJSON("https://motiget-blog.tumblr.com/api/read/json?num="+ViewIllustNum+"&start="+randomNumber+"&callback=?", function(data) {
       	$.each(data.posts, function(i, posts) {
         	let photo = this['photo-url-500'];
         	let url = this['url'];
