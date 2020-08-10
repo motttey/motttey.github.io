@@ -1,6 +1,7 @@
 <template>
   <v-container fluid>
     <h1>My Links</h1>
+    <h3>パーソナリティを知ってください. </h3>
 
      <v-row dense class="mb-6">
        <v-col
@@ -23,7 +24,7 @@
            </v-card-actions>
 
            <v-card-text>
-             <a :href="card.src">Link</a>
+             <a :href="card.url">Link</a>
            </v-card-text>
 
          </v-card>
