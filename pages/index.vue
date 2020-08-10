@@ -14,6 +14,7 @@
       <time-line />
       <v-divider></v-divider>
       <link-cards />
+      <!-- gallerywを移植する -->
     </v-flex>
   </v-layout>
 </template>
