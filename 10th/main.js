@@ -24,9 +24,13 @@ const illust_num = [
 ];
 
 const total_illust_num = [
-	{"name": "my illust tagged 'doraemon'", "num": 989},
-	{"name": "other illust tagged 'doraemon'", "num": 24042}
+	{"name": "tagged \n ‘doraemon’", "num": 989},
+	{"name": "tagged \n  ‘doraemon’", "num": 24042}
 ];
+
+const width = 660;
+const height = 300;
+const margin = 50;
 
 function sortObjectByKey(array, key) {
 	array.sort(function(a, b) {
@@ -207,27 +211,21 @@ function getRandomIllust(data, index){
 }
 
 function initializeSVG(){
-	const width = 600;
-	const height = 300;
-
 	let bar_g = d3.select("#stat_svg").append("svg").append("g")
 			.attr("id", "bar_g")
-			.attr("width", width)
+			.attr("width", width + margin)
 			.attr("height", height)
 	    .attr("transform", "translate(" + 0 + "," + 0 + ")");
 
 	let pie_g = d3.select("#stat_svg").append("svg").append("g")
 			.attr("id", "pie_g")
-			.attr("width", width)
+			.attr("width", width + margin)
 			.attr("height", height)
 	    .attr("transform", "translate(" + width/2 + "," + height*2 + ")");
 }
 
 function drawStatGraphs(){
 
-	const width = 600;
-	const height = 300;
-	const margin = 30;
 	let x_bar_scale = d3.scaleBand().rangeRound([margin, width]).padding(0.1);
   let y_bar_scale = d3.scaleLinear().rangeRound([height, margin]);
 
@@ -238,7 +236,7 @@ function drawStatGraphs(){
 
   bar_g.append("g")
       .attr("class", "axis bar_axis-x")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate(" + 0 + "," + height + ")")
       .call(d3.axisBottom(x_bar_scale));
 
   bar_g.append("g")
