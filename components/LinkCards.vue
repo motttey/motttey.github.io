@@ -4,8 +4,7 @@
     <h3>パーソナリティを知ってください. </h3>
 
     <v-row dense class="mb-6">
-      <v-col cols="12" sm="10" offset-sm="1"
-       >
+      <v-col cols="12" sm="10" offset-sm="1">
         <v-container fluid>
           <v-row>
             <v-col :cols="card.flex"
