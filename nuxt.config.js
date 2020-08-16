@@ -55,6 +55,7 @@ export default {
   */
   modules: [
     'nuxt-fontawesome',
+    "@nuxtjs/axios",
   ],
   /*
   ** vuetify module configuration
