@@ -9,7 +9,7 @@
              <v-row>
                <v-col
                  v-for="card in cards"
-                 :key="n"
+                 :key="card.title"
                  class="d-flex child-flex"
                  cols="4"
                >
@@ -64,19 +64,19 @@
         url: 'https://www.pixiv.net/users/415546', flex: 6 },
         { title: 'DORA THE PAST', src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://www.deviantart.com/motttey', flex: 6 },
-        { title: 'weibo',  src: '/mochiduko-20/doraemon-namecard.png',
+        { title: 'a',  src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://weibo.com/7310121728', flex: 6 },
-        { title: 'pixiv', src: '/mochiduko-20/doraemon-namecard.png',
+        { title: 'b', src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://www.pixiv.net/users/415546', flex: 6 },
-        { title: 'deviantART', src: '/mochiduko-20/doraemon-namecard.png',
+        { title: 'c', src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://www.deviantart.com/motttey', flex: 6 },
-        { title: 'weibo',  src: '/mochiduko-20/doraemon-namecard.png',
+        { title: 'd',  src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://weibo.com/7310121728', flex: 6 },
-        { title: 'pixiv', src: '/mochiduko-20/doraemon-namecard.png',
+        { title: 'e', src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://www.pixiv.net/users/415546', flex: 6 },
-        { title: 'deviantART', src: '/mochiduko-20/doraemon-namecard.png',
+        { title: 'f', src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://www.deviantart.com/motttey', flex: 6 },
-        { title: 'weibo',  src: '/mochiduko-20/doraemon-namecard.png',
+        { title: 'g',  src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://weibo.com/7310121728', flex: 6 },
       ],
     }),
