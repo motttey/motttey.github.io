@@ -1,16 +1,15 @@
 <template>
   <v-container fluid>
+
     <h1>Gallery</h1>
     <h3>これまでに描いたイラストなどです. </h3>
+
     <v-row dense class="mb-6">
-      <v-col cols="9">
-        <!-- TODO: 相対パスにした方が良い, styleをCSS移行 -->
-        <!--
-        <iframe src="https://motttey.github.io/gallery/index.html"
-          id="GalleryFrame" width="100%" height="700px" frameborder="0">
-        </iframe>
-        -->
-        <div ref="canvas_holder" id="canvas_holder" > </div>
+      <v-col cols="9"
+      @mousemove="onDocumentMouseMove($event)"
+      @touchstart="onTouchStart($event)">
+        <div ref="canvas_holder" id="canvas_holder"
+        ></div>
       </v-col>
       <v-col cols="3">
         <v-card id="target_image">
@@ -33,8 +32,6 @@
           </v-card-text>
         </v-card>
       </v-col>
-
-
     </v-row>
   </v-container>
 </template>
@@ -42,12 +39,13 @@
 <script>
   import * as THREE from 'three/build/three.module.js';
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-  import {scaleSqrt} from "d3-scale";
+  import { scaleSqrt } from "d3-scale";
 
   export default {
     data: () => ({
       target_illust: {
         title: 'dora1',
+        date: '20200718',
         tags_text: '#doraemon',
         src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://www.pixiv.net/users/415546', flex: 12 },
@@ -94,6 +92,11 @@
 
       this.drawScatter();
       this.renderScene();
+
+      console.log(this.target_images);
+      if (this.target_images.length > 0) this.setTargetImageProperties(this.target_images[0]);
+    },
+    destroyed: function () {
     },
     methods: {
       v(x,y,z){ return new THREE.Vector3(x,y,z); },
@@ -101,6 +104,58 @@
         requestAnimationFrame(this.renderScene);
         this.controls.update();
         this.renderer.render(this.scene, this.camera);
+      },
+      setTargetImageProperties(target_image){
+        let new_target_img = {};
+        this.target_illust .src = "http://embed.pixiv.net/decorate.php?illust_id=" + target_image["id"] + "&mode=sns-automator";
+
+        this.target_illust .title = target_image["title"];
+        this.target_illust .date = target_image["date"].toString();
+        this.target_illust .tags_text = target_image["tags"].map( (tag) => "#" + tag["name"]).join(" ");
+
+        this.target_illust .url  = "https://www.pixiv.net/artworks/" + target_image["id"];
+      },
+      calcMousePositionInCanvas(event) {
+        let pos_x, pos_y;
+
+        let offset_left = this.canvas.offsetLeft;
+        let offset_top = this.canvas.offsetTop;
+
+        pos_x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - Math.floor(offset_left);
+        pos_y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop - Math.floor(offset_top);
+        return [pos_x, pos_y];
+      },
+      onDocumentMouseMove(e) {
+        let mousePosition = this.calcMousePositionInCanvas(e);
+        this.selectImage(mousePosition);
+      },
+      onTouchStart(e) {
+        let mousePosition = this.calcMousePositionInCanvas(e.touches[0]);
+        console.log(mousePosition);
+        this.selectImage(mousePosition);
+      },
+      selectImage(mousePos) {
+        let raycaster = new THREE.Raycaster();
+        this.mouse.x = ((mousePos[0] + this.canvas_settings.canvas_offset_x) /  this.canvas_settings.canvas_width) * 2 - 1;
+        this.mouse.y = - (mousePos[1] / this.canvas_settings.canvas_height) * 2 + 1;
+
+        raycaster.setFromCamera(this.mouse, this.camera);
+
+        // this.scene.add(new THREE.ArrowHelper(raycaster.ray.direction, raycaster.ray.origin, 300, 0xff0000) );
+        let children = this.scene.children[0].children;
+        let intersects = raycaster.intersectObjects(children.slice(0, children.length-1), true);
+
+        if (intersects.length > 0){
+          intersects.forEach((item, i) => {
+            console.log(item);
+            console.log('name is:' + item.object.name);
+            let target_image = this.target_images.filter(img => img["id"] == item.object.name);
+
+            if (target_image.length > 0){
+              this.setTargetImageProperties(target_image[0]);
+            }
+          });
+        }
       },
       async drawScatter(){
         let scatterPlot = new THREE.Object3D();
@@ -119,7 +174,6 @@
           v(-box_size, -box_size, -box_size), v(-box_size, box_size, -box_size),
           v(box_size, -box_size, box_size), v(box_size, box_size, box_size),
           v(-box_size, -box_size, box_size), v(-box_size, box_size, box_size),
-
           v(box_size, box_size, -box_size), v(box_size, box_size, box_size),
           v(box_size, -box_size, -box_size), v(box_size, -box_size, box_size),
           v(-box_size, box_size, -box_size), v(-box_size, box_size, box_size),
@@ -175,6 +229,8 @@
         }).catch(error => {
           console.log("response error", error)
         });
+        // 1個イラストを表示する
+        this.setTargetImageProperties(this.target_images[0])
 
         let lineMat = new THREE.LineBasicMaterial({color: 0xFFFFFF, linewidth: 1});
         let line = new THREE.Line(lineGeo, lineMat);
