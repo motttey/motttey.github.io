@@ -1,15 +1,16 @@
 <template>
   <v-container fluid>
-
     <h1>Gallery</h1>
     <h3>これまでに描いたイラストなどです. </h3>
 
     <v-row dense class="mb-6">
-      <v-col cols="9"
-      @mousemove="onDocumentMouseMove($event)"
-      @touchstart="onTouchStart($event)">
+      <v-col cols="9" v-resize="onResize">
         <div ref="canvas_holder" id="canvas_holder"
-        ></div>
+          @mouseover="onDocumentMouseMove($event)"
+          @click="onTouch($event)"
+          @touchend="onTouch($event)"
+        >
+        </div>
       </v-col>
       <v-col cols="3">
         <v-card id="target_image">
@@ -17,7 +18,6 @@
             :src="target_illust.src"
             class="white--text align-end"
             aspect-ratio="1"
-            height="200px"
           >
             <v-card-title v-text="target_illust.title"></v-card-title>
           </v-img>
@@ -53,6 +53,7 @@
         canvas_width: 1200,
         canvas_height: 650,
         canvas_offset_x: 0,
+        canvas_offset_y: -50,
         box_size: 50,
         image_max: 120,
       },
@@ -64,6 +65,7 @@
       scene: new THREE.Scene(),
       camera: new Object(),
       controls: new Object(),
+      MOUNTED: false,
       INTERSECTED: false,
     }),
     mounted: function(){
@@ -73,10 +75,10 @@
 
       console.log(this.$el);
       this.canvas.appendChild(this.renderer.domElement);
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.renderer.setSize(this.canvas_settings.canvas_width, this.canvas_settings.canvas_height);
 
       //カメラを作成
-      this.camera = new THREE.PerspectiveCamera(60, this.canvas_settings.canvas_width / this.canvas_settings.canvas_height, 0.3, 1000);
+      this.camera = new THREE.PerspectiveCamera(45, this.canvas_settings.canvas_width / this.canvas_settings.canvas_height, 0.5, 1000);
 
       this.controls = new OrbitControls(this.camera, this.renderer.domElement);
       this.controls.enableDamping = true;
@@ -95,6 +97,7 @@
 
       console.log(this.target_images);
       if (this.target_images.length > 0) this.setTargetImageProperties(this.target_images[0]);
+      this.MOUNTED = true;
     },
     destroyed: function () {
     },
@@ -129,19 +132,22 @@
         let mousePosition = this.calcMousePositionInCanvas(e);
         this.selectImage(mousePosition);
       },
-      onTouchStart(e) {
-        let mousePosition = this.calcMousePositionInCanvas(e.touches[0]);
-        console.log(mousePosition);
-        this.selectImage(mousePosition);
+      onTouch(e) {
+        if (e.touches && e.touches.length > 0) {
+          let mousePosition = this.calcMousePositionInCanvas(e.touches[0]);
+          this.selectImage(mousePosition);
+        } else if (e.changedTouches && e.changedTouches.length > 0) {
+          let mousePosition = this.calcMousePositionInCanvas(e.changedTouches[0]);
+          this.selectImage(mousePosition);
+        }
       },
       selectImage(mousePos) {
         let raycaster = new THREE.Raycaster();
         this.mouse.x = ((mousePos[0] + this.canvas_settings.canvas_offset_x) /  this.canvas_settings.canvas_width) * 2 - 1;
-        this.mouse.y = - (mousePos[1] / this.canvas_settings.canvas_height) * 2 + 1;
+        this.mouse.y = - ((mousePos[1] + this.canvas_settings.canvas_offset_y) / this.canvas_settings.canvas_height) * 2 + 1;
 
         raycaster.setFromCamera(this.mouse, this.camera);
 
-        // this.scene.add(new THREE.ArrowHelper(raycaster.ray.direction, raycaster.ray.origin, 300, 0xff0000) );
         let children = this.scene.children[0].children;
         let intersects = raycaster.intersectObjects(children.slice(0, children.length-1), true);
 
@@ -156,6 +162,17 @@
             }
           });
         }
+      },
+      onResize() {
+        if (!this.MOUNTED) return;
+        // 高さは一定
+        const width = this.canvas.clientWidth;
+        const height = this.canvas_settings.canvas_height;
+        this.renderer.setSize(width, height);
+
+        // カメラのアスペクト比を正す
+        this.camera.aspect = width / height;
+        this.camera.updateProjectionMatrix();
       },
       async drawScatter(){
         let scatterPlot = new THREE.Object3D();
@@ -234,7 +251,6 @@
 
         let lineMat = new THREE.LineBasicMaterial({color: 0xFFFFFF, linewidth: 1});
         let line = new THREE.Line(lineGeo, lineMat);
-        // line.type = THREE.Lines;
         scatterPlot.add(line);
 
         this.renderer.setSize(this.canvas_settings.canvas_width, this.canvas_settings.canvas_height);
@@ -252,9 +268,10 @@
 <style>
 #canvas_holder {
   width: 100%;
-  height: 650px;
+  /* height: 650px; */
 }
 #target_image {
   top: 25%;
+  background-color: transparent;
 }
 </style>
