@@ -2,6 +2,48 @@
   <v-container fluid>
     <h1>Works</h1>
     <h3>同人誌やポートフォリオにしたいですね. </h3>
+    <v-row>
+      <v-col cols="12" sm="10" offset-sm="1">
+
+        <v-sheet
+          class="mx-auto"
+          elevation="10"
+        >
+          <v-slide-group
+            class="pa-4"
+            v-model="model"
+            show-arrows
+            center-active
+          >
+            <v-slide-item
+              v-for="card in cards"
+              class="mx-6"
+              :key="card.title"
+              v-slot:default="{ active, toggle }"
+            >
+              <v-card flat
+                @click="toggle">
+                  <v-img
+                    :src="card.src"
+                    :lazy-src="card.src"
+                    max-width="200"
+                    aspect-ratio="1"
+                    class="grey lighten-2"
+                    gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.1)"
+                  >
+                    <template>
+                      <v-card-text>
+                        <h2>{{card.title}}</h2>
+                      </v-card-text>
+                    </template>
+                </v-img>
+              </v-card>
+            </v-slide-item>
+          </v-slide-group>
+        </v-sheet>
+      </v-col>
+    </v-row>
+
     <v-row dense class="my-6">
        <v-col cols="12" sm="8" offset-sm="2">
          <v-card class="mb-6">
@@ -59,6 +101,7 @@
 <script>
   export default {
     data: () => ({
+      model: null,
       cards: [
         { title: 'Perfect Blue', src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://www.pixiv.net/users/415546', flex: 6 },
