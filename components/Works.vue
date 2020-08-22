@@ -4,7 +4,6 @@
     <h3>同人誌やポートフォリオにしたいですね. </h3>
     <v-row>
       <v-col cols="12" sm="10" offset-sm="1">
-
         <v-sheet
           class="mx-auto"
           elevation="10"
@@ -14,6 +13,7 @@
             v-model="model"
             show-arrows
             center-active
+            @change="onChange"
           >
             <v-slide-item
               v-for="card in cards"
@@ -44,6 +44,37 @@
       </v-col>
     </v-row>
 
+    <v-row dense class="my-6">
+       <v-col cols="12" sm="8" offset-sm="2">
+         <v-card class="mb-6">
+
+           <v-img
+             :src="maincard.src"
+             :lazy-src="maincard.src"
+             aspect-ratio="1"
+             class="grey lighten-2"
+             gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.1)"
+           >
+             <template>
+               <v-card-text>
+                 <h2>{{maincard.title}}</h2>
+               </v-card-text>
+             </template>
+             <template v-slot:placeholder>
+               <v-row
+                 class="fill-height ma-0"
+                 align="center"
+                 justify="center"
+               >
+                 <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+               </v-row>
+             </template>
+           </v-img>
+         </v-card>
+       </v-col>
+     </v-row>
+
+    <!--
     <v-row dense class="my-6">
        <v-col cols="12" sm="8" offset-sm="2">
          <v-card class="mb-6">
@@ -78,16 +109,6 @@
                        </v-row>
                      </template>
                    </v-img>
-                   <!--
-                   <template>
-                     <v-card-actions>
-                      <v-spacer></v-spacer>
-                     </v-card-actions>
-                     <v-card-text>
-                       <a :href="card.url">Link</a>
-                     </v-card-text>
-                   </template>
-                  -->
                  </v-card>
                </v-col>
              </v-row>
@@ -95,6 +116,7 @@
          </v-card>
        </v-col>
      </v-row>
+    -->
   </v-container>
 </template>
 
@@ -102,6 +124,7 @@
   export default {
     data: () => ({
       model: null,
+      maincard: new Object(),
       cards: [
         { title: 'Perfect Blue', src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://www.pixiv.net/users/415546', flex: 6 },
@@ -123,5 +146,13 @@
         url: 'https://weibo.com/7310121728', flex: 6 },
       ],
     }),
+    mounted: function(){
+      this.maincard = this.cards[0];
+    },
+    methods: {
+      onChange(v){
+        this.maincard = this.cards[v];
+      }
+    }
   }
 </script>
