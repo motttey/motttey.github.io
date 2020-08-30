@@ -6,7 +6,8 @@
     <v-row dense class="mb-6">
       <v-col cols="9" v-resize="onResize">
         <div ref="canvas_holder" id="canvas_holder"
-          @mouseover="onDocumentMouseMove($event)"
+          @mousemove="onDocumentMouseMove($event)"
+          @mouseup="onDocumentMouseMove($event)"
           @click="onTouch($event)"
           @touchend="onTouch($event)"
         >
@@ -14,21 +15,21 @@
       </v-col>
       <v-col cols="3">
         <v-card id="target_image">
-          <v-img
-            :src="target_illust.src"
-            class="white--text align-end"
-            aspect-ratio="1"
-          >
-            <v-card-title v-text="target_illust.title"></v-card-title>
-          </v-img>
-
+          <a :href="target_illust.url">
+            <v-img
+              :src="target_illust.src"
+              class="white--text align-end"
+              aspect-ratio="1"
+            >
+            </v-img>
+          </a>
           <v-card-actions>
            <v-spacer></v-spacer>
           </v-card-actions>
 
           <v-card-text>
-            <h2>{{target_illust.tags_text}}</h2>
-            <a :href="target_illust.url">Pixiv</a>
+            <h1>{{target_illust.title}}</h1>
+            <p>{{target_illust.tags_text}}</p>
           </v-card-text>
         </v-card>
       </v-col>
