@@ -21,8 +21,15 @@ export default {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=1.0'},
+      { name: 'keywords', content: '望月,ドラえもん,Doraemon,Fujiko Fujio,藤子不二雄,藤子・F・不二雄'},
+      { name: 'author', content: 'Tagosaku Mochiduki'},
+      // { hid: 'description', property: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'モチヅ庫' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: 'http://motttey.github.io/' },
+      { hid: 'og:title', property: 'og:title', content: 'モチヅ庫' },
+      { hid: 'og:description', property: 'og:description', content: '望月 田吾作(もちづき たごさく)が描いたドラえもんをはじめとした絵や漫画の掲載を目的としたサイトです.'}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
