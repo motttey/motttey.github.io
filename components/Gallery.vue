@@ -3,8 +3,8 @@
     <h1>Gallery</h1>
     <h3>これまでに描いたイラストなどです. </h3>
 
-    <v-row dense class="mb-6">
-      <v-col cols="9" v-resize="onResize">
+    <v-row class="mb-6" align="center">
+      <v-col sm="8" cols="12" v-resize="onResize">
         <div ref="canvas_holder" id="canvas_holder"
           @mousemove="onDocumentMouseMove($event)"
           @mouseup="onDocumentMouseMove($event)"
@@ -13,7 +13,7 @@
         >
         </div>
       </v-col>
-      <v-col cols="3">
+      <v-col sm="4" cols="8" class="mx-auto">
         <v-card id="target_image">
           <a :href="target_illust.url">
             <v-img
@@ -28,7 +28,7 @@
           </v-card-actions>
 
           <v-card-text>
-            <h1>{{target_illust.title}}</h1>
+            <h3>{{target_illust.title}}</h3>
             <p>{{target_illust.tags_text}}</p>
           </v-card-text>
         </v-card>
@@ -55,7 +55,7 @@
         canvas_height: 650,
         canvas_offset_x: 0,
         canvas_offset_y: -50,
-        box_size: 50,
+        box_size: 40,
         image_max: 120,
       },
       axes: ["tsne-X", "tsne-Y", "tsne-Z"],
@@ -272,7 +272,7 @@
   /* height: 650px; */
 }
 #target_image {
-  top: 25%;
-  background-color: transparent;
+  top: 0%;
+  background-color: none;
 }
 </style>

@@ -55,7 +55,7 @@
 #profile-img {
   height: 100%;
   top: 0;
-  left: 35%;
+  left: 15%;
   z-index: -1;
   position: absolute;
 }
@@ -91,7 +91,6 @@
   width: 100%;
   max-height: 550px;
   max-width: 910px;
-  /* margin-left: calc((100%) / 2); */
 
   z-index: 1;
   background: #E3F2FD;
