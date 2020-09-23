@@ -47,6 +47,7 @@
 </template>
 
 <style>
+
 #card-links a {
   text-decoration: none;
   color: #263238;
@@ -84,7 +85,7 @@
 }
 
 #NameCard {
-  margin: 50px 0px;
+  margin: 20px 0px;
   overflow: hidden;
   position: relative;
 
@@ -111,6 +112,31 @@
 
   z-index: 0;
   background: linear-gradient(45deg, #0288D1, #FAFAFA);
+}
+
+/* Sassとかでxs取得するように書き換えたい*/
+@media (max-width: 600px) {
+  #card-main {
+    top: 5%;
+  }
+
+  #card-main h1 {
+    font-size: 24px;
+  }
+
+  #card-main h4 {
+    font-size: 16px;
+  }
+
+  #card-links h5 {
+    font-size: 14px;
+  }
+
+  #profile-img {
+    height: 80%;
+    left: 10%;
+    top: 15%;
+  }
 }
 
 </style>
