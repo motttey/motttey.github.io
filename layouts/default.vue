@@ -121,7 +121,8 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Mochiduko 2020'
+      // 画像にするかもしれない... 
+      title: 'モチヅ庫 2020'
     }
   }
 }

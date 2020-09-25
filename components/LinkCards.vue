@@ -46,6 +46,12 @@
         url: 'https://www.deviantart.com/motttey', flex: 6 },
         { title: 'weibo',  src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://weibo.com/7310121728', flex: 6 },
+        { title: 'twitter',  src: '/mochiduko-20/doraemon-namecard.png',
+        url: 'https://twitter.com/mt_tg', flex: 12 },
+        { title: 'Instagram',  src: '/mochiduko-20/doraemon-namecard.png',
+        url: 'https://www.instagram.com/tagosaku_mochiduki', flex: 6 },
+        { title: 'Blog',  src: '/mochiduko-20/doraemon-namecard.png',
+        url: 'http://motttey.hatenablog.com/', flex: 6 },
       ],
     }),
   }
