@@ -22,7 +22,10 @@
     "d3-scale": "^3.2.1",
     "nuxt": "^2.13.0",
     "nuxt-fontawesome": "^0.4.0",
-    "three": "^0.119.1"
+    "three": "^0.119.1",
+    "vue": "^2.6.12",
+    "vue-scrollto": "^2.18.2",
+    "vue-template-compiler": "^2.6.12"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.2",
