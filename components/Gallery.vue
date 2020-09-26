@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid id="Gallery">
     <h1>Gallery</h1>
     <h3>これまでに描いたイラストなどです. </h3>
 

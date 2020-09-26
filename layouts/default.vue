@@ -55,21 +55,21 @@
 
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <!--
+
       <v-btn
         icon
         @click.stop="rightDrawer = !rightDrawer"
       >
         <v-icon>mdi-menu</v-icon>
       </v-btn>
-      -->
+
     </v-app-bar>
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
-    <!--
+
     <v-navigation-drawer
       v-model="rightDrawer"
       :right="right"
@@ -77,17 +77,20 @@
       fixed
     >
       <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          link
+        >
+          <!-- アイコンを画像にする -->
+          <v-list-item-content v-scroll-to="item.to">
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    -->
+
     <v-footer
       :absolute="!fixed"
       app
@@ -106,22 +109,26 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
           title: 'Index',
-          to: '/'
+          to: '#NameCard'
         },
-        /*
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-        */
+          title: 'Gallery',
+          to: '#Gallery'
+        },
+        {
+          title: 'Works',
+          to: '#Works'
+        },
+        {
+          title: 'LinkCards',
+          to: '#LinkCards'
+        },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      // 画像にするかもしれない... 
+      // 画像にするかもしれない...
       title: 'モチヅ庫 2020'
     }
   }

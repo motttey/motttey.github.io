@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid id="ContactInfo">
     <v-row dense class="mb-6">
       <v-col cols="12">
         <h3>連絡先や外部サイトへのリンクを載せる</h3>

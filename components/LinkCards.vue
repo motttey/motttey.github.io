@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid id="LinkCards">
     <h1>My Links</h1>
     <h3>パーソナリティを知ってください. </h3>
 
