@@ -56,7 +56,7 @@
         canvas_offset_x: 0,
         canvas_offset_y: -50,
         box_size: 40,
-        image_max: 120,
+        image_max: 150,
       },
       axes: ["tsne-X", "tsne-Y", "tsne-Z"],
       mouse: new THREE.Vector2(),
@@ -111,13 +111,13 @@
       },
       setTargetImageProperties(target_image){
         let new_target_img = {};
-        this.target_illust .src = "http://embed.pixiv.net/decorate.php?illust_id=" + target_image["id"] + "&mode=sns-automator";
+        this.target_illust.src = "http://embed.pixiv.net/decorate.php?illust_id=" + target_image["id"] + "&mode=sns-automator";
 
-        this.target_illust .title = target_image["title"];
-        this.target_illust .date = target_image["date"].toString();
-        this.target_illust .tags_text = target_image["tags"].map( (tag) => "#" + tag["name"]).join(" ");
+        this.target_illust.title = target_image["title"];
+        this.target_illust.date = target_image["date"].toString();
+        this.target_illust.tags_text = target_image["tags"].map( (tag) => "#" + tag["name"]).join(" ");
 
-        this.target_illust .url  = "https://www.pixiv.net/artworks/" + target_image["id"];
+        this.target_illust.url  = "https://www.pixiv.net/artworks/" + target_image["id"];
       },
       calcMousePositionInCanvas(event) {
         let pos_x, pos_y;
