@@ -73,8 +73,10 @@
     <v-navigation-drawer
       v-model="rightDrawer"
       :right="right"
-      temporary
       fixed
+      temporary
+      dark
+      src="/mochiduko-20/drawer-bg.png"
     >
       <v-list>
         <v-list-item
