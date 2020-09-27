@@ -1,7 +1,7 @@
 <template>
   <v-container fluid id="Works">
     <h1>Works</h1>
-    <h3>同人誌やポートフォリオにしたいですね. </h3>
+    <h3>同人誌とかをまとめてポートフォリオにしたいですね. </h3>
     <v-row>
       <v-col cols="12" sm="10" offset-sm="1">
         <v-sheet

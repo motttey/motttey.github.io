@@ -109,7 +109,7 @@ export default {
       fixed: false,
       items: [
         {
-          title: 'Index',
+          title: 'Top',
           to: '#NameCard'
         },
         {
@@ -121,7 +121,7 @@ export default {
           to: '#Works'
         },
         {
-          title: 'LinkCards',
+          title: 'Link',
           to: '#LinkCards'
         },
       ],

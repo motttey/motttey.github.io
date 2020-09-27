@@ -56,8 +56,9 @@
 #profile-img {
   height: 100%;
   top: 0;
-  left: 15%;
+  left: 35%;
   z-index: -1;
+  opacity: 0.9;
   position: absolute;
 }
 
