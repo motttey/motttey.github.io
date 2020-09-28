@@ -14,19 +14,25 @@
                 <v-img
                   :src="card.src"
                   class="white--text align-end"
-                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"
                   height="200px"
                 >
-                  <v-card-title v-text="card.title"></v-card-title>
+                  <v-btn
+                    text
+                    color="#0288D1"
+                    :href="card.url"
+                  >
+                    <h2>{{ card.title }}</h2>
+                  </v-btn>
                 </v-img>
 
+                <!--
                 <v-card-actions>
-                 <v-spacer></v-spacer>
+                  <v-card-text>
+                    <a :href="card.url"><h1> {{ card.title }} </h1></a>
+                  </v-card-text>
                 </v-card-actions>
-
-                <v-card-text>
-                  <a :href="card.url">Link</a>
-                </v-card-text>
+                -->
               </v-card>
             </v-col>
           </v-row>
