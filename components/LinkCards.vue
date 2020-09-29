@@ -7,7 +7,8 @@
       <v-col cols="12" sm="10" offset-sm="1">
         <v-container fluid>
           <v-row>
-            <v-col :cols="card.flex"
+            <v-col
+              :cols="card.flex"
               v-for="card in cards"
               :key="card.tditle">
               <v-card>
