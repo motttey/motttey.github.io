@@ -53,7 +53,8 @@
              :src="maincard.src"
              :lazy-src="maincard.src"
              aspect-ratio="auto"
-             max-height="400px"
+             max-height="600px"
+             max-width="600px"
              class="grey lighten-2"
              gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.1)"
            >
@@ -88,9 +89,9 @@
         { title: 'Perfect Blue', year: 2017, src: '/mochiduko-20/perfectblue.jpg',
         url: 'https://motitago.booth.pm/items/746036', description: '青色のイラストをメインにしたイラスト集です. C93にて頒布. B5 フルカラー / 32ページ (本文28ページ)', flex: 6 },
         { title: 'DORA THE PAST', year: 2016, src: '/mochiduko-20/dorathepast.jpg',
-        url: 'https://www.deviantart.com/motttey', description: '[SOLD OUT] 2008-2016あたりに描いてきたドラえもん関連イラストの総集編 + 描き下しイラストな画集っぽい感じの本です. <br> C91にて頒布 B5 96ページ, 収録作品数189', flex: 6 },
+        url: 'https://www.deviantart.com/motttey', description: '[SOLD OUT] 2008-2016あたりに描いてきたドラえもん関連イラストの総集編 + 描き下しイラストな画集っぽい感じの本です. C91にて頒布 B5 96ページ, 収録作品数189', flex: 6 },
         { title: 'パラレルソレイユ 9',  year: 2017, src: '/mochiduko-20/parallel9.jpg',
-        url: 'https://booth.pm/ja/items/723395', description: 'ひぐちあき様主催の藤子ファンの藤子ファンによる藤子ファンのための同人誌です. 表紙イラストを担当し, 喪黒さんを描かせていただきました. <br> C93頒布. カラーページ込みA5 102ページ', flex: 6 },
+        url: 'https://booth.pm/ja/items/723395', description: 'ひぐちあき様主催の藤子ファンの藤子ファンによる藤子ファンのための同人誌です. 表紙イラストを担当し, 喪黒さんを描かせていただきました. C93頒布. カラーページ込みA5 102ページ', flex: 6 },
         { title: 'b', src: '/mochiduko-20/doraemon-namecard.png',
         url: 'https://www.pixiv.net/users/415546', description: 'hogehoge', flex: 6 },
         { title: 'c', src: '/mochiduko-20/doraemon-namecard.png',

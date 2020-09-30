@@ -6,7 +6,7 @@
   >
     <v-flex
       xs12
-      sm8
+      sm6
       md6
     >
       <name-card />
