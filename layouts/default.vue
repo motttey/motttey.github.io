@@ -64,6 +64,8 @@
       </v-btn>
 
     </v-app-bar>
+    <!-- 背景画像の付け方 -->
+    <div class="bg"></div>
     <v-content>
       <v-container>
         <nuxt />
@@ -101,6 +103,21 @@
     </v-footer>
   </v-app>
 </template>
+
+<style>
+
+  .bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-position: bottom left;
+    background-size: 25% auto;
+    background-image: url("~@/static/site-bg.png");
+  }
+
+</style>
 
 <script>
 export default {
