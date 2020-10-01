@@ -65,7 +65,12 @@
 
     </v-app-bar>
     <!-- 背景画像の付け方 -->
-    <div class="bg"></div>
+    <v-content class="bg-img">
+    </v-content>
+
+    <v-content class="bg">
+    </v-content>
+
     <v-content>
       <v-container>
         <nuxt />
@@ -106,15 +111,26 @@
 
 <style>
 
+  .bg-img {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-position: 0% 80%;
+    background-size: 25% auto;
+    background-image: url("~@/static/site-bg.png");
+  }
+
   .bg {
     width: 100%;
     height: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    background-position: bottom left;
-    background-size: 25% auto;
-    background-image: url("~@/static/site-bg.png");
+    background-size: cover;
+    background: rgb(0,0,0);
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 100%);
   }
 
 </style>
