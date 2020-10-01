@@ -215,33 +215,35 @@
           this.target_images.forEach(function (d) {
             const loader = new THREE.TextureLoader();
             loader.crossOrigin = true;
-            let texture = loader.load("https://motttey.github.io/gallery/thumbnails/" + d["id"] + ".png");
+            loader.setCrossOrigin('anonymous');
+            loader.load("https://motttey.github.io/gallery/thumbnails/" + d["id"] + ".png", function(img){
+              let texture = img;
+              let mat = new THREE.PointsMaterial({
+                color:0xFFFFFF,
+                size: 20,
+                transparent: true,
+                map: texture,
+              });
 
-            let mat = new THREE.PointsMaterial({
-              color:0xFFFFFF,
-              size: 20,
-              transparent: true,
-              map: texture,
+              let scales = axes.map(function (axis) {
+                return scaleSqrt()
+                  .domain(coordinate_bounds[axis])
+                  .range([-box_size, box_size]);
+              });
+
+              let pointGeo = new THREE.Geometry();
+
+              let x = scales[0](d["tsne-X"]);
+              let y = scales[1](d["tsne-Y"]);
+              let z = scales[2](d["tsne-Z"]);
+              pointGeo.vertices.push(v(x,y,z));
+
+              let points = new THREE.Points(pointGeo, mat);
+              pointGeo.name = d["id"].toString()
+              points.name = d["id"].toString()
+
+              scatterPlot.add(points);
             });
-
-            let scales = axes.map(function (axis) {
-              return scaleSqrt()
-                .domain(coordinate_bounds[axis])
-                .range([-box_size, box_size]);
-            });
-
-            let pointGeo = new THREE.Geometry();
-
-            let x = scales[0](d["tsne-X"]);
-            let y = scales[1](d["tsne-Y"]);
-            let z = scales[2](d["tsne-Z"]);
-            pointGeo.vertices.push(v(x,y,z));
-
-            let points = new THREE.Points(pointGeo, mat);
-            pointGeo.name = d["id"].toString()
-            points.name = d["id"].toString()
-
-            scatterPlot.add(points);
           });
           // console.log(scene.children);
         }).catch(error => {
