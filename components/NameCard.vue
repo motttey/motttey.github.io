@@ -91,7 +91,7 @@
   position: relative;
 
   width: 100%;
-  max-height: 550px;
+  max-height: 600px;
   max-width: 910px;
 
   z-index: 1;
@@ -118,6 +118,7 @@
 /* Sassとかでxs取得するように書き換えたい*/
 @media (max-width: 600px) {
   #card-main {
+    height: 100px;
     top: 5%;
   }
 

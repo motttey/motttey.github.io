@@ -110,6 +110,11 @@
 </template>
 
 <style>
+  @media (max-width: 600px) {
+      .bg-img {
+        background-size: 15% auto;
+      }
+  }
 
   .bg-img {
     width: 100%;
@@ -118,7 +123,7 @@
     top: 0;
     left: 0;
     background-position: 0% 80%;
-    background-size: 25% auto;
+    background-size: 35% auto;
     background-image: url("~@/static/site-bg.png");
   }
 

@@ -3,9 +3,8 @@
     <h1>Works</h1>
     <h3>同人誌とかをまとめてポートフォリオにしたいですね. </h3>
     <v-row>
-      <v-col cols="12" sm="12" >
+      <v-col cols="12" sm="12">
         <v-sheet
-          class="mx-auto"
           color="transparent"
           elevation="10"
         >
@@ -18,7 +17,7 @@
           >
             <v-slide-item
               v-for="card in cards"
-              class="mx-6"
+              class="mx-3"
               :key="card.title"
               v-slot:default="{ active, toggle }"
             >
@@ -27,7 +26,7 @@
                   <v-img
                     :src="card.src"
                     :lazy-src="card.src"
-                    max-width="200"
+                    max-width="200px"
                     aspect-ratio="1"
                     class="grey lighten-4"
                     gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.1)"
@@ -48,28 +47,35 @@
     <v-row dense class="my-6">
        <v-col cols="12" sm="6" offset-sm="3">
          <v-card class="mb-6">
-
-           <v-img
-             :src="maincard.src"
-             :lazy-src="maincard.src"
-             aspect-ratio="auto"
-             max-height="600px"
-             max-width="600px"
-             class="grey lighten-2"
-             gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.1)"
-           >
-             <template v-slot:placeholder>
-               <v-row
-                 class="fill-height ma-0"
-                 align="center"
-                 justify="center"
-               >
-                 <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-               </v-row>
-             </template>
-           </v-img>
+           <a :href="maincard.url" target="_blank">
+             <v-img
+               :src="maincard.src"
+               :lazy-src="maincard.src"
+               aspect-ratio="auto"
+               max-height="600px"
+               max-width="600px"
+               class="grey lighten-2"
+               gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.1)"
+             >
+               <template v-slot:placeholder>
+                 <v-row
+                   class="fill-height ma-0"
+                   align="center"
+                   justify="center"
+                 >
+                   <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                 </v-row>
+               </template>
+             </v-img>
+           </a>
            <v-card-text class="text--primary">
-            <div><h2>{{maincard.title}}</h2></div>
+            <div class="my-2">
+              <a :href="maincard.url"
+                 target="_blank"
+              >
+                <h2>{{maincard.title}}</h2>
+              </a>
+            </div>
             <div><h3>{{maincard.year}}</h3></div>
             <div>{{maincard.description}}</div>
           </v-card-text>
