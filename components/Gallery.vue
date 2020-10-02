@@ -15,7 +15,7 @@
       </v-col>
       <v-col sm="4" cols="8" class="mx-auto">
         <v-card id="target_image">
-          <a :href="target_illust.url">
+          <a :href="target_illust.url" target="_blank">
             <v-img
               :src="target_illust.src"
               class="white--text align-end"
