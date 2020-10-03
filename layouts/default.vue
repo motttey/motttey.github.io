@@ -30,7 +30,16 @@
       :clipped-left="clipped"
       fixed
       app
+      :src="img_source"
     >
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          position='50% 60%'
+          gradient="to top right, rgba(2,136,209,.7), rgba(0,0,0,1.0)"
+        >
+        </v-img>
+      </template>
       <!--
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
@@ -54,6 +63,7 @@
       -->
 
       <v-toolbar-title v-text="title" />
+
       <v-spacer />
 
       <v-btn
@@ -123,7 +133,7 @@
     top: 0;
     left: 0;
     background-position: 0% 80%;
-    background-size: 35% auto;
+    background-size: 30% auto;
     background-image: url("~@/static/site-bg.png");
   }
 
@@ -169,7 +179,8 @@ export default {
       right: true,
       rightDrawer: false,
       // 画像にするかもしれない...
-      title: 'モチヅ庫 2020'
+      title: 'モチヅ庫 \'20',
+      img_source: 'https://embed.pixiv.net/decorate.php?illust_id=76601058'
     }
   }
 }
