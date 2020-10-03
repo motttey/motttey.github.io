@@ -98,10 +98,9 @@
         url: 'https://www.deviantart.com/motttey', description: '[SOLD OUT] 2008-2016あたりに描いてきたドラえもん関連イラストの総集編 + 描き下しイラストな画集っぽい感じの本です. C91にて頒布 B5 96ページ, 収録作品数189', flex: 6 },
         { title: 'パラレルソレイユ 9',  year: 2017, src: '/mochiduko-20/parallel9.jpg',
         url: 'https://booth.pm/ja/items/723395', description: 'ひぐちあき様主催の藤子ファンの藤子ファンによる藤子ファンのための同人誌です. 表紙イラストを担当し, 喪黒さんを描かせていただきました. C93頒布. カラーページ込みA5 102ページ', flex: 6 },
-        { title: 'b', src: '/mochiduko-20/doraemon-namecard.png',
-        url: 'https://www.pixiv.net/users/415546', description: 'hogehoge', flex: 6 },
-        { title: 'c', src: '/mochiduko-20/doraemon-namecard.png',
-        url: 'https://www.deviantart.com/motttey', description: 'hogehoge', flex: 6 },
+        { title: 'モチヅ庫 10th Special Site', src: '/mochiduko-20/10th.png',
+        url: 'https://motttey.github.io/10th/', description: 'pixivに登録して10年たった記念に作ったサイトです. pixivのイラストをタグで検索できたり, 投稿数の統計とかもみれます. お祝いのコメントも入力できるのでお待ちしてます. ', flex: 6 },
+        // { title: 'c', src: '/mochiduko-20/doraemon-namecard.png', url: 'https://www.deviantart.com/motttey', description: 'hogehoge', flex: 6 },
       ],
     }),
     mounted: function(){
