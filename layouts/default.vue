@@ -40,6 +40,7 @@
         >
         </v-img>
       </template>
+
       <!--
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
@@ -62,7 +63,7 @@
       </v-btn>
       -->
 
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title class="title" v-text="title" />
 
       <v-spacer />
 
@@ -113,6 +114,7 @@
     <v-footer
       :absolute="!fixed"
       app
+      color="rgba(2,136,209,.5)"
     >
       <span>&copy; {{ new Date().getFullYear() }} Tagosaku Mochiduki</span>
     </v-footer>
@@ -148,6 +150,15 @@
     background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 100%);
   }
 
+  a, a:hover {
+    text-decoration: none;
+  }
+
+  /* 無理やり... */
+  .v-application .title {
+      font-family: "M Plus 1p" !important;
+      font-weight: bold;
+  }
 </style>
 
 <script>

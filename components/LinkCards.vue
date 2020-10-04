@@ -17,7 +17,7 @@
                     :src="card.src"
                     class="white--text align-end"
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"
-                    height="200px"
+                    height="250px"
                     aspect-ratio="1"
                   >
                     <v-btn
