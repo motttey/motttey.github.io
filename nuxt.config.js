@@ -32,7 +32,7 @@ export default {
       { hid: 'og:description', property: 'og:description', content: '望月 田吾作(もちづき たごさく)が描いたドラえもんをはじめとした絵や漫画の掲載を目的としたサイトです.'}
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/mochiduko-20/favicon.ico' }
     ]
   },
   /*
