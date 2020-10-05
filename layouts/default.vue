@@ -124,7 +124,7 @@
 <style>
   @media (max-width: 600px) {
       .bg-img {
-        background-size: 15% auto;
+        background-size: 150px auto;
       }
   }
 
@@ -135,7 +135,7 @@
     top: 0;
     left: 0;
     background-position: 0% 80%;
-    background-size: 30% auto;
+    background-size: 300px auto;
     background-image: url("~@/static/site-bg.png");
   }
 

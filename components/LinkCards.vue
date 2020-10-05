@@ -11,11 +11,12 @@
               :cols="card.flex"
               v-for="card in cards"
               :key="card.tditle">
-              <v-card>
+              <v-card hover>
                 <a :href="card.url" target="_blank">
                   <v-img
                     :src="card.src"
                     class="white--text align-end"
+                    position='50% 80%'
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"
                     height="250px"
                     aspect-ratio="1"
@@ -28,14 +29,6 @@
                     </v-btn>
                   </v-img>
                 </a>
-
-                <!--
-                <v-card-actions>
-                  <v-card-text>
-                    <a :href="card.url"><h1> {{ card.title }} </h1></a>
-                  </v-card-text>
-                </v-card-actions>
-                -->
               </v-card>
             </v-col>
           </v-row>
@@ -49,7 +42,7 @@
   export default {
     data: () => ({
       cards: [
-        { title: 'pixiv', src: 'https://embed.pixiv.net/decorate.php?illust_id=57813951',
+        { title: 'pixiv', src: 'https://embed.pixiv.net/decorate.php?illust_id=56266129',
         url: 'https://www.pixiv.net/users/415546', flex: 12 },
         { title: 'deviantART', src: 'https://embed.pixiv.net/decorate.php?illust_id=49554002',
         url: 'https://www.deviantart.com/motttey', flex: 6 },
