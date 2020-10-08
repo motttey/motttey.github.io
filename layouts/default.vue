@@ -94,7 +94,7 @@
       fixed
       temporary
       dark
-      src="/drawer-bg.png"
+      src="/mochiduko-20/drawer-bg.png"
     >
       <v-list>
         <v-list-item
