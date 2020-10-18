@@ -46,7 +46,7 @@
 
     <v-row dense class="my-6">
        <v-col cols="12" sm="6" offset-sm="3">
-         <v-card class="mb-6">
+         <v-card>
            <a :href="maincard.url" target="_blank">
              <v-img
                :src="maincard.src"
@@ -82,7 +82,6 @@
         </v-card>
        </v-col>
      </v-row>
-
   </v-container>
 </template>
 

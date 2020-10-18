@@ -4,7 +4,7 @@
     <h3>各種SNSのアカウントです. </h3>
 
     <v-row dense class="mb-6">
-      <v-col cols="12" sm="10" offset-sm="1">
+      <v-col cols="12" sm="8" offset-sm="2">
         <v-container fluid>
           <v-row>
             <v-col
