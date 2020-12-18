@@ -7,7 +7,6 @@
       <v-col sm="8" cols="12" v-resize="onResize">
         <div ref="canvas_holder" id="canvas_holder"
           @mousemove="onDocumentMouseMove($event)"
-          @mouseup="onDocumentMouseMove($event)"
           @click="onTouch($event)"
           @touchend="onTouch($event)"
         >
@@ -49,7 +48,8 @@
         date: '20200718',
         tags_text: '#doraemon',
         src: '/mochiduko-20/doraemon-namecard.png',
-        url: 'https://www.pixiv.net/users/415546', flex: 12 },
+        url: 'https://www.pixiv.net/users/415546', flex: 12
+      },
       canvas_settings: {
         canvas_width: 1200,
         canvas_height: 650,
@@ -60,6 +60,7 @@
       },
       axes: ["tsne-X", "tsne-Y", "tsne-Z"],
       mouse: new THREE.Vector2(),
+      mousePosition: [],
       target_images: [],
       renderer: new Object(),
       canvas: new Object(),
@@ -69,6 +70,11 @@
       MOUNTED: false,
       INTERSECTED: false,
     }),
+    watch: {
+      mousePosition: function (val) {
+        if (val) this.selectImage(val);
+      }
+    },
     mounted: function(){
       this.renderer = new THREE.WebGLRenderer({ alpha: true });
       this.canvas = this.$refs.canvas_holder;
@@ -96,8 +102,7 @@
       this.drawScatter();
       this.renderScene();
 
-      console.log(this.target_images);
-      if (this.target_images.length > 0) this.setTargetImageProperties(this.target_images[0]);
+      // console.log(this.target_images);
       this.MOUNTED = true;
     },
     destroyed: function () {
@@ -115,7 +120,8 @@
 
         this.target_illust.title = target_image["title"];
         this.target_illust.date = target_image["date"].toString();
-        this.target_illust.tags_text = target_image["tags"].map( (tag) => "#" + tag["name"]).join(" ");
+        this.target_illust.tags_text = target_image["tags"]
+          .map( (tag) => "#" + tag["name"]).join(" ");
 
         this.target_illust.url  = "https://www.pixiv.net/artworks/" + target_image["id"];
       },
@@ -130,19 +136,16 @@
         return [pos_x, pos_y];
       },
       onDocumentMouseMove(e) {
-        let mousePosition = this.calcMousePositionInCanvas(e);
-        this.selectImage(mousePosition);
+        this.mousePosition = this.calcMousePositionInCanvas(e);
       },
       onTouch(e) {
         if (e.touches && e.touches.length > 0) {
-          let mousePosition = this.calcMousePositionInCanvas(e.touches[0]);
-          this.selectImage(mousePosition);
+          this.mousePosition = this.calcMousePositionInCanvas(e.touches[0]);
         } else if (e.changedTouches && e.changedTouches.length > 0) {
-          let mousePosition = this.calcMousePositionInCanvas(e.changedTouches[0]);
-          this.selectImage(mousePosition);
+          this.mousePosition = this.calcMousePositionInCanvas(e.changedTouches[0]);
         }
       },
-      selectImage(mousePos) {
+      async selectImage(mousePos) {
         let raycaster = new THREE.Raycaster();
         this.mouse.x = ((mousePos[0] + this.canvas_settings.canvas_offset_x) /  this.canvas_settings.canvas_width) * 2 - 1;
         this.mouse.y = - ((mousePos[1] + this.canvas_settings.canvas_offset_y) / this.canvas_settings.canvas_height) * 2 + 1;
@@ -150,18 +153,17 @@
         raycaster.setFromCamera(this.mouse, this.camera);
 
         let children = this.scene.children[0].children;
-        let intersects = raycaster.intersectObjects(children.slice(0, children.length-1), true);
+        let intersects = raycaster
+          .intersectObjects(children.slice(0, children.length-1), true)
+          .filter(o => o.object.name);
 
         if (intersects.length > 0){
-          intersects.forEach((item, i) => {
-            console.log(item);
-            console.log('name is:' + item.object.name);
-            let target_image = this.target_images.filter(img => img["id"] == item.object.name);
+          console.log('name is:' + intersects[0].object.name);
+          let target_image = this.target_images
+            .filter(img => img["id"] == intersects[0].object.name);
 
-            if (target_image.length > 0){
-              this.setTargetImageProperties(target_image[0]);
-            }
-          });
+          if (target_image.length === 0) return
+          await this.setTargetImageProperties(target_image[0]);
         }
       },
       onResize() {
@@ -250,7 +252,7 @@
           console.log("response error", error)
         });
         // 1個イラストを表示する
-        this.setTargetImageProperties(this.target_images[0])
+        this.setTargetImageProperties(this.target_images[0]);
 
         let lineMat = new THREE.LineBasicMaterial({color: 0xFFFFFF, linewidth: 1});
         let line = new THREE.Line(lineGeo, lineMat);
