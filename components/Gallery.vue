@@ -59,7 +59,6 @@
         image_max: 150,
       },
       axes: ["tsne-X", "tsne-Y", "tsne-Z"],
-      mouse: new THREE.Vector2(),
       mousePosition: [],
       target_images: [],
       renderer: new Object(),
@@ -80,7 +79,6 @@
       this.canvas = this.$refs.canvas_holder;
       this.canvas_settings.canvas_width = this.canvas.clientWidth;
 
-      console.log(this.$el);
       this.canvas.appendChild(this.renderer.domElement);
       this.renderer.setSize(this.canvas_settings.canvas_width, this.canvas_settings.canvas_height);
 
@@ -105,8 +103,6 @@
       // console.log(this.target_images);
       this.MOUNTED = true;
     },
-    destroyed: function () {
-    },
     methods: {
       v(x,y,z){ return new THREE.Vector3(x,y,z); },
       renderScene(){
@@ -121,18 +117,17 @@
         this.target_illust.title = target_image["title"];
         this.target_illust.date = target_image["date"].toString();
         this.target_illust.tags_text = target_image["tags"]
-          .map( (tag) => "#" + tag["name"]).join(" ");
+          .map((tag) => "#" + tag["name"]).join(" ");
 
         this.target_illust.url  = "https://www.pixiv.net/artworks/" + target_image["id"];
       },
       calcMousePositionInCanvas(event) {
-        let pos_x, pos_y;
+        let pos_x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - Math.floor(this.canvas.offsetLeft);
+        let pos_y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop - Math.floor(this.canvas.offsetTop);
 
-        let offset_left = this.canvas.offsetLeft;
-        let offset_top = this.canvas.offsetTop;
+        pos_x = ((pos_x + this.canvas_settings.canvas_offset_x) /  this.canvas_settings.canvas_width) * 2 - 1;
+        pos_y = - ((pos_y + this.canvas_settings.canvas_offset_y) / this.canvas_settings.canvas_height) * 2 + 1;
 
-        pos_x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - Math.floor(offset_left);
-        pos_y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop - Math.floor(offset_top);
         return [pos_x, pos_y];
       },
       onDocumentMouseMove(e) {
@@ -147,10 +142,9 @@
       },
       async selectImage(mousePos) {
         let raycaster = new THREE.Raycaster();
-        this.mouse.x = ((mousePos[0] + this.canvas_settings.canvas_offset_x) /  this.canvas_settings.canvas_width) * 2 - 1;
-        this.mouse.y = - ((mousePos[1] + this.canvas_settings.canvas_offset_y) / this.canvas_settings.canvas_height) * 2 + 1;
 
-        raycaster.setFromCamera(this.mouse, this.camera);
+        let mouse =  new THREE.Vector2(mousePos[0], mousePos[1]);
+        raycaster.setFromCamera(mouse, this.camera);
 
         let children = this.scene.children[0].children;
         let intersects = raycaster
@@ -171,7 +165,7 @@
         // 高さは一定
         const width = this.canvas.clientWidth;
         const height = this.canvas_settings.canvas_height;
-        this.renderer.setSize(width, height);
+        this.renderer.setSize(this.canvas.clientWidth, this.canvas_settings.canvas_height);
 
         // カメラのアスペクト比を正す
         this.camera.aspect = width / height;
@@ -204,7 +198,6 @@
         let axes = this.axes;
         await this.$axios.$get("https://motttey.github.io/gallery/all_illust.json").then(data => {
           console.log(data);
-
           this.target_images = data.slice(0, this.canvas_settings.image_max);
 
           axes.forEach((axis, i) => {
@@ -218,8 +211,7 @@
             const loader = new THREE.TextureLoader();
             loader.crossOrigin = true;
             loader.setCrossOrigin('anonymous');
-            loader.load("https://motttey.github.io/gallery/thumbnails/" + d["id"] + ".png", function(img){
-              let texture = img;
+            loader.load("https://motttey.github.io/gallery/thumbnails/" + d["id"] + ".png", function(texture){
               let mat = new THREE.PointsMaterial({
                 color:0xFFFFFF,
                 size: 20,
@@ -247,7 +239,6 @@
               scatterPlot.add(points);
             });
           });
-          // console.log(scene.children);
         }).catch(error => {
           console.log("response error", error)
         });
@@ -273,8 +264,8 @@
 <style>
 #canvas_holder {
   width: 100%;
-  /* height: 650px; */
 }
+
 #target_image {
   top: 0%;
   background-color: none;
