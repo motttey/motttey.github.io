@@ -11,25 +11,30 @@
               :cols="card.flex"
               v-for="card in cards"
               :key="card.tditle">
-              <v-card hover>
-                <a :href="card.url" target="_blank">
-                  <v-img
-                    :src="card.src"
-                    class="white--text align-end"
-                    position='50% 80%'
-                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"
-                    height="250px"
-                    aspect-ratio="1"
-                  >
-                    <v-btn
-                      text
-                      color="#0288D1"
+              <v-hover v-slot="{ hover }">
+                <v-card
+                  :class="{ 'on-hover': hover }"
+                >
+                  <a :href="card.url" target="_blank">
+                    <v-img
+                      :src="card.src"
+                      :elevation="hover ? 12 : 2"
+                      class="white--text align-end"
+                      position='50% 80%'
+                      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.8)"
+                      height="250px"
+                      aspect-ratio="1"
                     >
-                      <h2>{{ card.title }}</h2>
-                    </v-btn>
-                  </v-img>
-                </a>
-              </v-card>
+                      <v-btn
+                        text
+                        color="#0288D1"
+                      >
+                        <h2>{{ card.title }}</h2>
+                      </v-btn>
+                    </v-img>
+                  </a>
+                </v-card>
+              </v-hover>
             </v-col>
           </v-row>
         </v-container>
@@ -58,3 +63,13 @@
     }),
   }
 </script>
+
+<style scoped>
+.v-card {
+  transition: opacity .4s ease-in-out;
+}
+
+.v-card:not(.on-hover) {
+  opacity: 0.6;
+ }
+</style>
