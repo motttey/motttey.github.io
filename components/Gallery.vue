@@ -112,7 +112,7 @@
       },
       setTargetImageProperties(target_image){
         let new_target_img = {};
-        this.target_illust.src = "http://embed.pixiv.net/decorate.php?illust_id=" + target_image["id"] + "&mode=sns-automator";
+        this.target_illust.src = "/pixiv?illust_id=" + target_image["id"] + "&mode=sns-automator";
 
         this.target_illust.title = target_image["title"];
         this.target_illust.date = target_image["date"].toString();
@@ -209,7 +209,6 @@
 
           this.target_images.forEach(function (d) {
             const loader = new THREE.TextureLoader();
-            loader.crossOrigin = true;
             loader.setCrossOrigin('anonymous');
             loader.load("https://motttey.github.io/gallery/thumbnails/" + d["id"] + ".png", function(texture){
               let mat = new THREE.PointsMaterial({

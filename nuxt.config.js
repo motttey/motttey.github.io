@@ -63,8 +63,16 @@ export default {
   */
   modules: [
     'nuxt-fontawesome',
-    "@nuxtjs/axios",
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
+  proxy: {
+    '/pixiv':
+    {
+      target: 'http://embed.pixiv.net/decorate.php',
+      pathRewrite: {'^/pixiv': ''}
+    }
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
