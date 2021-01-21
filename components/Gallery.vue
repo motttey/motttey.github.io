@@ -74,7 +74,7 @@
         if (val) this.selectImage(val);
       }
     },
-    mounted: function(){
+    mounted: function() {
       this.renderer = new THREE.WebGLRenderer({ alpha: true });
       this.canvas = this.$refs.canvas_holder;
       this.canvas_settings.canvas_width = this.canvas.clientWidth;
@@ -196,7 +196,8 @@
 
         let coordinate_bounds = {}
         let axes = this.axes;
-        await this.$axios.$get("https://motttey.github.io/gallery/all_illust.json").then(data => {
+        await this.$axios.$get("/motttey/all_illust.json")
+          .then(data => {
           console.log(data);
           this.target_images = data.slice(0, this.canvas_settings.image_max);
 
@@ -210,7 +211,7 @@
           this.target_images.forEach(function (d) {
             const loader = new THREE.TextureLoader();
             loader.setCrossOrigin('anonymous');
-            loader.load("https://motttey.github.io/gallery/thumbnails/" + d["id"] + ".png", function(texture){
+            loader.load("/motttey/thumbnails/" + d["id"] + ".png", function(texture){
               let mat = new THREE.PointsMaterial({
                 color:0xFFFFFF,
                 size: 20,
@@ -218,7 +219,7 @@
                 map: texture,
               });
 
-              let scales = axes.map(function (axis) {
+              let scales = axes.map((axis) => {
                 return scaleSqrt()
                   .domain(coordinate_bounds[axis])
                   .range([-box_size, box_size]);

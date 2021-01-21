@@ -71,6 +71,11 @@ export default {
     {
       target: 'http://embed.pixiv.net/decorate.php',
       pathRewrite: {'^/pixiv': ''}
+    },
+    '/motttey':
+    {
+      target: 'https://motttey.github.io/gallery/',
+      pathRewrite: {'^/motttey': ''}
     }
   },
   /*
