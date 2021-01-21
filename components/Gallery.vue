@@ -173,12 +173,13 @@
       },
       async drawScatter(){
         let scatterPlot = new THREE.Object3D();
-        let box_size = this.canvas_settings.box_size;
-        let v = this.v;
+        const box_size = this.canvas_settings.box_size;
+        const v = this.v;
         this.scene.add(scatterPlot);
 
         // Draw the bounding box
         let lineGeo = new THREE.Geometry();
+        /*
         lineGeo.vertices.push(
           v(-box_size, box_size, -box_size), v(box_size, box_size, -box_size),
           v(-box_size, -box_size, -box_size), v(box_size, -box_size, -box_size),
@@ -193,6 +194,7 @@
           v(-box_size, box_size, -box_size), v(-box_size, box_size, box_size),
           v(-box_size, -box_size, -box_size), v(-box_size, -box_size, box_size)
         );
+        */
 
         let coordinate_bounds = {}
         let axes = this.axes;
