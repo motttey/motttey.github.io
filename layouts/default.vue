@@ -115,6 +115,7 @@
     background-position: 100% 100%;
     background-size: 250px auto;
     background-image: url("~@/static/site-bg.png");
+    filter: blur(2px);
   }
 
   .bg {
@@ -169,7 +170,7 @@ export default {
       rightDrawer: false,
       // 画像にするかもしれない...
       title: 'モチヅ庫 \'20',
-      img_source: 'https://embed.pixiv.net/decorate.php?illust_id=76601058'
+      img_source: '/pixiv?illust_id=76601058'
     }
   }
 }
