@@ -33,7 +33,7 @@
                   >
                     <template>
                       <v-card-text>
-                        <h2>{{card.title}}</h2>
+                        <h2>{{ card.title }}</h2>
                       </v-card-text>
                     </template>
                 </v-img>
@@ -46,14 +46,13 @@
 
     <v-row dense class="my-6">
        <v-col cols="12" sm="6" offset-sm="3">
-         <v-card>
+         <v-card flat>
            <a :href="maincard.url" target="_blank">
              <v-img
                :src="maincard.src"
                :lazy-src="maincard.src"
                aspect-ratio="auto"
                max-height="600px"
-               max-width="600px"
                class="grey lighten-2"
                gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.1)"
              >
@@ -70,14 +69,12 @@
            </a>
            <v-card-text class="text--primary">
             <div class="my-2">
-              <a :href="maincard.url"
-                 target="_blank"
-              >
-                <h2>{{maincard.title}}</h2>
+              <a :href="maincard.url" target="_blank">
+                <h1>{{ maincard.title }}</h1>
               </a>
             </div>
-            <div><h3>{{maincard.year}}</h3></div>
-            <div>{{maincard.description}}</div>
+            <div><h3>{{ maincard.year }}</h3></div>
+            <div>{{ maincard.description }}</div>
           </v-card-text>
         </v-card>
        </v-col>
