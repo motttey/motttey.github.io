@@ -57,6 +57,7 @@ export default {
   */
   buildModules: [
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics'
   ],
   /*
   ** Nuxt.js modules
@@ -119,5 +120,8 @@ export default {
         icons: ['fab']
       }
     ],
+  },
+  googleAnalytics: {
+    id: 'G-1PLTQN0YGN'
   },
 }
