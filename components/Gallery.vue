@@ -198,7 +198,7 @@
 
         let coordinate_bounds = {}
         let axes = this.axes;
-        await this.$axios.$get("/motttey/all_illust.json")
+        await this.$axios.$get("https://motttey.github.io/gallery/all_illust.json")
           .then(data => {
           console.log(data);
           this.target_images = data.slice(0, this.canvas_settings.image_max);
@@ -213,7 +213,7 @@
           this.target_images.forEach(function (d) {
             const loader = new THREE.TextureLoader();
             loader.setCrossOrigin('anonymous');
-            loader.load("/motttey/thumbnails/" + d["id"] + ".png", function(texture){
+            loader.load("https://motttey.github.io/gallery/thumbnails/" + d["id"] + ".png", function(texture){
               let mat = new THREE.PointsMaterial({
                 color:0xFFFFFF,
                 size: 20,
