@@ -170,7 +170,7 @@ export default {
       rightDrawer: false,
       // 画像にするかもしれない...
       title: 'モチヅ庫 \'20',
-      img_source: '/pixiv?illust_id=76601058'
+      img_source: 'http://embed.pixiv.net/decorate.php?illust_id=76601058'
     }
   }
 }

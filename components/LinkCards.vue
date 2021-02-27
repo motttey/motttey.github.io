@@ -47,17 +47,17 @@
   export default {
     data: () => ({
       cards: [
-        { title: 'pixiv', src: '/pixiv?illust_id=56266129',
+        { title: 'pixiv', src: 'http://embed.pixiv.net/decorate.php?illust_id=56266129',
         url: 'https://www.pixiv.net/users/415546', flex: 12 },
-        { title: 'deviantART', src: '/pixiv?illust_id=49554002',
+        { title: 'deviantART', src: 'http://embed.pixiv.net/decorate.php?illust_id=49554002',
         url: 'https://www.deviantart.com/motttey', flex: 6 },
-        { title: 'weibo',  src: '/pixiv?illust_id=56608401',
+        { title: 'weibo',  src: 'http://embed.pixiv.net/decorate.php?illust_id=56608401',
         url: 'https://weibo.com/7310121728', flex: 6 },
-        { title: 'twitter',  src: '/pixiv?illust_id=79403135',
+        { title: 'twitter',  src: 'http://embed.pixiv.net/decorate.php?illust_id=79403135',
         url: 'https://twitter.com/mt_tg', flex: 12 },
-        { title: 'Instagram',  src: '/pixiv?illust_id=49339965',
+        { title: 'Instagram',  src: 'http://embed.pixiv.net/decorate.php?illust_id=49339965',
         url: 'https://www.instagram.com/tagosaku_mochiduki', flex: 6 },
-        { title: 'Blog',  src: '/pixiv?illust_id=83975466',
+        { title: 'Blog',  src: 'http://embed.pixiv.net/decorate.php?illust_id=83975466',
         url: 'http://motttey.hatenablog.com/', flex: 6 },
       ],
     }),
