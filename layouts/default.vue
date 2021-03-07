@@ -27,7 +27,7 @@
       </v-btn>
 
     </v-app-bar>
-    
+
     <v-content class="bg-img">
     </v-content>
 
@@ -97,8 +97,14 @@
     top: 0;
     left: 0;
     background-size: cover;
-    background: rgb(0,0,0);
-    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0,1) -10%,
+      rgba(0, 40, 141,1) -10%,
+      rgba(0, 91, 140) 9.8%,
+      rgba(0, 0, 0,1) 34%
+    );
+    /* background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 100%); */
   }
 
   a, a:hover {
