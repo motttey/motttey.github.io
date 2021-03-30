@@ -21,15 +21,17 @@ export default {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'},
-      { name: 'keywords', content: '望月,ドラえもん,Doraemon,Fujiko Fujio,藤子不二雄,藤子・F・不二雄'},
-      { name: 'author', content: 'Tagosaku Mochiduki'},
-      // { hid: 'description', property: 'description', content: process.env.npm_package_description || '' },
+      { name: 'viewport', content: 'width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0' },
+      { name: 'keywords', content: '望月,望月田吾作,ドラえもん,Doraemon,Fujiko Fujio,藤子不二雄,藤子・F・不二雄,イラスト,ドラえもん イラスト' },
+      { name: 'author', content: 'Tagosaku Mochiduki' },
+      { hid: 'description', name: 'description', content: '望月 田吾作 (もちづき たごさく)が描いた、ドラえもんや藤子不二雄作品などのイラストや漫画を掲載しているサイトです.' },
       { hid: 'og:site_name', property: 'og:site_name', content: 'モチヅ庫' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'og:url', property: 'og:url', content: 'http://motttey.github.io/' },
       { hid: 'og:title', property: 'og:title', content: 'モチヅ庫' },
-      { hid: 'og:description', property: 'og:description', content: '望月 田吾作(もちづき たごさく)が描いたドラえもんをはじめとした絵や漫画の掲載を目的としたサイトです.'}
+      { hid: 'og:image', property: 'og:image', content: '/mochiduko-20/drawer-bg.png' },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+      { hid: 'twitter:site', name: 'twitter:site', content: '@mt_tg' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/mochiduko-20/favicon.ico' }
