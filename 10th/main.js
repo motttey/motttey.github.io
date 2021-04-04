@@ -1,13 +1,6 @@
 let selected_indexes = [];
 let init_data, output_data;
 
-const primary_stats = {
-	total_illusts: 1527,
-	total_views: 4429711,
-	total_bookmarks: 97900,
-	total_comments: 23800,
-};
-
 const illust_num = [
 	{"year": 2008, "num": 156},
 	{"year": 2009, "num": 568},
@@ -36,12 +29,11 @@ function sortObjectByKey(array, key) {
 	array.sort(function(a, b) {
     return (a[key] > b[key]) ? -1 : 1;
   });
-	// console.log(array);
 	return array;
 }
 
-function showPrimaryStats(){
-	Object.entries(primary_stats).forEach(function(stat){
+function showPrimaryStats(stat_data){
+	Object.entries(stat_data).forEach(function(stat){
 		let num = 0;
 		setInterval(function(){
 			if (num <= stat[1]){
@@ -133,9 +125,19 @@ $(document).ready( function(){
 
 		viewIllust(0, DefaultIllustNum, output_data);
 		controlVisibleOfButton(output_data.length, DefaultIllustNum)
-		showPrimaryStats();
 		initializeSVG();
-		drawStatGraphs();
+
+		fetch('https://mochiduko-api.netlify.app/total_stat.json')
+			.then((response) => response.json())
+			.then((data) => {
+				showPrimaryStats(data);
+			});
+
+		fetch('https://mochiduko-api.netlify.app/each_years.json')
+			.then((response) => response.json())
+			.then((data) => {
+				drawStatGraphs(data.reverse());
+			});
 	});
 });
 
@@ -188,7 +190,7 @@ function resizeImageHeight(id){
 }
 
 function getRandomNumber(max, min){
-	const randomNumber = parseInt(Math.random() * (max - min) + min);
+	let randomNumber = parseInt(Math.random() * (max - min) + min);
 	while(selected_indexes.includes(randomNumber)){
 		randomNumber = parseInt(Math.random() * (max - min) + min);
 	}
@@ -224,13 +226,12 @@ function initializeSVG(){
 	    .attr("transform", "translate(" + width/2 + "," + height*2 + ")");
 }
 
-function drawStatGraphs(){
-
-	let x_bar_scale = d3.scaleBand().rangeRound([margin, width]).padding(0.1);
+function drawStatGraphs(illust_num){
+	let x_bar_scale = d3.scaleBand().rangeRound([margin, width - margin]).padding(0.1);
   let y_bar_scale = d3.scaleLinear().rangeRound([height, margin]);
 
 	x_bar_scale.domain(illust_num.map(function(d) { return d["year"]; }));
-  y_bar_scale.domain([0, d3.max(illust_num, function(d) { return d["num"]; })]);
+  y_bar_scale.domain([0, d3.max(illust_num, function(d) { return d["illust_num"]; })]);
 
 	let bar_g = d3.select("#bar_g");
 
@@ -256,10 +257,10 @@ function drawStatGraphs(){
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x_bar_scale(d["year"]); })
-      .attr("y", function(d) { return y_bar_scale(d["num"]); })
+      .attr("y", function(d) { return y_bar_scale(d["illust_num"]); })
 			.attr("fill", "white")
       .attr("width", x_bar_scale.bandwidth())
-      .attr("height", function(d) { return height - y_bar_scale(d["num"]); });
+      .attr("height", function(d) { return height - y_bar_scale(d["illust_num"]); });
 
 	const pie_width = 280;
   const	pie_height = 280;
