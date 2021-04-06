@@ -1,20 +1,7 @@
 let selected_indexes = [];
 let init_data, output_data;
 
-const illust_num = [
-	{"year": 2008, "num": 156},
-	{"year": 2009, "num": 568},
-	{"year": 2010, "num": 369},
-	{"year": 2011, "num": 127},
-	{"year": 2012, "num": 86},
-	{"year": 2013, "num": 65},
-	{"year": 2014, "num": 37},
-	{"year": 2015, "num": 23},
-	{"year": 2016, "num": 42},
-	{"year": 2017, "num": 31},
-	{"year": 2018, "num": 28},
-	{"year": 2019, "num": 37},
-];
+const api_url = 'https://mochiduko-api.netlify.app/';
 
 const total_illust_num = [
 	{"name": "tagged \n ‘doraemon’", "num": 989},
@@ -127,13 +114,13 @@ $(document).ready( function(){
 		controlVisibleOfButton(output_data.length, DefaultIllustNum)
 		initializeSVG();
 
-		fetch('https://mochiduko-api.netlify.app/total_stat.json')
+		fetch(api_url + 'total_stat.json')
 			.then((response) => response.json())
 			.then((data) => {
 				showPrimaryStats(data);
 			});
 
-		fetch('https://mochiduko-api.netlify.app/each_years.json')
+		fetch(api_url + 'each_years.json')
 			.then((response) => response.json())
 			.then((data) => {
 				drawStatGraphs(data.reverse());
@@ -209,7 +196,6 @@ function getRandomIllust(data, index){
 	let url = "https://www.pixiv.net/member_illust.php?mode=medium&illust_id=" + target_data["id"];
 	let id = "i" + target_data["id"];
 	$('div.cards').append('  <div class="card" id="'+id+'"><div class="image"><a href="' + url + '" target="_blank"><img class="thumb-image" src="' + photo + '" \/><\/a><\/div>');
-	// resizeImageHeight(id);
 }
 
 function initializeSVG(){
