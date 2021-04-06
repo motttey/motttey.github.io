@@ -1,13 +1,14 @@
-let mouse = new THREE.Vector2();
-let INTERSECTED;
 const canvas_width = 1200;
 const canvas_height = 650;
 const canvas_offset_x = 200;
 const box_size = 50;
 const image_max = 120;
 
-// global values for three.js
+const api_url = "https://mochiduko-api.netlify.app/";
+
 let renderer, canvas, scene, camera, controls;
+let mouse = new THREE.Vector2();
+let INTERSECTED;
 
 let target_images = [];
 const axes = ["tsne-X", "tsne-Y", "tsne-Z"];
@@ -89,7 +90,7 @@ function drawScatter(){
   scatterPlot.add(line);
 
   let coordinate_bounds = {}
-  $.getJSON("all_illust.json", function(data) {
+  $.getJSON(api_url + "each_illusts.json", function(data) {
     target_images = data.slice(0, image_max);
     console.log(target_images);
 
@@ -103,7 +104,7 @@ function drawScatter(){
     target_images.forEach(function (d) {
       const loader = new THREE.TextureLoader();
       loader.crossOrigin = true;
-      let texture = loader.load("./thumbnails/" + d["id"] + ".png");
+      let texture = loader.load(api_url + "thumbs/" + d["id"] + ".png");
 
       let mat = new THREE.PointsMaterial({
         color:0xFFFFFF,
@@ -131,7 +132,6 @@ function drawScatter(){
 
       scatterPlot.add(points);
     });
-    // console.log(scene.children);
   });
 
   renderer.setSize(canvas_width, canvas_height);
