@@ -27,7 +27,8 @@
           </v-card-actions>
 
           <v-card-text>
-            <h3>{{target_illust.title}}</h3>
+            <h2>{{target_illust.title}}</h2>
+            <p>{{target_illust.date}}</p>
             <p>{{target_illust.tags_text}}</p>
           </v-card-text>
         </v-card>
@@ -38,8 +39,8 @@
 
 <script>
   import * as THREE from 'three/build/three.module.js';
-  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-  import { scaleSqrt } from "d3-scale";
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+  import { scaleSqrt } from 'd3-scale';
 
   export default {
     data: () => ({
@@ -58,7 +59,10 @@
         box_size: 40,
         image_max: 150,
       },
-      axes: ["tsne-X", "tsne-Y", "tsne-Z"],
+      api_url: 'https://mochiduko-api.netlify.app/',
+      pixiv_embed: 'http://embed.pixiv.net/decorate.php',
+      pixiv_artwork: 'https://www.pixiv.net/artworks/',
+      axes: ['tsne-X', 'tsne-Y', 'tsne-Z'],
       mousePosition: [],
       target_images: [],
       renderer: new Object(),
@@ -100,7 +104,6 @@
       this.drawScatter();
       this.renderScene();
 
-      // console.log(this.target_images);
       this.MOUNTED = true;
     },
     methods: {
@@ -111,15 +114,15 @@
         this.renderer.render(this.scene, this.camera);
       },
       setTargetImageProperties(target_image){
-        let new_target_img = {};
-        this.target_illust.src = "http://embed.pixiv.net/decorate.php?illust_id=" + target_image["id"] + "&mode=sns-automator";
+        console.log(target_image);
+        this.target_illust.src = this.pixiv_embed + '?illust_id=' + target_image['id'] + '&mode=sns-automator';
 
-        this.target_illust.title = target_image["title"];
-        this.target_illust.date = target_image["date"].toString();
-        this.target_illust.tags_text = target_image["tags"]
-          .map((tag) => "#" + tag["name"]).join(" ");
+        this.target_illust.title = target_image['title'];
+        this.target_illust.date = target_image['date'];
+        this.target_illust.tags_text = target_image['tags']
+          .map((tag) => '#' + tag['name']).join(' ');
 
-        this.target_illust.url  = "https://www.pixiv.net/artworks/" + target_image["id"];
+        this.target_illust.url  = this.pixiv_artwork + target_image['id'];
       },
       calcMousePositionInCanvas(event) {
         let pos_x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - Math.floor(this.canvas.offsetLeft);
@@ -154,7 +157,7 @@
         if (intersects.length > 0){
           console.log('name is:' + intersects[0].object.name);
           let target_image = this.target_images
-            .filter(img => img["id"] == intersects[0].object.name);
+            .filter(img => img['id'] == intersects[0].object.name);
 
           if (target_image.length === 0) return
           await this.setTargetImageProperties(target_image[0]);
@@ -198,7 +201,8 @@
 
         let coordinate_bounds = {}
         let axes = this.axes;
-        await this.$axios.$get("https://motttey.github.io/gallery/all_illust.json")
+        const api_url = this.api_url;
+        await this.$axios.$get(api_url + 'each_illusts.json')
           .then(data => {
           console.log(data);
           this.target_images = data.slice(0, this.canvas_settings.image_max);
@@ -213,7 +217,7 @@
           this.target_images.forEach(function (d) {
             const loader = new THREE.TextureLoader();
             loader.setCrossOrigin('anonymous');
-            loader.load("https://motttey.github.io/gallery/thumbnails/" + d["id"] + ".png", function(texture){
+            loader.load(api_url + 'thumbs/' + d['id'] + '.png', function(texture){
               let mat = new THREE.PointsMaterial({
                 color:0xFFFFFF,
                 size: 20,
@@ -229,20 +233,20 @@
 
               let pointGeo = new THREE.Geometry();
 
-              let x = scales[0](d["tsne-X"]);
-              let y = scales[1](d["tsne-Y"]);
-              let z = scales[2](d["tsne-Z"]);
+              let x = scales[0](d['tsne-X']);
+              let y = scales[1](d['tsne-Y']);
+              let z = scales[2](d['tsne-Z']);
               pointGeo.vertices.push(v(x,y,z));
 
               let points = new THREE.Points(pointGeo, mat);
-              pointGeo.name = d["id"].toString()
-              points.name = d["id"].toString()
+              pointGeo.name = d['id'].toString()
+              points.name = d['id'].toString()
 
               scatterPlot.add(points);
             });
           });
         }).catch(error => {
-          console.log("response error", error)
+          console.log('response error', error)
         });
         // 1個イラストを表示する
         this.setTargetImageProperties(this.target_images[0]);
