@@ -2,7 +2,18 @@
   <v-container fluid id="Gallery">
     <h1>Gallery</h1>
     <h3>これまでに描いたイラストなどです. </h3>
-
+    <v-row class="mb-6" align="center">
+      <v-col sm="8" cols="12">
+        <v-chip
+          v-for="(tag, index) in tags"
+          :key="tag"
+          filter
+          outlined
+        >
+          {{ tag }}
+        </v-chip>
+      </v-col>
+    </v-row>
     <v-row class="mb-6" align="center">
       <v-col sm="8" cols="12" v-resize="onResize">
         <div ref="canvas_holder" id="canvas_holder"
@@ -44,6 +55,7 @@
 
   export default {
     data: () => ({
+      tags: ['ドラえもん', 'のび太', 'スネ夫'],
       target_illust: {
         title: 'dora1',
         date: '20200718',
