@@ -29,7 +29,7 @@
           filter
           outlined
           close
-          @click:close="tags.splice(index, 1)"
+          @click:close="removeTag(index)"
         >
           {{ tag }}
         </v-chip>
@@ -77,7 +77,7 @@
   export default {
     data: () => ({
       tagName: '',
-      tags: ['ドラえもん', 'のび太', 'スネ夫'],
+      tags: [],
       target_illust: {
         title: 'dora1',
         date: '20200718',
@@ -186,7 +186,7 @@
         let children = this.scene.children[0].children;
         let intersects = raycaster
           .intersectObjects(children.slice(0, children.length-1), true)
-          .filter(o => o.object.name);
+          .filter(o => o.object.name &&  o.object.visible);
 
         if (intersects.length > 0){
           console.log('name is:' + intersects[0].object.name);
@@ -208,14 +208,34 @@
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
       },
+      filterImage(){
+        let children = this.scene.children[0].children;
+        if (this.tags.length === 0) {
+          children.forEach((child) => child.visible = true);
+          return;
+        };
+        const filtered_image_indices = this.target_images
+          .filter((image) => image.tags
+            .some((tag) => this.tags.includes(tag.name))
+          )
+          .map((image) => image.id.toString());
+
+        children.forEach((child) => {
+          child.visible = (filtered_image_indices.includes(child.name)) ? true: false;
+        });
+      },
       addNewTag() {
-        console.log(this.tagName);
         if (!this.tags.includes(this.tagName)) {
           this.tags.push(this.tagName);
           this.tagName = '';
+          this.filterImage();
         }
       },
-      async drawScatter(){
+      removeTag(index) {
+        this.tags.splice(index, 1);
+        this.filterImage();
+      },
+      async drawScatter() {
         let scatterPlot = new THREE.Object3D();
         const box_size = this.canvas_settings.box_size;
         const v = this.v;
@@ -245,7 +265,6 @@
         const api_url = this.api_url;
         await this.$axios.$get(api_url + 'each_illusts.json')
           .then(data => {
-          console.log(data);
           this.target_images = data.slice(0, this.canvas_settings.image_max);
 
           axes.forEach((axis, i) => {
