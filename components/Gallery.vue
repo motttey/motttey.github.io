@@ -4,11 +4,32 @@
     <h3>これまでに描いたイラストなどです. </h3>
     <v-row class="mb-6" align="center">
       <v-col sm="8" cols="12">
+        <div class="d-flex flex-row align-baseline">
+          <v-text-field
+            class="mb-6 mr-6"
+            v-model="tagName"
+            hide-details
+            single-line
+            label="Input Tag Name"
+            @submit.prevent
+          >
+          </v-text-field>
+          <v-btn
+            color="white"
+            elevation="1"
+            @click="addNewTag()"
+            outlined
+          >
+            Filter
+          </v-btn>
+        </div>
         <v-chip
           v-for="(tag, index) in tags"
           :key="tag"
           filter
           outlined
+          close
+          @click:close="tags.splice(index, 1)"
         >
           {{ tag }}
         </v-chip>
@@ -55,6 +76,7 @@
 
   export default {
     data: () => ({
+      tagName: '',
       tags: ['ドラえもん', 'のび太', 'スネ夫'],
       target_illust: {
         title: 'dora1',
@@ -185,6 +207,13 @@
         // カメラのアスペクト比を正す
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
+      },
+      addNewTag() {
+        console.log(this.tagName);
+        if (!this.tags.includes(this.tagName)) {
+          this.tags.push(this.tagName);
+          this.tagName = '';
+        }
       },
       async drawScatter(){
         let scatterPlot = new THREE.Object3D();
