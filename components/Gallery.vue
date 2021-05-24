@@ -91,7 +91,7 @@
         canvas_offset_x: 0,
         canvas_offset_y: -50,
         box_size: 40,
-        image_max: 150,
+        image_max: 200,
       },
       api_url: 'https://mochiduko-api.netlify.app/',
       pixiv_embed: 'http://embed.pixiv.net/decorate.php',

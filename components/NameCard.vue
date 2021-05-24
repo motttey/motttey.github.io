@@ -123,7 +123,7 @@
   }
 
   #card-main h1 {
-    font-size: 24px;
+    font-size: 32px;
   }
 
   #card-main h4 {
@@ -136,8 +136,12 @@
 
   #profile-img {
     height: 80%;
-    left: 10%;
-    top: 15%;
+    left: 20%;
+    top: 20%;
+  }
+
+  #card-links {
+    bottom: 5%;
   }
 }
 
