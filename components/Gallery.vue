@@ -277,7 +277,7 @@
           this.target_images.forEach(function (d) {
             const loader = new THREE.TextureLoader();
             loader.setCrossOrigin('anonymous');
-            loader.load(api_url + 'thumbs/' + d['id'] + '.png', function(texture){
+            loader.load(api_url + 'thumbs/' + d['id'] + '.webp', function(texture){
               let mat = new THREE.PointsMaterial({
                 color:0xFFFFFF,
                 size: 20,
