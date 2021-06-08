@@ -29,7 +29,7 @@ export default {
       { hid: 'og:type', property: 'og:type', content: 'website' },
       { hid: 'og:url', property: 'og:url', content: 'http://motttey.github.io/mochiduko-20' },
       { hid: 'og:title', property: 'og:title', content: 'モチヅ庫' },
-      { hid: 'og:image', property: 'og:image', content: 'https://motttey.github.io/mochiduko-20/drawer-bg.png' },
+      { hid: 'og:image', property: 'og:image', content: 'https://motttey.github.io/mochiduko-20/drawer-bg.webp' },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
       { hid: 'twitter:site', name: 'twitter:site', content: '@mt_tg' },
       { hid: 'twitter:title', name: 'twitter:title', content: 'モチヅ庫\'20' },

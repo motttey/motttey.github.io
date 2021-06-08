@@ -46,7 +46,7 @@
       fixed
       temporary
       dark
-      src="/mochiduko-20/drawer-bg.png"
+      src="/mochiduko-20/drawer-bg.webp"
     >
       <v-list>
         <v-list-item
@@ -86,7 +86,7 @@
     left: 0;
     background-position: 100% 100%;
     background-size: 250px auto;
-    background-image: url("~@/static/site-bg.png");
+    background-image: url("~@/static/site-bg.webp");
     filter: blur(2px);
   }
 
