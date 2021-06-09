@@ -28,10 +28,10 @@
 
     </v-app-bar>
 
-    <v-content class="bg-img">
+    <v-content class="bg">
     </v-content>
 
-    <v-content class="bg">
+    <v-content class="bg-img">
     </v-content>
 
     <v-content>
@@ -87,7 +87,9 @@
     background-position: 100% 100%;
     background-size: 250px auto;
     background-image: url("~@/static/site-bg.webp");
-    filter: blur(2px);
+    filter: blur(1.5px);
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
   }
 
   .bg {
@@ -100,11 +102,10 @@
     background: linear-gradient(
       135deg,
       rgba(0, 0, 0,1) -10%,
-      rgba(0, 40, 141,1) -10%,
+      rgba(0, 40, 141) -10%,
       rgba(0, 91, 140) 9.8%,
-      rgba(0, 0, 0,1) 34%
+      rgba(0, 0, 0) 34%
     );
-    /* background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 100%); */
   }
 
   a, a:hover {
