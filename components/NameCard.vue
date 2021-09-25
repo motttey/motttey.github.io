@@ -123,15 +123,15 @@
   }
 
   #card-main h1 {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   #card-main h4 {
-    font-size: 16px;
+    font-size: 1.3rem;
   }
 
   #card-links h5 {
-    font-size: 14px;
+    font-size: 1rem;
   }
 
   #profile-img {

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid id="LinkCards">
-    <h1>My Links</h1>
-    <h3>各種SNSのアカウントです. </h3>
+    <h1>Links</h1>
+    <h3>各種SNSのアカウントです。 </h3>
 
     <v-row dense class="mb-6">
       <v-col cols="12" sm="8" offset-sm="2">
