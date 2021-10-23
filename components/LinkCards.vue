@@ -1,7 +1,7 @@
 <template>
   <v-container fluid id="LinkCards">
     <h1>Links</h1>
-    <h3>各種SNSのアカウントです。 </h3>
+    <h3>各種SNSのアカウントです。</h3>
 
     <v-row dense class="mb-6">
       <v-col cols="12" sm="8" offset-sm="2">
@@ -57,7 +57,7 @@
         url: 'https://twitter.com/mt_tg', flex: 12 },
         { title: 'Instagram',  src: 'http://embed.pixiv.net/decorate.php?illust_id=49339965',
         url: 'https://www.instagram.com/tagosaku_mochiduki', flex: 6 },
-        { title: 'Blog',  src: 'http://embed.pixiv.net/decorate.php?illust_id=83975466',
+        { title: 'Blog',  src: '/pixiv/decorate.php?illust_id=83975466',
         url: 'http://motttey.hatenablog.com/', flex: 6 },
       ],
     }),
