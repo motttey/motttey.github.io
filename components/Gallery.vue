@@ -242,7 +242,7 @@
         this.scene.add(scatterPlot);
 
         // Draw the bounding box
-        let lineGeo = new THREE.Geometry();
+        // let lineGeo = new THREE.Geometry();
         /*
         lineGeo.vertices.push(
           v(-box_size, box_size, -box_size), v(box_size, box_size, -box_size),
@@ -291,18 +291,18 @@
                   .range([-box_size, box_size]);
               });
 
-              let pointGeo = new THREE.Geometry();
-
+              const points = [];
               let x = scales[0](d['tsne-X']);
               let y = scales[1](d['tsne-Y']);
               let z = scales[2](d['tsne-Z']);
-              pointGeo.vertices.push(v(x,y,z));
+              points.push(v(x,y,z))
 
-              let points = new THREE.Points(pointGeo, mat);
+              let pointGeo = new THREE.BufferGeometry().setFromPoints(points);
+              let pointsObj = new THREE.Points(pointGeo, mat);
               pointGeo.name = d['id'].toString()
-              points.name = d['id'].toString()
+              pointsObj.name = d['id'].toString()
 
-              scatterPlot.add(points);
+              scatterPlot.add(pointsObj);
             });
           });
         }).catch(error => {
@@ -311,9 +311,9 @@
         // 1個イラストを表示する
         this.setTargetImageProperties(this.target_images[0]);
 
-        let lineMat = new THREE.LineBasicMaterial({color: 0xFFFFFF, linewidth: 1});
-        let line = new THREE.Line(lineGeo, lineMat);
-        scatterPlot.add(line);
+        // let lineMat = new THREE.LineBasicMaterial({color: 0xFFFFFF, linewidth: 1});
+        // let line = new THREE.Line(lineGeo, lineMat);
+        // scatterPlot.add(line);
 
         this.renderer.setSize(this.canvas_settings.canvas_width, this.canvas_settings.canvas_height);
         this.renderer.setViewport(-1 * this.canvas_settings.canvas_offset_x, 0,  this.canvas_settings.canvas_width, this.canvas_settings.canvas_height);
