@@ -69,7 +69,8 @@ export default {
   modules: [
     'nuxt-fontawesome',
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    '@nuxtjs/google-analytics'
   ],
   proxy: {
     '/pixiv':
@@ -126,6 +127,11 @@ export default {
     ],
   },
   googleAnalytics: {
-    id: 'G-1PLTQN0YGN'
+    id: process.env.GOOGLE_ANALYTICS_ID,
   },
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID
+    }
+  }
 }
