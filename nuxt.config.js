@@ -60,8 +60,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@nuxtjs/vuetify',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/vuetify'
   ],
   /*
   ** Nuxt.js modules
@@ -70,7 +69,7 @@ export default {
     'nuxt-fontawesome',
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-gtag'
   ],
   proxy: {
     '/pixiv':
@@ -126,12 +125,8 @@ export default {
       }
     ],
   },
-  googleAnalytics: {
+  'google-gtag': {
     id: process.env.GOOGLE_ANALYTICS_ID,
-  },
-  publicRuntimeConfig: {
-    googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_ID
-    }
+    debug: true
   }
 }
