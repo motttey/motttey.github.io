@@ -1,1 +1,9 @@
+# Mac OSX files
 .DS_Store
+Thumbs.db
+
+# libralies
+jquery.inview
+dependencies
+dist
+
