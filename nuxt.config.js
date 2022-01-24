@@ -113,6 +113,9 @@ export default {
   router: {
     base: '/mochiduko-20/'
   },
+  env: {
+    PIXIV_API_URL: process.env.PIXIV_API_URL
+  },
   fontawesome: {
     imports: [
       {
