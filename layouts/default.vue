@@ -99,13 +99,10 @@
     top: 0;
     left: 0;
     background-size: cover;
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0,1) -10%,
-      rgba(0, 40, 141) -10%,
-      rgba(0, 91, 140) 9.8%,
-      rgba(0, 0, 0) 34%
-    );
+    background:
+      linear-gradient(120deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+      linear-gradient(185deg, rgba(0, 40, 141, 0.5), rgba(255, 255, 255, 0)),
+      linear-gradient(340deg, rgba(0, 91, 140, 0.5), rgba(255, 255, 255, 0));
   }
 
   a, a:hover {
