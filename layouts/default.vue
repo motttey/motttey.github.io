@@ -28,17 +28,17 @@
 
     </v-app-bar>
 
-    <v-content class="bg">
-    </v-content>
+    <v-main class="bg">
+    </v-main>
 
-    <v-content class="bg-img">
-    </v-content>
+    <v-main class="bg-img">
+    </v-main>
 
-    <v-content>
+    <v-main>
       <v-container>
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
 
     <v-navigation-drawer
       v-model="rightDrawer"
