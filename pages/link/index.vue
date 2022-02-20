@@ -13,7 +13,7 @@
       <v-data-table
         :headers="headers"
         :items="links"
-        :items-per-page="50"
+        :items-per-page="15"
         item-key="id"
         class="link-table"
       >
@@ -28,17 +28,12 @@
 </template>
 
 <script>
+import links from "static/links"
+
 export default {
   name: "linkTable",
   data: () => ({
-    links: [
-      {
-        id: 1,
-        title: "モチヅ庫",
-        url: "https://motttey.github.io/",
-        description: "私のサイトです."
-      }
-    ]
+    links: links.data
   }),
   computed: {
     headers() {
