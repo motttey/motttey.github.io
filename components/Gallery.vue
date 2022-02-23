@@ -148,7 +148,6 @@
         this.renderer.render(this.scene, this.camera);
       },
       setTargetImageProperties(target_image){
-        console.log(target_image);
         this.target_illust.src = this.pixiv_embed + '?illust_id=' + target_image['id'] + '&mode=sns-automator';
 
         this.target_illust.title = target_image['title'];
@@ -189,7 +188,7 @@
           .filter(o => o.object.name &&  o.object.visible);
 
         if (intersects.length > 0){
-          console.log('name is:' + intersects[0].object.name);
+          // console.log('name is:' + intersects[0].object.name);
           let target_image = this.target_images
             .filter(img => img['id'] == intersects[0].object.name);
 

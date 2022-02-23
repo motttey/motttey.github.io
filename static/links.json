@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "title": "ドラえもんんチャンネル",
+      "url": "https://dora-world.com",
+      "description": "公式サイトです。"
+    },
+    {
+      "id": 1,
+      "title": "モチヅ庫",
+      "url": "https://motttey.github.io/",
+      "description": "私のサイトです."
+    }
+  ]
+}
