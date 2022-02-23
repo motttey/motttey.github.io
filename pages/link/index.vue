@@ -33,8 +33,13 @@ import links from "static/links"
 export default {
   name: "linkTable",
   data: () => ({
-    links: links.data
+    links: links.data,
   }),
+  methods: {
+    async getLinks() {
+      this.links = await this.$axios.$get('/links')
+    }
+  },
   computed: {
     headers() {
       return [
@@ -48,6 +53,9 @@ export default {
         }
       ]
     }
+  },
+  mounted: function() {
+    this.getLinks()
   }
 }
 </script>
