@@ -33,11 +33,12 @@ import links from "static/links"
 export default {
   name: "linkTable",
   data: () => ({
-    links: links.data,
+    links: [],
   }),
+  // asyncDataに書き直す
   methods: {
     async getLinks() {
-      this.links = await this.$axios.$get('/links')
+      this.links = await this.$axios.$get(process.env.GOOGLE_API_URL)
     }
   },
   computed: {
@@ -54,7 +55,7 @@ export default {
       ]
     }
   },
-  mounted: function() {
+  created () {
     this.getLinks()
   }
 }
