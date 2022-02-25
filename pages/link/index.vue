@@ -6,30 +6,34 @@
   >
     <v-flex
       xs12
-      sm6
-      md6
+      sm8
+      md8
     >
-      <h1>リンク集</h1>
-      <v-data-table
-        :headers="headers"
-        :items="links"
-        :items-per-page="15"
-        item-key="id"
-        class="link-table"
-      >
-        <template v-slot:[`item.title`]="{ item }">
-          <a :href="item.url" target="_blank">
-            {{ item.title }}
-          </a>
-        </template>
-      </v-data-table>
+      <v-container fluid>
+        <v-row>
+          <h1>リンク集</h1>
+        </v-row>
+        <v-row>
+          <v-data-table
+            :headers="headers"
+            :items="links"
+            :items-per-page="15"
+            item-key="id"
+            class="link-table"
+          >
+            <template v-slot:[`item.title`]="{ item }">
+              <a :href="item.url" target="_blank">
+                {{ item.title }}
+              </a>
+            </template>
+          </v-data-table>
+        </v-row>
+      </v-container>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import links from "static/links"
-
 export default {
   name: "linkTable",
   data: () => ({
