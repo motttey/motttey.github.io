@@ -53,6 +53,10 @@ export default {
           value: "title"
         },
         {
+          text: "カテゴリ",
+          value: "category"
+        },
+        {
           text: "紹介",
           value: "description"
         }
