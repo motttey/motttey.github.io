@@ -15,7 +15,12 @@
         </v-img>
       </template>
 
-      <v-toolbar-title class="title" v-text="title" />
+      <v-toolbar-title
+        class="title font-weight-bold"
+        v-text="title"
+        @click="$router.push('/')"
+        style="cursor:pointer;"
+      />
 
       <v-spacer />
 
@@ -143,7 +148,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'モチヅ庫 \'20',
+      title: 'モチヅ庫',
       img_source: 'http://embed.pixiv.net/decorate.php?illust_id=76601058'
     }
   }
