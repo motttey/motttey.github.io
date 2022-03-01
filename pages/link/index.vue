@@ -23,38 +23,13 @@
                 <h2>{{ category }}</h2>
               </v-row>
               <v-row>
-                <v-data-table
-                  :headers="headers"
-                  :items="links"
-                  :items-per-page="15"
-                  item-key="id"
-                  class="link-table"
-                  v-if="links.length > 0"
-                >
-                  <template v-slot:[`item.title`]="{ item }">
-                    <a :href="item.url" target="_blank">
-                      {{ item.title }}
-                    </a>
-                  </template>
-                </v-data-table>
+                <DataTable :links="links" />
               </v-row>
             </div>
           </v-col>
         </v-row>
         <v-row>
-          <v-data-table
-            :headers="headers"
-            :items="links"
-            :items-per-page="15"
-            item-key="id"
-            class="link-table"
-          >
-            <template v-slot:[`item.title`]="{ item }">
-              <a :href="item.url" target="_blank">
-                {{ item.title }}
-              </a>
-            </template>
-          </v-data-table>
+          <DataTable :links="links" />
         </v-row>
       </v-container>
     </v-flex>
@@ -62,6 +37,8 @@
 </template>
 
 <script>
+import DataTable from '~/components/DataTable.vue'
+
 export default {
   name: "linkTable",
   data: () => ({
@@ -71,6 +48,9 @@ export default {
       "fanart": []
     }
   }),
+  components: {
+    DataTable
+  },
   // asyncDataに書き直す
   methods: {
     async getLinks() {
