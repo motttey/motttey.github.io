@@ -6,8 +6,8 @@
   >
     <v-flex
       xs12
-      sm8
-      md8
+      sm9
+      md9
     >
       <v-container fluid>
         <v-row>
@@ -19,6 +19,7 @@
               v-for="(links, category) in categoryLinks"
               v-bind:key="category"
             >
+              <v-divider class="my-3"></v-divider>
               <v-row>
                 <h2>{{ category }}</h2>
               </v-row>
@@ -86,8 +87,6 @@ export default {
   },
   created () {
     this.getLinks()
-
-    console.log(this.categoryLinks)
   }
 }
 </script>
