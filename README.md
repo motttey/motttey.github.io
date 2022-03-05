@@ -25,7 +25,8 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 `dist`ディレクトリ以下を [motttey.github.io](https://motttey.github.io/) にパブリッシュする。
 
 変更をコミットし、ローカルの動作を確認した後に次を実行
-```
+
+```bash
 $ git checkout deploy-master
 $ npm run generate
 $ git subtree push --prefix dist origin2 masterv3
