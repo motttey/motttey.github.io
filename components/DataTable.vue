@@ -7,7 +7,16 @@
     item-key="id"
     class="link-table"
     v-if="links.length > 0"
+    :search="search"
+    :custom-filter="filterText"
   >
+    <template v-slot:top>
+     <v-text-field
+       v-model="search"
+       label="Search (partial match))"
+       class="mx-4"
+     ></v-text-field>
+    </template>
     <template v-slot:[`item.title`]="{ item }">
       <a
         :href="item.url"
@@ -30,6 +39,11 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      search: ''
+    }
+  },
   computed: {
     headers() {
       return [
@@ -47,6 +61,14 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    filterText (value, search, item) {
+      return value != null &&
+        search != null &&
+        typeof value === 'string' &&
+        value.toString().indexOf(search) !== -1
+    },
   }
 }
 </script>
