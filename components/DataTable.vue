@@ -9,6 +9,9 @@
     v-if="links.length > 0"
     :search="search"
     :custom-filter="filterText"
+    loading="true"
+    loading-text="Loading data..."
+    no-data-text="There is a no data."
   >
     <template v-slot:top>
      <v-text-field
@@ -35,7 +38,7 @@ export default {
   props: {
     links: {
       type: Array,
-      default: () => [],
+      default: () => null,
       required: true
     }
   },

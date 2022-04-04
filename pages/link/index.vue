@@ -20,7 +20,7 @@
               v-bind:key="category"
             >
               <v-divider class="my-3"></v-divider>
-              <v-row>
+              <v-row v-if="links. length > 0">
                 <h2>{{ category }}</h2>
               </v-row>
               <v-row>
@@ -28,9 +28,6 @@
               </v-row>
             </div>
           </v-col>
-        </v-row>
-        <v-row>
-          <DataTable :links="links" />
         </v-row>
       </v-container>
     </v-flex>
