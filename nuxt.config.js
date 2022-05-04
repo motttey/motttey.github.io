@@ -117,6 +117,17 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    postcss: {
+      hideNothingWarning: true,
+      plugins: {
+        'postcss-url': false
+      },
+      preset: {
+        autoprefixer: {
+          grid: true
+        }
+      }
+    }
   },
   router: {
     base: '/mochiduko-20/'
