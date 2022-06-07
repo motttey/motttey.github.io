@@ -20,11 +20,11 @@
               v-bind:key="category"
             >
               <v-divider class="my-3"></v-divider>
-              <v-row v-if="links. length > 0">
+              <v-row v-if="links.length > 0">
                 <h2>{{ category }}</h2>
               </v-row>
               <v-row>
-                <DataTable :links="links" />
+                <LinkTable :links="links" />
               </v-row>
             </div>
           </v-col>
@@ -35,10 +35,13 @@
 </template>
 
 <script>
-import DataTable from '~/components/DataTable.vue'
+import LinkTable from '~/components/LinkTable.vue'
 
 export default {
   name: "Links",
+  components: {
+    LinkTable
+  },
   data: () => ({
     links: [],
     categoryLinks: {
@@ -46,9 +49,6 @@ export default {
       "fanart": []
     }
   }),
-  components: {
-    DataTable
-  },
   // asyncDataに書き直す
   methods: {
     async getLinks() {
@@ -61,7 +61,6 @@ export default {
             }
           });
         })
-
     }
   },
   computed: {
