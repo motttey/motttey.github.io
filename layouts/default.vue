@@ -118,6 +118,10 @@
       font-family: "M Plus 1p" !important;
       font-weight: bold;
   }
+
+  .theme--dark.v-data-table {
+    background-color: rgba(30, 30, 30, 0.5);
+  }
 </style>
 
 <script>

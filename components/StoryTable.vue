@@ -76,9 +76,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.theme--dark.v-data-table {
-  background-color: rgba(30, 30, 30, 0.5);
-}
-</style>
