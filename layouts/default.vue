@@ -155,6 +155,9 @@ export default {
       title: 'モチヅ庫',
       img_source: 'http://embed.pixiv.net/decorate.php?illust_id=76601058'
     }
-  }
+  },
+  head: () => ({
+    title: "Top"
+  })
 }
 </script>

@@ -42,6 +42,9 @@ export default {
   components: {
     LinkTable
   },
+  head: () => ({
+    title: " - Links"
+  }),
   data: () => ({
     links: [],
     categoryLinks: {
