@@ -34,13 +34,17 @@ export default {
   components: {
     StoryTable
   },
+  head: () => ({
+    title: " - Stories"
+  }),
   data: () => ({
     stories: [
       {
         "title": "未来の国からはるばると",
         "abstract": "「ドラえもん」連載第1回",
         "volume": 1,
-        "tags": ["ドラえもん", "のび太"]
+        "tags": ["ドラえもん", "のび太"],
+        "gadgets": ["タイムマシン"]
       }
     ]
   })
