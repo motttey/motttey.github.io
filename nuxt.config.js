@@ -17,8 +17,8 @@ export default {
   */
   head: {
     // titleTemplate: '%s - ' + 'モチヅ庫',
-    titleTemplate: 'モチヅ庫',
-    title: process.env.npm_package_name || '',
+    titleTemplate: 'モチヅ庫 | %s',
+    // title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0' },
