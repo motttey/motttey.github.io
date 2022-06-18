@@ -86,6 +86,11 @@ export default {
       target: process.env.GOOGLE_API_URL,
       pathRewrite: {'^/links': ''}
     },
+    '/stories':
+    {
+      target: process.env.GOOGLE_API_URL2,
+      pathRewrite: {'^/stories': ''}
+    },
     '/motttey':
     {
       target: 'https://motttey.github.io/gallery/',
@@ -135,7 +140,8 @@ export default {
   },
   env: {
     PIXIV_API_URL: process.env.PIXIV_API_URL,
-    GOOGLE_API_URL: process.env.GOOGLE_API_URL
+    GOOGLE_API_URL: process.env.GOOGLE_API_URL,
+    GOOGLE_API_URL2: process.env.GOOGLE_API_URL2
   },
   fontawesome: {
     imports: [

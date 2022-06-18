@@ -17,7 +17,10 @@
           <v-col>
             <!-- ストーリーの一覧 -->
             <v-row>
-              <StoryTable :stories="stories" />
+              <StoryTable
+                v-if="stories"
+                :stories="stories"
+              />
             </v-row>
           </v-col>
         </v-row>
@@ -38,15 +41,21 @@ export default {
     title: " - Stories"
   }),
   data: () => ({
-    stories: [
-      {
-        "title": "未来の国からはるばると",
-        "abstract": "「ドラえもん」連載第1回",
-        "volume": 1,
-        "tags": ["ドラえもん", "のび太"],
-        "gadgets": ["タイムマシン"]
-      }
-    ]
-  })
+    stories: []
+  }),
+  methods: {
+    async getStories() {
+      this.$axios.$get(process.env.GOOGLE_API_URL2)
+        .then((res) => {
+          this.stories = res
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+    }
+  },
+  created () {
+    this.getStories()
+  }
 }
 </script>
