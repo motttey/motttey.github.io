@@ -83,12 +83,12 @@ export default {
     },
     '/links':
     {
-      target: process.env.GOOGLE_API_URL,
+      target: process.env.LINKS_API_URL,
       pathRewrite: {'^/links': ''}
     },
     '/stories':
     {
-      target: process.env.GOOGLE_API_URL2,
+      target: process.env.STORIES_API_URL,
       pathRewrite: {'^/stories': ''}
     },
     '/motttey':
@@ -140,8 +140,8 @@ export default {
   },
   env: {
     PIXIV_API_URL: process.env.PIXIV_API_URL,
-    GOOGLE_API_URL: process.env.GOOGLE_API_URL,
-    GOOGLE_API_URL2: process.env.GOOGLE_API_URL2
+    LINKS_API_URL: process.env.LINKS_API_URL,
+    STORIES_API_URL: process.env.STORIES_API_URL
   },
   fontawesome: {
     imports: [

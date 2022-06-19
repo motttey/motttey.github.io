@@ -45,7 +45,7 @@ export default {
   }),
   methods: {
     async getStories() {
-      this.$axios.$get(process.env.GOOGLE_API_URL2)
+      this.$axios.$get(process.env.STORIES_API_URL)
         .then((res) => {
           this.stories = res
         })

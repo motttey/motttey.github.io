@@ -55,7 +55,7 @@ export default {
   // asyncDataに書き直す
   methods: {
     async getLinks() {
-      this.$axios.$get(process.env.GOOGLE_API_URL)
+      this.$axios.$get(process.env.LINKS_API_URL)
         .then((res) => {
           this.links = res
           res.forEach((link, i) => {
