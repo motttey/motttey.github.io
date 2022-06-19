@@ -22,14 +22,14 @@
     </template>
     <template  v-slot:[`item.tags`]="{ item }">
       <v-chip
-        v-for="(tag, index) in item.tags"
+        v-for="(tag, index) in item.tags.split(',')"
         v-bind:key="index"
         small
       > {{ tag }} </v-chip>
     </template>
     <template  v-slot:[`item.gadgets`]="{ item }">
       <v-chip
-        v-for="(gadget, index) in item.gadgets"
+        v-for="(gadget, index) in item.gadgets.split(',')"
         v-bind:key="index"
         small
       > {{ gadget }} </v-chip>
