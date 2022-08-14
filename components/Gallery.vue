@@ -327,8 +327,16 @@
 </script>
 
 <style>
-#canvas_holder {
-  width: 100%;
+@media all and (min-width: 480px) { 
+  #canvas_holder {
+    width: 100%;
+  }
+}
+@media all and (max-width: 480px) { 
+  #canvas_holder {
+    width: 90%;
+    margin: 5%;
+  }
 }
 
 #target_image {
