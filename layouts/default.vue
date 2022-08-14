@@ -51,7 +51,7 @@
       fixed
       temporary
       dark
-      src="/mochiduko-20/drawer-bg.webp"
+      src="/drawer-bg.webp"
     >
       <v-list>
         <v-list-item
