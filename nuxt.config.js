@@ -27,16 +27,16 @@ export default {
       { hid: 'description', name: 'description', content: '望月 田吾作 (もちづき たごさく)が描いた、ドラえもんや藤子不二雄作品などのイラストや漫画を掲載しているサイトです.' },
       { hid: 'og:site_name', property: 'og:site_name', content: 'モチヅ庫' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
-      { hid: 'og:url', property: 'og:url', content: 'http://motttey.github.io/' },
+      { hid: 'og:url', property: 'og:url', content: 'http://motttey.github.io/mochiduko-20' },
       { hid: 'og:title', property: 'og:title', content: 'モチヅ庫' },
-      { hid: 'og:image', property: 'og:image', content: 'https://motttey.github.io/drawer-bg.webp' },
+      { hid: 'og:image', property: 'og:image', content: 'https://motttey.github.io/mochiduko-20/drawer-bg.webp' },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
       { hid: 'twitter:site', name: 'twitter:site', content: '@mt_tg' },
       { hid: 'twitter:title', name: 'twitter:title', content: 'モチヅ庫\'20' },
       { hid: 'twitter:description', name: 'twitter:description', content: '望月田吾作のドラえもんだらけなホームページ' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/mochiduko-20/favicon.ico' }
     ]
   },
   /*
@@ -136,7 +136,7 @@ export default {
     }
   },
   router: {
-    base: '/'
+    base: '/mochiduko-20/'
   },
   env: {
     PIXIV_API_URL: process.env.PIXIV_API_URL,
