@@ -41,4 +41,9 @@ export default {
 h1 {
   font-size: 20px;
 }
+
+.theme--dark.v-application {
+  background: none;
+}
+
 </style>

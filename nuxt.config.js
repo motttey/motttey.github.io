@@ -10,15 +10,15 @@ export default {
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
-  target: 'server',
+  target: 'static',
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
     // titleTemplate: '%s - ' + 'モチヅ庫',
-    titleTemplate: 'モチヅ庫',
-    title: process.env.npm_package_name || '',
+    titleTemplate: 'モチヅ庫 | %s',
+    // title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0' },
@@ -27,16 +27,16 @@ export default {
       { hid: 'description', name: 'description', content: '望月 田吾作 (もちづき たごさく)が描いた、ドラえもんや藤子不二雄作品などのイラストや漫画を掲載しているサイトです.' },
       { hid: 'og:site_name', property: 'og:site_name', content: 'モチヅ庫' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
-      { hid: 'og:url', property: 'og:url', content: 'http://motttey.github.io/mochiduko-20' },
+      { hid: 'og:url', property: 'og:url', content: 'http://motttey.github.io/' },
       { hid: 'og:title', property: 'og:title', content: 'モチヅ庫' },
-      { hid: 'og:image', property: 'og:image', content: 'https://motttey.github.io/mochiduko-20/drawer-bg.webp' },
+      { hid: 'og:image', property: 'og:image', content: 'https://motttey.github.io/drawer-bg.webp' },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
       { hid: 'twitter:site', name: 'twitter:site', content: '@mt_tg' },
       { hid: 'twitter:title', name: 'twitter:title', content: 'モチヅ庫\'20' },
       { hid: 'twitter:description', name: 'twitter:description', content: '望月田吾作のドラえもんだらけなホームページ' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/mochiduko-20/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   /*
@@ -60,7 +60,8 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxt/postcss8'
   ],
   /*
   ** Nuxt.js modules
@@ -82,8 +83,13 @@ export default {
     },
     '/links':
     {
-      target: process.env.GOOGLE_API_URL,
+      target: process.env.LINKS_API_URL,
       pathRewrite: {'^/links': ''}
+    },
+    '/stories':
+    {
+      target: process.env.STORIES_API_URL,
+      pathRewrite: {'^/stories': ''}
     },
     '/motttey':
     {
@@ -117,13 +123,25 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    postcss: {
+      hideNothingWarning: true,
+      plugins: {
+        'postcss-url': false
+      },
+      preset: {
+        autoprefixer: {
+          grid: true
+        }
+      }
+    }
   },
   router: {
-    base: '/mochiduko-20/'
+    base: '/'
   },
   env: {
     PIXIV_API_URL: process.env.PIXIV_API_URL,
-    GOOGLE_API_URL: process.env.GOOGLE_API_URL
+    LINKS_API_URL: process.env.LINKS_API_URL,
+    STORIES_API_URL: process.env.STORIES_API_URL
   },
   fontawesome: {
     imports: [

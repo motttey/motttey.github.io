@@ -82,7 +82,7 @@
         title: 'dora1',
         date: '20200718',
         tags_text: '#doraemon',
-        src: '/mochiduko-20/doraemon-namecard.webp',
+        src: '/doraemon-namecard.webp',
         url: 'https://www.pixiv.net/users/415546', flex: 12
       },
       canvas_settings: {
@@ -327,8 +327,16 @@
 </script>
 
 <style>
-#canvas_holder {
-  width: 100%;
+@media all and (min-width: 480px) { 
+  #canvas_holder {
+    width: 100%;
+  }
+}
+@media all and (max-width: 480px) { 
+  #canvas_holder {
+    width: 90%;
+    margin: 5%;
+  }
 }
 
 #target_image {

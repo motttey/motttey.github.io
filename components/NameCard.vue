@@ -36,7 +36,7 @@
             </h5>
           </div>
           <img id="profile-img"
-            src="/mochiduko-20/doraemon-namecard.webp"
+            src="/doraemon-namecard.webp"
             alt="Doraemon"
             class="mb-5"
           >
