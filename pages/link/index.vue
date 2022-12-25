@@ -43,7 +43,7 @@ export default {
     LinkTable
   },
   head: () => ({
-    title: " - Links"
+    title: " Links"
   }),
   data: () => ({
     links: [],

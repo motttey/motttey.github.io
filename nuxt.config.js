@@ -36,7 +36,9 @@ export default {
       { hid: 'twitter:description', name: 'twitter:description', content: '望月田吾作のドラえもんだらけなホームページ' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOriginIsolated: true },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap' }
     ]
   },
   /*

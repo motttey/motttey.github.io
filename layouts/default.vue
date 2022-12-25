@@ -147,7 +147,7 @@ export default {
         {
           title: 'Link',
           to: '#LinkCards'
-        },
+        }
       ],
       miniVariant: false,
       right: true,

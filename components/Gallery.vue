@@ -2,7 +2,7 @@
   <v-container fluid id="Gallery">
     <h1>Gallery</h1>
     <h3>これまでに描いたイラストなどです. </h3>
-    <v-row class="mb-6" align="center">
+    <v-row class="mb-6" align-center>
       <v-col sm="8" cols="12">
         <div class="d-flex flex-row align-baseline">
           <v-text-field
@@ -35,7 +35,7 @@
         </v-chip>
       </v-col>
     </v-row>
-    <v-row class="mb-6" align="center">
+    <v-row class="mb-6" align-center>
       <v-col sm="8" cols="12" v-resize="onResize">
         <div ref="canvas_holder" id="canvas_holder"
           @mousemove="onDocumentMouseMove($event)"

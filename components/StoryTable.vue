@@ -6,10 +6,9 @@
     :items-per-page="50"
     item-key="id"
     class="story-table"
-    v-if="stories.length > 0"
     :search="search"
     :custom-filter="filterText"
-    loading="true"
+    :loading="loading"
     loading-text="Loading data..."
     no-data-text="There is a no data."
   >
@@ -53,6 +52,9 @@ export default {
     }
   },
   computed: {
+    loading() {
+      return this.stories.length > 0
+    },
     headers() {
       return [
         {

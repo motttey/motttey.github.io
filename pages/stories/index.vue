@@ -38,7 +38,7 @@ export default {
     StoryTable
   },
   head: () => ({
-    title: " - Stories"
+    title: " Stories"
   }),
   data: () => ({
     stories: []

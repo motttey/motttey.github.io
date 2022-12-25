@@ -6,10 +6,9 @@
     :items-per-page="15"
     item-key="id"
     class="link-table"
-    v-if="links.length > 0"
     :search="search"
     :custom-filter="filterText"
-    loading="true"
+    :loading="loading"
     loading-text="Loading data..."
     no-data-text="There is a no data."
   >
@@ -39,7 +38,7 @@ export default {
   props: {
     links: {
       type: Array,
-      default: () => null,
+      default: () => [],
       required: true
     }
   },
@@ -49,6 +48,9 @@ export default {
     }
   },
   computed: {
+    loading() {
+      return this.links.length > 0
+    },
     headers() {
       return [
         {
