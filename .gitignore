@@ -6,4 +6,5 @@ Thumbs.db
 jquery.inview
 dependencies
 dist
-
+node_modules
+coverage
