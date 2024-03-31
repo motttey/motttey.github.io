@@ -18,6 +18,7 @@ const nextConfig = {
   },
   assetPrefix: prefixPath,
   basePath: prefixPath,
+  distDir: 'doc',
 };
 
 module.exports = nextConfig;
