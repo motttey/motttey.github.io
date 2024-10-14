@@ -1,7 +1,9 @@
 User-Agent: GPTBot
 Disallow: /
+Disallow: /dialy
 
 User-Agent: Googlebot
 Allow: /
+Allow: /dialy
 
-Sitemap: https://motttey.github.io/mochiduko-24/sitemap.xml
+Sitemap: https://motttey.github.io/sitemap.xml
