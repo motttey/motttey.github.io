@@ -1,9 +1,12 @@
-User-Agent: GPTBot
-Disallow: /
-Disallow: /dialy
+User-Agent: *
+Allow: /
+Allow: /dialy
 
 User-Agent: Googlebot
 Allow: /
-Allow: /dialy
+
+User-Agent: GPTBot
+Disallow: /
+Disallow: /dialy
 
 Sitemap: https://motttey.github.io/sitemap.xml
