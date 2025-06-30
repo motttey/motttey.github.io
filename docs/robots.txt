@@ -8,5 +8,6 @@ Allow: /
 User-Agent: GPTBot
 Disallow: /
 Disallow: /dialy
+Disallow: /memo
 
 Sitemap: https://motttey.github.io/sitemap.xml
