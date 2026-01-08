@@ -1,6 +1,5 @@
 User-Agent: *
 Allow: /
-Allow: /dialy
 
 User-Agent: Googlebot
 Allow: /
